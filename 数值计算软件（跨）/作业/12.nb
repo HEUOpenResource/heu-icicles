@@ -1,0 +1,214 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.0'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      6368,        154]*)
+(*NotebookOutlinePosition[      7035,        177]*)
+(*  CellTagsIndexPosition[      6991,        173]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+    \(kindList = {"\<\:9ed1\:6843\>", "\<\:7ea2\:6843\>", "\<\:6885\:82b1\>", \
+"\<\:65b9\:5757\>"}; kindList\)], "Input"],
+
+Cell[BoxData[
+    \({"\:9ed1\:6843", "\:7ea2\:6843", "\:6885\:82b1", 
+      "\:65b9\:5757"}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(numberList = {"\<A\>", "\<2\>", "\<3\>", "\<4\>", "\<5\>", "\<6\>", \
+"\<7\>", "\<8\>", "\<9\>", "\<10\>", "\<J\>", "\<Q\>", "\<K\>"}; 
+    numberList\)], "Input"],
+
+Cell[BoxData[
+    \({"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", 
+      "K"}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+    \(\(cardList = {};\)\), "\[IndentingNewLine]", 
+    \(For[i = 0, 
+      i \[LessEqual] 
+        51, \(i++\), {\[IndentingNewLine]cardNum = 
+          Mod[i, 13] + 1, \[IndentingNewLine]kindNum = 
+          Floor[i/13] + 1, \[IndentingNewLine]pokerContent = 
+          kindList[\([kindNum]\)] <> 
+            numberList[\([cardNum]\)], \[IndentingNewLine]AppendTo[cardList, 
+          pokerContent]}\[IndentingNewLine]]; cardList\)}], "Input"],
+
+Cell[BoxData[
+    \({"\:9ed1\:6843A", "\:9ed1\:68432", "\:9ed1\:68433", "\:9ed1\:68434", 
+      "\:9ed1\:68435", "\:9ed1\:68436", "\:9ed1\:68437", "\:9ed1\:68438", 
+      "\:9ed1\:68439", "\:9ed1\:684310", "\:9ed1\:6843J", "\:9ed1\:6843Q", 
+      "\:9ed1\:6843K", "\:7ea2\:6843A", "\:7ea2\:68432", "\:7ea2\:68433", 
+      "\:7ea2\:68434", "\:7ea2\:68435", "\:7ea2\:68436", "\:7ea2\:68437", 
+      "\:7ea2\:68438", "\:7ea2\:68439", "\:7ea2\:684310", "\:7ea2\:6843J", 
+      "\:7ea2\:6843Q", "\:7ea2\:6843K", "\:6885\:82b1A", "\:6885\:82b12", 
+      "\:6885\:82b13", "\:6885\:82b14", "\:6885\:82b15", "\:6885\:82b16", 
+      "\:6885\:82b17", "\:6885\:82b18", "\:6885\:82b19", "\:6885\:82b110", 
+      "\:6885\:82b1J", "\:6885\:82b1Q", "\:6885\:82b1K", "\:65b9\:5757A", 
+      "\:65b9\:57572", "\:65b9\:57573", "\:65b9\:57574", "\:65b9\:57575", 
+      "\:65b9\:57576", "\:65b9\:57577", "\:65b9\:57578", "\:65b9\:57579", 
+      "\:65b9\:575710", "\:65b9\:5757J", "\:65b9\:5757Q", 
+      "\:65b9\:5757K"}\)], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    \(RandomRelist[x_List] := 
+      Block[{n = x, p}, 
+        Do[p = Random[Integer, {1, i}]; 
+          n[\([{p, i}]\)] = n[\([{i, p}]\)], {i, Length[x]}]; n]\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(randomCard = RandomRelist[cardList]; randomCard\)], "Input"],
+
+Cell[BoxData[
+    \({"\:6885\:82b1Q", "\:9ed1\:6843A", "\:65b9\:57573", "\:65b9\:57577", 
+      "\:7ea2\:6843Q", "\:9ed1\:68434", "\:9ed1\:68439", "\:6885\:82b1A", 
+      "\:6885\:82b15", "\:65b9\:57579", "\:6885\:82b1K", "\:65b9\:5757Q", 
+      "\:6885\:82b12", "\:65b9\:57574", "\:9ed1\:68438", "\:9ed1\:68432", 
+      "\:9ed1\:68436", "\:9ed1\:684310", "\:9ed1\:68433", "\:7ea2\:68434", 
+      "\:6885\:82b13", "\:6885\:82b14", "\:7ea2\:68439", "\:7ea2\:68436", 
+      "\:65b9\:575710", "\:65b9\:5757J", "\:65b9\:57578", "\:7ea2\:68432", 
+      "\:9ed1\:68435", "\:9ed1\:6843J", "\:65b9\:57576", "\:7ea2\:68438", 
+      "\:9ed1\:68437", "\:6885\:82b17", "\:6885\:82b16", "\:7ea2\:68437", 
+      "\:7ea2\:684310", "\:7ea2\:68435", "\:7ea2\:6843J", "\:7ea2\:6843A", 
+      "\:65b9\:57572", "\:7ea2\:68433", "\:65b9\:5757A", "\:9ed1\:6843K", 
+      "\:7ea2\:6843K", "\:6885\:82b19", "\:9ed1\:6843Q", "\:65b9\:57575", 
+      "\:6885\:82b110", "\:6885\:82b1J", "\:6885\:82b18", 
+      "\:65b9\:5757K"}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(players = Partition[randomCard, 13]; players\)], "Input"],
+
+Cell[BoxData[
+    \({{"\:6885\:82b1Q", "\:9ed1\:6843A", "\:65b9\:57573", "\:65b9\:57577", 
+        "\:7ea2\:6843Q", "\:9ed1\:68434", "\:9ed1\:68439", "\:6885\:82b1A", 
+        "\:6885\:82b15", "\:65b9\:57579", "\:6885\:82b1K", "\:65b9\:5757Q", 
+        "\:6885\:82b12"}, {"\:65b9\:57574", "\:9ed1\:68438", "\:9ed1\:68432", 
+        "\:9ed1\:68436", "\:9ed1\:684310", "\:9ed1\:68433", "\:7ea2\:68434", 
+        "\:6885\:82b13", "\:6885\:82b14", "\:7ea2\:68439", "\:7ea2\:68436", 
+        "\:65b9\:575710", "\:65b9\:5757J"}, {"\:65b9\:57578", 
+        "\:7ea2\:68432", "\:9ed1\:68435", "\:9ed1\:6843J", "\:65b9\:57576", 
+        "\:7ea2\:68438", "\:9ed1\:68437", "\:6885\:82b17", "\:6885\:82b16", 
+        "\:7ea2\:68437", "\:7ea2\:684310", "\:7ea2\:68435", 
+        "\:7ea2\:6843J"}, {"\:7ea2\:6843A", "\:65b9\:57572", "\:7ea2\:68433", 
+        "\:65b9\:5757A", "\:9ed1\:6843K", "\:7ea2\:6843K", "\:6885\:82b19", 
+        "\:9ed1\:6843Q", "\:65b9\:57575", "\:6885\:82b110", "\:6885\:82b1J", 
+        "\:6885\:82b18", "\:65b9\:5757K"}}\)], "Output"]
+}, Open  ]]
+},
+FrontEndVersion->"5.0 for Microsoft Windows",
+ScreenRectangle->{{0, 1920}, {0, 959}},
+WindowSize->{1018, 740},
+WindowMargins->{{Automatic, 395}, {Automatic, 34}},
+Magnification->1.5
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 136, 2, 42, "Input"],
+Cell[1915, 57, 105, 2, 41, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2057, 64, 183, 3, 68, "Input"],
+Cell[2243, 69, 107, 2, 41, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2387, 76, 461, 9, 224, "Input"],
+Cell[2851, 87, 1013, 14, 116, "Output"]
+}, Open  ]],
+Cell[3879, 104, 188, 4, 94, "Input"],
+
+Cell[CellGroupData[{
+Cell[4092, 112, 80, 1, 42, "Input"],
+Cell[4175, 115, 1013, 14, 141, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[5225, 134, 77, 1, 42, "Input"],
+Cell[5305, 137, 1047, 14, 166, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+
