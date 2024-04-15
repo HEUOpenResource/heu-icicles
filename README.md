@@ -57,3 +57,7 @@
 ## 许可
 
 本仓库各部分的版权归属于其各自的作者。
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=HEUOpenResource/heu-icicles&type=Date)](https://star-history.com/#HEUOpenResource/heu-icicles&Date)
