@@ -1,0 +1,119 @@
+site_name: HEUOpenResource
+site_description: HEUOpenResource
+site_author: only9464
+site_url: https://heuopenresource.github.io/heu-icicles/
+dev_addr: '127.0.0.1:10010' #默认值
+copyright: Copyright @ 2024 only9464, All rights reserved.
+repo_url: https://github.com/HEUOpenResource/heu-icicles
+
+theme:
+  name: material
+  logo: assets/favicon.png
+  favicon: assets/favicon.png
+  language: zh # 一些提示性的文字会变成中文
+  palette: 
+    # - primary: blue  #顶部颜色
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+ 
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features: 
+    # - announce.dismiss #呈现可标记为由用户读取的临时公告，可以包含一个用于取消当前公告的按钮
+    - navigation.top   # 返回顶部的按钮 在上滑时出现
+    - search.suggest   # 搜索输入一些字母时推荐补全整个单词
+    - search.highlight   # 搜索出的文章关键词加入高亮
+    - navigation.indexes   #启用节索引页后，可以将文档直接附加到节
+    - search.share   #搜索分享按钮
+
+
+
+extra:
+  generator: false  #删除页脚显示“使用 MkDocs 材料制造”
+  analytics: 
+    provider: google
+    property: G-SMFXWPCRMG # Google Analytics ID
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/HEUOpenResource/heu-icicles
+    - icon: fontawesome/solid/envelope
+      link: mailto:sky9464@qq.com
+    - icon: fontawesome/solid/paper-plane
+      link: https://t.me/+l17qIX7cFRNmNjg1 
+
+
+extra_css:
+  # - stylesheets/LXGWZhenKai.css # 自定义CSS
+#   - https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css  #字体
+  - https://heuopenresource.github.io/heu-icicles/stylesheets/LXGWZhenKai.css
+
+extra_javascript:
+  # - 'https://heuopenresource.github.io/heu-icicles/stylesheets/busuanzi.pure.mini.js'
+  # - 'stylesheets/busuanzi.pure.mini.js'
+  - '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
+
+
+
+nav:
+  - 首页: index.md
+  - ACM程序设计: ACM程序设计.md
+  - 编译原理: 编译原理.md
+  - 操作系统: 操作系统.md
+  - 电路基础: 电路基础.md
+  - 大学物理实验: 大学物理实验.md
+  - 大学物理（一）: 大学物理（一）.md
+  - 大学物理（二）: 大学物理（二）.md
+  - 复变函数: 复变函数.md
+  - 概率论与数理统计: 概率论与数理统计.md
+  - 高级人工智能: 高级人工智能.md
+  - 工程实践: 工程实践.md
+  - 工程制图: 工程制图.md
+  - 工科数学分析（一）: 工科数学分析（一）.md
+  - 工科数学分析（二）: 工科数学分析（二）.md
+  - 环境保护与可持续发展: 环境保护与可持续发展.md
+  - 汇编语言程序设计: 汇编语言程序设计.md
+  - ios程序设计: ios程序设计.md
+  - 计算机导论: 计算机导论.md
+  - 计算机逻辑设计综合实践: 计算机逻辑设计综合实践.md
+  - 计算机图形学: 计算机图形学.md
+  - 计算机网络: 计算机网络.md
+  - 计算机系统结构: 计算机系统结构.md
+  - 计算机硬件综合课程设计: 计算机硬件综合课程设计.md
+  - 计算机组成原理: 计算机组成原理.md
+  - 机械设计基础: 机械设计基础.md
+  - 离散数学: 离散数学.md
+  - 理论力学: 理论力学.md
+  - 面向对象程序设计: 面向对象程序设计.md
+  - 毛泽东思想和中国特色社会主义理论体系概论: 毛泽东思想和中国特色社会主义理论体系概论.md
+  - 模型机设计: 模型机设计.md
+  - 马克思主义基本原理概论: 马克思主义基本原理概论.md
+  - 嵌入式系统设计: 嵌入式系统设计.md
+  - 软件工程基础: 软件工程基础.md
+  - 软件开发及过程管理: 软件开发及过程管理.md
+  - 数据结构: 数据结构.md
+  - 数据库原理: 数据库原理.md
+  - 数值计算软件（跨）: 数值计算软件（跨）.md
+  - 算法设计与分析: 算法设计与分析.md
+  - 思想道德与法治: 思想道德与法治.md
+  - 通识教育选修课程一览: 通识教育选修课程一览.md
+  - 无机化学: 无机化学.md
+  - 微机系统与接口: 微机系统与接口.md
+  - 线性代数: 线性代数.md
+  - 项目管理与工程经济决策: 项目管理与工程经济决策.md
+  - 信息内容安全: 信息内容安全.md
+  - 习近平新时代中国特色社会主义思想概论: 习近平新时代中国特色社会主义思想概论.md
+  - 中国近现代史纲要: 中国近现代史纲要.md
+
+
+
+
+
+
+
+

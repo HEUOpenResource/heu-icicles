@@ -1,0 +1,28 @@
+name: Build MKDocs
+
+on: 
+ page_build: 
+ schedule:
+  - cron:  '0 8 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Reqs
+      run: |
+        sudo apt-get install python3-setuptools
+    - name: Run
+      run: |
+        cd ./mkdocs_builder
+        pip3 install -r requirements.txt
+        python3 dist.py
+        mkdir docs
+        git init
+        git config --local user.name "${GITHUB_ACTOR}"
+        git config --local user.email "hdxin2002@gmail.com"
+        git remote add origin https://github.com/HEUOpenResource/heu-icicles.git
+        mkdocs gh-deploy --force
+      env: 
+        TOKEN: ${{ secrets.TOKEN }}
