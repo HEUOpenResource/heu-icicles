@@ -1,8 +1,22 @@
 # 哈尔滨工程大学课程攻略共享计划
 
+[![](https://img.shields.io/github/watchers/HEUOpenResource/heu-icicles.svg?style=flat)](https://github.com/HEUOpenResource/heu-icicles/watchers)
+[![](https://img.shields.io/github/stars/HEUOpenResource/heu-icicles.svg?style=flat)](https://github.com/HEUOpenResource/heu-icicles/stargazers)
+[![](https://img.shields.io/github/forks/HEUOpenResource/heu-icicles.svg?style=flat)](https://github.com/HEUOpenResource/heu-icicles/network/members)
+[![](https://img.shields.io/github/issues-pr-closed-raw/HEUOpenResource/heu-icicles.svg?style=flat)](https://github.com/HEUOpenResource/heu-icicles/issues)
+![](https://img.shields.io/github/repo-size/HEUOpenResource/heu-icicles.svg?style=flat)
+
 ## 先看这里👋
 
 手机端用户请点击左上角三条横线，查看课程列表，或使用右上角搜索功能搜索。
+
+Web page: [https://heuopenresource.github.io/heu-icicles/](https://heuopenresource.github.io/heu-icicles/)
+
+由于本仓库未启用 `git-lfs`，因此请不要上传单个超过 100M 的文件，否则 commit 无效。
+
+如果您下载Github仓库中的文件很慢，或者流量不足，可以临时使用我们的[Down Git](https://ghproxy.kokomi0728.eu.org/)服务，国内可以直连。站点每日只有10万请求次数，如果您希望自行搭建流量转发服务，请参考[链接](https://blog.godgy.xyz/dmroom/otherv/260/)。
+
+感谢对本项目贡献的同学（排名不分先后）：[xhd0728](https://github.com/xhd0728)、[only9464](https://github.com/only9464)、[RigelNana](https://github.com/RigelNana)、[Holit](https://github.com/Holit)、[yisuanwang](https://github.com/yisuanwang)、[xhyu61](https://github.com/xhyu61)、[jht3QAQ](https://github.com/jht3QAQ)、[yao9e](https://github.com/yao9e)、[zhangxianyv](https://github.com/zhangxianyv) ……以及电脑前的您！
 
 ## 前言
 
@@ -60,7 +74,11 @@
 
 ## 许可
 
-本仓库各部分的版权归属于其各自的作者。
+由贡献者编写部分的许可如下：
+
+[(Creative Commons BY-SA 4.0) 知识共享署名 - 相同方式共享 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)
+
+其他部分的版权归属于其各自的作者。资料仅供参考，请自己判断其适用性。
 
 ## Star History
 
