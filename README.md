@@ -5,6 +5,8 @@
 [![](https://img.shields.io/github/forks/HEUOpenResource/heu-icicles.svg?style=flat)](https://github.com/HEUOpenResource/heu-icicles/network/members)
 [![](https://img.shields.io/github/issues-pr-closed-raw/HEUOpenResource/heu-icicles.svg?style=flat)](https://github.com/HEUOpenResource/heu-icicles/issues)
 ![](https://img.shields.io/github/repo-size/HEUOpenResource/heu-icicles.svg?style=flat)
+
+[![Build MKDocs](https://github.com/HEUOpenResource/mkdocs-build/actions/workflows/mkdocs_builder.yaml/badge.svg)](https://github.com/HEUOpenResource/mkdocs-build/actions/workflows/mkdocs_builder.yaml)
 [![pages-build-deployment](https://github.com/HEUOpenResource/heu-icicles/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/HEUOpenResource/heu-icicles/actions/workflows/pages/pages-build-deployment)
 
 ## 先看这里👋
