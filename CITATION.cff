@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Xin"
+  given-names: "Haidong"
+  orcid: "https://orcid.org/0009-0003-9484-3251"
+title: "heu-icicles"
+version: 1.0.0
+date-released: 2024-04-23
+url: "https://github.com/HEUOpenResource/heu-icicles"
