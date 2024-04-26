@@ -232,4 +232,5 @@ def main():
         print("\t百分差 = %.6f\n" % ((exJ - caJ) / caJ * 100))
 
 
-main()
+if __name__ == "__main__":
+    main()
