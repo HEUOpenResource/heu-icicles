@@ -21,7 +21,7 @@ def calc_f_by_Mirror(l1, A):
 def calc_f_by_Position_Based(l1, A, M):
     """
     对象：凸透镜
-    方法：物距相距法
+    方法：物距像距法
     公式: 1/p +1/q = 1/f
     l1: 凸透镜的位置
     A: 物的位置
@@ -52,7 +52,7 @@ def calc_f_by_Conjugate(l1, l2, A, M):
 def calc_f_by_Position_Based_2(D, E, l2):
     """
     对象：凹透镜
-    方法：物距相距法
+    方法：物距像距法
     公式: 1/q - 1/|p| = 1/f
     D: 物屏的第一次实验的位置
     E: 物屏的第二次实验的位置
@@ -72,9 +72,9 @@ if __name__ == "__main__":
 
     print("凸透镜焦距的测定：\n")
     print("\t1. 平面镜法：%.2f\n" % test_1)
-    print("\t2. 物距相距法: %.2f\n" % test_2)
+    print("\t2. 物距像距法: %.2f\n" % test_2)
     print("\t3. 共轭法: %.2f\n" % test_3)
     
     print("凹透镜焦距的测定：\n")
     print("\t1. 平面镜法：该实验已取消\n")
-    print("\t2. 物距相距法: %.2f\n" % test_4)
+    print("\t2. 物距像距法: %.2f\n" % test_4)
