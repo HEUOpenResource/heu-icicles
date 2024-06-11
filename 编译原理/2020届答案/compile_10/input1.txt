@@ -1,0 +1,20 @@
+pushscope
+i int
+j int
+f function
+pushscope
+i char
+size int
+temp char
+pushscope
+j char*
+j long
+j
+i
+f
+size
+new
+popscope
+j
+popscope
+popscope

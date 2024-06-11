@@ -1,0 +1,10 @@
+﻿# 不要删除或更改此文件
+*.exe
+*.o
+*.bak
+*.out
+*.html
+user_*
+*.pyc
+__pycache__
+!demo.exe

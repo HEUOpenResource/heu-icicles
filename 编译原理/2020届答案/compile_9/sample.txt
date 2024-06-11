@@ -1,0 +1,61 @@
+%{
+
+#include <stdio.h>
+#include <ctype.h>
+
+#define YYDEBUG 1
+
+%}
+
+%token NUMBER
+
+%%
+
+command : exp				{ printf("%d\n",$1); }
+	    ;
+
+exp		: exp '+' term 		{ $$ = $1 + $3; }
+		| exp '-' term 		{ $$ = $1 - $3; }
+		| term 				{ $$ = $1; }
+		;
+
+term	: term '*' factor 	{ $$ = $1 * $3; }
+		| factor			{ $$ = $1; }
+		;
+
+factor	: NUMBER			{ $$ = $1; }
+		| '(' exp ')'		{ $$ = $2; }
+
+%%
+
+main()
+{
+	extern int yydebug;
+	yydebug = 0;
+	
+	return yyparse();
+}
+
+int yylex(void)
+{
+	int c;
+	
+	while((c = getchar()) == ' ');	/* 忽略空格 */
+	
+	if(isdigit(c)){
+		ungetc(c,stdin);
+		scanf("%d",&yylval);
+		return(NUMBER);
+	}
+
+	if(c == '\n') return 0;	/* 停止 */
+	
+	return c;
+}
+
+/* 打印错误信息 */
+int yyerror(char* s)
+{
+	fprintf(stdout, "%s\n", s);
+	return 0;
+}

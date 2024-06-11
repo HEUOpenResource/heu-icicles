@@ -1,0 +1,315 @@
+%{
+
+#include <stdio.h>
+#include "define.h"
+
+int lineno = 0;		// 行数
+
+// 符号计数器
+int error_no = 0;
+
+int if_no = 0;
+int then_no = 0;
+int else_no = 0;
+int end_no = 0;
+int repeat_no = 0;
+int until_no = 0;
+int read_no = 0;
+int write_no = 0;
+
+int id_no = 0;
+int num_no = 0;
+
+int assign_no = 0;
+int eq_no = 0;
+int lt_no = 0;
+int plus_no = 0;
+int minus_no = 0;
+int times_no = 0;
+int over_no = 0;
+int lparen_no = 0;
+int rparen_no = 0;
+int semi_no = 0;
+
+int comment_no = 0;
+
+%}
+
+newline		\n
+whitespace	[ \t]+
+nat [0-9]+
+letter [a-zA-Z]
+digit [0-9]
+identifier {letter}({letter}|{digit})*
+comment \/\/[^\n]*
+
+%%
+
+":="			{ return ASSIGN; }
+"="				{ return EQ; }
+"<"				{ return LT; }
+"+"				{ return PLUS; }
+"-"				{ return MINUS; }
+"*"				{ return TIMES; }
+"/"				{ return OVER; }
+"("				{ return LPAREN; }
+")"				{ return RPAREN; }
+";"				{ return SEMI; }
+
+
+{newline}		{ lineno++; } // 注意，由于使用换行符统计行数，当文件最后一行的末尾包含换行符或者不包含换行符，会造成统计的行数不同。
+{whitespace}	{ /* 忽略空白 */ }
+{nat}			{ return NUM; }
+{identifier}	{ return ID; }
+{comment}		{ return COMMENT; }
+
+"{"				{
+					// 匹配注释 {...}
+					char c;
+					int comment = 1;
+					do
+					{
+						c = input();
+						if(c == EOF)
+						{
+							comment = 0;
+							break;
+						}
+						else if(c == '\n')
+							lineno++;
+						else if(c == '}')
+							break;
+					}while(1);
+					
+					return comment ? COMMENT : ERROR;
+				}
+				
+.				{ return ERROR; }
+
+"/*"			{ 	char c ;
+					int done = 0;
+					do{ 
+						while ((c=input())!='*');
+						while ((c=input())== '*');
+						if(c == '/') done = 1;
+					} while (!done);
+					return COMMENT;
+				}
+
+
+%%
+
+TokenType id2keyword(const char* token);
+void stat(TokenType tt, const char* token);
+void output();
+
+/*
+功能：
+	主函数
+	
+参数：
+	argc - argv 数组的长度，大小至少为 1，argc - 1 为命令行参数的数量。
+	argv - 字符串指针数组，数组长度为命令行参数个数 + 1。其中 argv[0] 固定指向当前
+	       所执行的可执行文件的路径字符串，argv[1] 及其后面的指针指向各个命令行参数。
+	       例如通过命令行输入 "C:\hello.exe -a -b" 后，main 函数的 argc 的值为 3，
+	       argv[0] 指向字符串 "C:\hello.exe"，argv[1] 指向字符串 "-a"，argv[2] 指向字符串 "-b"。
+
+返回值:
+	成功返回 0， 失败返回 1
+*/
+int main(int argc, char* argv[])
+{
+	TokenType tt;
+	
+	// 使用第一个参数输入待处理文件的名称，若没有输入此参数就报告错误
+	if(argc < 2)
+	{
+		printf("Usage: app.exe filename.\n");
+		return 1;
+	}
+	
+	// 打开待处理的文件
+	FILE* file = fopen(argv[1], "rt");
+	if(NULL == file)
+	{
+		printf("Can not open file \"%s\".\n", argv[1]);
+		return 1;
+	}
+	
+	// 将打开的文件作为 lex 扫描程序的输入
+	yyin = file;
+	
+	// 开始扫描，直到文件结束
+	while((tt = yylex()) != ENDFILE)
+	{
+		// 根据符号类型统计其数量
+		stat(tt, yytext);	
+	}
+	
+	// 输出统计结果
+	output();
+	
+	// 关闭文件
+	fclose(file);	
+	
+	return 0;
+}
+
+// 定义关键字与其类型的映射关系
+typedef struct _KeyWord_Entry
+{
+	const char* word;
+	TokenType type;
+}KeyWord_Entry;
+
+static const KeyWord_Entry key_table[] =
+{
+	{ "if", 	IF 		},
+    { "then",	THEN	},
+    { "else",	ELSE	},
+    { "end",	END		},
+    { "repeat",	REPEAT	},
+    { "until",	UNTIL	},
+    { "read",	READ	},
+    { "write",	WRITE	}
+};
+
+/*
+功能：
+	将标识符转换为对应的关键字类型
+	
+参数：
+	id - 标识符字符串指针。可能是一个关键字，也可能是用户定义的标识符。
+
+返回值:
+	成功返回 0， 失败返回 1
+*/
+TokenType id2keyword(const char* id)
+{
+	for(int i=0;i<8;++i){
+		if(0 == strcmp(id,key_table[i].word)){
+			return key_table[i].type;
+		}
+	}
+	return ID;
+}
+
+/*
+功能：
+	根据符号类型进行数量统计。
+	
+参数：
+	tt - 符号类型。
+	token - 符号字符串指针。当符号被识别为标识符时，需要判断其是否为一个关键字。
+
+返回值:
+	空
+*/
+void stat(TokenType tt, const char* token)
+{
+	if(ID == tt)
+	{
+		tt = id2keyword(token);
+	}
+	
+	switch(tt)
+	{
+	case IF:		// if
+		if_no++;
+		break;
+    case THEN:		// then
+    	then_no++;
+    	break;
+    case ELSE:		// else
+    	else_no++;
+    	break;
+    case END:		// end
+    	end_no++;
+    	break;
+    case REPEAT:	// repeat
+    	repeat_no++;
+    	break;
+    case UNTIL:		// until
+    	until_no++;
+    	break;
+    case READ:		// read
+    	read_no++;
+    	break;
+    case WRITE:		// write
+    	write_no++;
+    	break;
+    case ID:		// 标识符
+    	id_no++;
+    	break;    
+    case NUM:		// 无符号整数
+    	num_no++;
+    	break;
+    case ASSIGN:	// :=
+    	assign_no++;
+    	break;
+    case EQ:		// =
+    	eq_no++;
+    	break;
+    case LT:		// <
+    	lt_no++;
+    	break;
+    case PLUS:		// +
+    	plus_no++;
+    	break;
+    case MINUS:		// -
+    	minus_no++;
+    	break;
+    case TIMES:		// *
+    	times_no++;
+    	break;
+    case OVER:		// /
+    	over_no++;
+    	break;
+    case LPAREN:	// (
+    	lparen_no++;
+    	break;
+    case RPAREN:	// )
+    	rparen_no++;
+    	break;
+    case SEMI:		// ;
+    	semi_no++;
+    	break;    
+    case COMMENT:	// {...}
+    	comment_no++;
+    	break;
+	case ERROR:		// 错误
+		error_no++;
+		break;
+	}
+}
+
+// 输出统计结果
+void output()
+{
+	printf("if: %d\n", if_no);
+	printf("then: %d\n", then_no);
+	printf("else: %d\n", else_no);
+	printf("end: %d\n", end_no);
+	printf("repeat: %d\n", repeat_no);
+	printf("until: %d\n", until_no);
+	printf("read: %d\n", read_no);
+	printf("write: %d\n", write_no);
+	
+	printf("id: %d\n", id_no);
+	printf("num: %d\n", num_no);
+	
+	printf("assign: %d\n", assign_no);
+	printf("eq: %d\n", eq_no);
+	printf("lt: %d\n", lt_no);
+	printf("plus: %d\n", plus_no);
+	printf("minus: %d\n", minus_no);
+	printf("times: %d\n", times_no);
+	printf("over: %d\n", over_no);
+	printf("lparen: %d\n", lparen_no);
+	printf("rparen: %d\n", rparen_no);
+	printf("semi: %d\n", semi_no);
+
+	printf("comment: %d\n", comment_no);
+	printf("error: %d\n", error_no);
+	printf("line: %d\n", lineno);
+}

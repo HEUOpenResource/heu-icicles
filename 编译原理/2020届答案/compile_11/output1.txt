@@ -1,0 +1,16 @@
+lda  x
+rdi
+lda  t1
+lod  x
+ldc  2
+mpi
+sto
+lda  x
+lod  t1
+sto
+lod  x
+fjp  L1
+lod  x
+wri  
+lab  L1
+stp

@@ -1,0 +1,22 @@
+RefErrorCount: 1
+
+index	"barrel"	ItemList(RefCount/ConflictCount)
+------------------------------------------------------------
+SymbolTableInvalid(Invalid = 1)
+0 
+1                          -->j(char*)1/1 
+2 
+3 
+4 
+SymbolTableInvalid(Invalid = 1)
+0                          -->i(char)1/0 
+1 
+2 
+3                          -->temp(char)0/0 -->size(int)1/0 
+4 
+SymbolTableInvalid(Invalid = 1)
+0                          -->i(int)0/0 
+1                          -->j(int)1/0 
+2                          -->f(function)1/0 
+3 
+4 

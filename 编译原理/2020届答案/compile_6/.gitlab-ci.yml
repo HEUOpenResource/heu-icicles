@@ -1,0 +1,62 @@
+# 不要删除或更改此文件
+
+image: "${DOCKER_REGISTRY_DOMAIN}/engintime/ubuntu_16.04_program:latest"
+stages:
+  - case1
+  - code-analysis
+
+variables:  
+  TEACHERCHECK_REPO: "engintime/cp-vscode/teachers-packet/Lab06.git"
+
+.codecode-runner: &codecode-runner
+  tags:
+    - ubuntu-16.04
+    - short-job
+
+.codecode-analysis-runner: &codecode-analysis-runner
+  tags:
+    - ubuntu-16.04
+    - short-job
+    - code-analysis
+    - intranet
+    
+case1:
+  stage: case1
+  <<: *codecode-runner
+  script:
+  - python3 .vscode/test.py ./app.exe ci
+  only: 
+    - master 
+ 
+teacher-check1:
+  stage: case1
+  <<: *codecode-runner
+  script:
+  - make
+  - git clone ${CODECODE_PROTOCOL}gitlab-ci-token:${CI_JOB_TOKEN}@${CODECODE_DOMAIN}/${CI_PROJECT_FORKSOURCE} template
+  - cd template && git checkout -b fork_position ${CI_PROJECT_FORKPOS} && cd ..
+  - diff template/.gitlab-ci.yml .gitlab-ci.yml -b -B -y -i --suppress-common-lines
+  - diff template/.vscode/comtool.py .vscode/comtool.py -b -B -y -i --suppress-common-lines
+  - diff template/.vscode/test.py .vscode/test.py -b -B -y -i --suppress-common-lines
+  - diff template/.vscode/teacher-check.py .vscode/teacher-check.py -b -B -y -i --suppress-common-lines
+  - python3 .vscode/teacher-check.py ./app.exe "${TEACHERCHECK_REPO}" "${CODECODE_PROTOCOL}gitlab-ci-token:${CI_JOB_TOKEN}@${CODECODE_DOMAIN}/${TEACHERCHECK_REPO}"
+  only: 
+    - master 
+  when: manual
+  allow_failure: true 
+ 
+code-analysis:
+  stage: code-analysis
+  <<: *codecode-analysis-runner
+  script:
+  - mkdir -p build
+  - python3 .vscode/code-analysis.py ./app.exe
+  - cppcheck -v --force --enable=all --xml -I./ ./ 2> ./build/cppcheck-report.xml
+  - bash -c 'find ./ -regex ".*\.c\|.*\.h" | vera++ -S -s -d -c ./build/vera-report.xml'
+  - sonar-scanner -Dsonar.projectKey=ProjectKey-$CI_PROJECT_ID -Dsonar.projectName=$CI_PROJECT_NAME -Dsonar.links.homepage=$CI_PROJECT_URL -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.gitlab.commit_sha=$CI_COMMIT_SHA -Dsonar.gitlab.ref_name=$CI_COMMIT_REF_NAME -Dsonar.gitlab.project_id=$CI_PROJECT_ID -Dsonar.gitlab.url=$CODECODE_PROTOCOL$CODECODE_DOMAIN
+  allow_failure: true
+  only:
+    - master 
+
+
+

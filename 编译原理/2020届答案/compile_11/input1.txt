@@ -1,0 +1,7 @@
+t_rd string x
+t_mul string x intconst 2 string t1
+t_asn string t1 string x
+t_if_f string x string L1
+t_wri string x
+t_lab string L1
+t_halt
