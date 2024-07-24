@@ -75,7 +75,7 @@ Web page: [https://heuopenresource.github.io/heu-icicles/](https://heuopenresour
 - 盗版/破解版/绿色版付费软件及其安装包
 - 课程/教师主页上列出的内容（请在获得教师许可后上传）
 
-如果你认为本仓库的一些文件侵犯了您的权益，请 [向我们发送邮件](mailto://hdxin2002@gmail.com) 。我们将会从仓库中彻底清除这些文件。
+如果你认为本仓库的一些文件侵犯了您的权益，请 [向我们发送邮件](mailto://heu-icicles@xinhaidong.top) 。我们将会从仓库中彻底清除这些文件。
 
 ## 许可
 
