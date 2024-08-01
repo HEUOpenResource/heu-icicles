@@ -88,4 +88,11 @@ watch(tableData, (newTableData) => {
     margin: 2px;
 
 }
+
+@media (max-width: 650px) {
+    .row {
+        flex-direction: column;
+    }
+
+}
 </style>

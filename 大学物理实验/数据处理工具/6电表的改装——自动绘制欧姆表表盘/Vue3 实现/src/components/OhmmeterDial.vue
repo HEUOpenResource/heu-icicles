@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { onMounted, watch, ref } from 'vue';
+import { ref, onMounted, onBeforeUnmount, watchEffect } from 'vue';
 
 const props = defineProps({
     resistances: {
@@ -18,18 +18,33 @@ const props = defineProps({
     },
 });
 
-const canvasWidth = 600;
-const canvasHeight = 600;
+const canvasWidth = ref(1000);
+const canvasHeight = ref(1000);
 const dialCanvas = ref(null);
+
+const isMobile = ref(false);
+
+const updateCanvasSize = () => {
+    if (window.innerWidth < 700) {
+        canvasWidth.value = 400;
+        canvasHeight.value = 500;
+        isMobile.value = true; // 手机端
+    } else {
+        canvasWidth.value = 700;
+        canvasHeight.value = 700;
+        isMobile.value = false; // 桌面端
+    }
+};
 
 const drawDial = () => {
     const canvas = dialCanvas.value;
+    if (!canvas) return;
+
     const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvasWidth.value, canvasHeight.value);
 
-    ctx.clearRect(0, 0, canvasWidth, canvasHeight);  // 清除画布
-
-    const centerX = canvasWidth / 2;
-    const centerY = canvasHeight / 2;
+    const centerX = canvasWidth.value / 2;
+    const centerY = canvasHeight.value / 2;
     const radius = Math.min(centerX, centerY) * 0.9;
 
     const angles = props.ticks.map(tick => (tick / 25) * (2 / 3) * Math.PI - (Math.PI * 5 / 6));
@@ -48,9 +63,9 @@ const drawDial = () => {
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        const labelX = centerX + (radius - 40) * Math.cos(angle);
-        const labelY = centerY + (radius - 40) * Math.sin(angle);
-        ctx.font = "16px Arial";
+        const labelX = centerX + (isMobile.value ? radius + 30 : radius - 40) * Math.cos(angle);
+        const labelY = centerY + (isMobile.value ? radius + 30 : radius - 40) * Math.sin(angle);
+        ctx.font = "12px Arial";
         ctx.fillStyle = "black";
         ctx.textAlign = angle < -Math.PI / 3 ? "left" : angle > -2 * Math.PI / 3 ? "right" : "center";
         ctx.fillText(`${resistance}Ω`, labelX, labelY);
@@ -73,7 +88,7 @@ const drawDial = () => {
         if (i % 10 === 0) {
             const labelX = centerX + (radius - 25) * Math.cos(angle);
             const labelY = centerY + (radius - 25) * Math.sin(angle);
-            ctx.font = "12px Arial";
+            ctx.font = "10px Arial";
             ctx.fillStyle = "gray";
             ctx.textAlign = "center";
             ctx.fillText(`${i}uA`, labelX, labelY);
@@ -87,10 +102,20 @@ const drawDial = () => {
 };
 
 onMounted(() => {
+    updateCanvasSize();
     drawDial();
+    window.addEventListener('resize', updateCanvasSize);
+    window.addEventListener('resize', drawDial);
 });
 
-watch([() => props.resistances, () => props.ticks], drawDial);
+onBeforeUnmount(() => {
+    window.removeEventListener('resize', updateCanvasSize);
+    window.removeEventListener('resize', drawDial);
+});
+
+watchEffect(() => {
+    drawDial();
+});
 </script>
 
 <style scoped>

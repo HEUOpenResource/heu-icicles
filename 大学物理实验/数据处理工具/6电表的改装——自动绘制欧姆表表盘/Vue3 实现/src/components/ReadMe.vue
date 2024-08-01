@@ -62,5 +62,11 @@
           transform: skew(15deg) rotate(4deg);
       }
   }
+@media (max-width: 650px) {
+    .paper {
+        width: 100%;
+        padding: 10px 0;
+    }
 
+}
 </style>
