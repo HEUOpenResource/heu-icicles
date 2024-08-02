@@ -1,0 +1,38 @@
+<script setup>
+
+import Ohmmeter from './components/OhmmeterDial.vue'
+import Table from './components/OhmmeterTable.vue'
+import { ref } from 'vue'
+
+
+// 存储从子组件传递过来的 resistances 和 ticks
+const resistances = ref([]);
+const ticks = ref([]);
+
+// 处理子组件传递的数据
+const handleUpdateResistancesAndTicks = (data) => {
+  resistances.value = data.resistances;
+  ticks.value = data.ticks;
+  resistances.value = resistances.map(value => parseFloat(value));
+  ticks.value = ticks.map(value => parseFloat(value));
+  resistances.value.push('∞');
+  ticks.value.push(0);
+};
+
+
+
+
+</script>
+
+<template>
+  <Table @updateResistancesAndTicks="handleUpdateResistancesAndTicks"></Table>
+
+  <h3>{{ resistances }}</h3>
+  <h3>{{ ticks }}</h3>
+
+
+  <Ohmmeter :resistances="resistances" :ticks="ticks"></Ohmmeter>
+
+</template>
+
+<style scoped></style>
