@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Mon Nov 06 09:18:26 2023
+Quartus Prime Version : 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+Revision Name : mux21a2627
+Top-level Entity Name : mux21a2627
+Family : Cyclone IV E
+Total logic elements : 223
+    Total combinational functions : 168
+    Dedicated logic registers : 75
+Total registers : 75
+Total pins : 93
+Total virtual pins : 0
+Total memory bits : 2,560
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

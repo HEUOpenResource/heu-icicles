@@ -1,0 +1,16 @@
+Fitter Status : Successful - Tue Sep 26 10:14:17 2023
+Quartus Prime Version : 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+Revision Name : decoder24
+Top-level Entity Name : decoder2627
+Family : Cyclone IV E
+Device : EP4CE55F23C8
+Timing Models : Final
+Total logic elements : 4 / 55,856 ( < 1 % )
+    Total combinational functions : 4 / 55,856 ( < 1 % )
+    Dedicated logic registers : 0 / 55,856 ( 0 % )
+Total registers : 0
+Total pins : 6 / 325 ( 2 % )
+Total virtual pins : 0
+Total memory bits : 0 / 2,396,160 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 308 ( 0 % )
+Total PLLs : 0 / 4 ( 0 % )

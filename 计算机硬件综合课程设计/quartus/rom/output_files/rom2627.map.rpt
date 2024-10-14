@@ -1,0 +1,377 @@
+Analysis & Synthesis report for rom2627
+Mon Oct 09 23:37:25 2023
+Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. General Register Statistics
+ 10. Source assignments for LPM_ROM:inst|altrom:srom|altsyncram:rom_block|altsyncram_2501:auto_generated
+ 11. Parameter Settings for User Entity Instance: LPM_ROM:inst
+ 12. Post-Synthesis Netlist Statistics for Top Partition
+ 13. Elapsed Time Per Partition
+ 14. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Mon Oct 09 23:37:25 2023       ;
+; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
+; Revision Name                      ; rom2627                                     ;
+; Top-level Entity Name              ; rom2627                                     ;
+; Family                             ; Cyclone IV E                                ;
+; Total logic elements               ; 0                                           ;
+;     Total combinational functions  ; 0                                           ;
+;     Dedicated logic registers      ; 0                                           ;
+; Total registers                    ; 0                                           ;
+; Total pins                         ; 31                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 1,536                                       ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP4CE55F23C8       ;                    ;
+; Top-level entity name                                                      ; rom2627            ; rom2627            ;
+; Family name                                                                ; Cyclone IV E       ; Cyclone V          ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                              ; Enable             ; Enable             ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                                        ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 16          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                              ;
++----------------------------------+-----------------+---------------------------------------+------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                             ; File Name with Absolute Path                                                 ; Library ;
++----------------------------------+-----------------+---------------------------------------+------------------------------------------------------------------------------+---------+
+; rom2627.bdf                      ; yes             ; User Block Diagram/Schematic File     ; D:/Projects/quartus/rom/rom2627.bdf                                          ;         ;
+; ucode.hex                        ; yes             ; User Hexadecimal (Intel-Format) File  ; D:/Projects/quartus/rom/ucode.hex                                            ;         ;
+; lpm_rom.tdf                      ; yes             ; Megafunction                          ; d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf           ;         ;
+; altrom.inc                       ; yes             ; Megafunction                          ; d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/altrom.inc            ;         ;
+; aglobal171.inc                   ; yes             ; Megafunction                          ; d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/aglobal171.inc        ;         ;
+; altrom.tdf                       ; yes             ; Megafunction                          ; d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/altrom.tdf            ;         ;
+; memmodes.inc                     ; yes             ; Megafunction                          ; d:/intelfpga_lite/17.1/quartus/libraries/others/maxplus2/memmodes.inc        ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                          ; d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                          ; d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
+; altsyncram.inc                   ; yes             ; Megafunction                          ; d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/altsyncram.inc        ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                          ; d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                          ; d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                          ; d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
+; altram.inc                       ; yes             ; Megafunction                          ; d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/altram.inc            ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                          ; d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
+; db/altsyncram_2501.tdf           ; yes             ; Auto-Generated Megafunction           ; D:/Projects/quartus/rom/db/altsyncram_2501.tdf                               ;         ;
++----------------------------------+-----------------+---------------------------------------+------------------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary               ;
++---------------------------------------------+-------------+
+; Resource                                    ; Usage       ;
++---------------------------------------------+-------------+
+;                                             ;             ;
+; Total combinational functions               ; 0           ;
+; Logic element usage by number of LUT inputs ;             ;
+;     -- 4 input functions                    ; 0           ;
+;     -- 3 input functions                    ; 0           ;
+;     -- <=2 input functions                  ; 0           ;
+;                                             ;             ;
+; Logic elements by mode                      ;             ;
+;     -- normal mode                          ; 0           ;
+;     -- arithmetic mode                      ; 0           ;
+;                                             ;             ;
+; Total registers                             ; 0           ;
+;     -- Dedicated logic registers            ; 0           ;
+;     -- I/O registers                        ; 0           ;
+;                                             ;             ;
+; I/O pins                                    ; 31          ;
+; Total memory bits                           ; 1536        ;
+;                                             ;             ;
+; Embedded Multiplier 9-bit elements          ; 0           ;
+;                                             ;             ;
+; Maximum fan-out node                        ; clock~input ;
+; Maximum fan-out                             ; 24          ;
+; Total fan-out                               ; 223         ;
+; Average fan-out                             ; 2.59        ;
++---------------------------------------------+-------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                              ;
++----------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                   ; Entity Name     ; Library Name ;
++----------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------+-----------------+--------------+
+; |rom2627                                     ; 0 (0)               ; 0 (0)                     ; 1536        ; 0            ; 0       ; 0         ; 31   ; 0            ; |rom2627                                                                              ; rom2627         ; work         ;
+;    |lpm_rom:inst|                            ; 0 (0)               ; 0 (0)                     ; 1536        ; 0            ; 0       ; 0         ; 0    ; 0            ; |rom2627|lpm_rom:inst                                                                 ; lpm_rom         ; work         ;
+;       |altrom:srom|                          ; 0 (0)               ; 0 (0)                     ; 1536        ; 0            ; 0       ; 0         ; 0    ; 0            ; |rom2627|lpm_rom:inst|altrom:srom                                                     ; altrom          ; work         ;
+;          |altsyncram:rom_block|              ; 0 (0)               ; 0 (0)                     ; 1536        ; 0            ; 0       ; 0         ; 0    ; 0            ; |rom2627|lpm_rom:inst|altrom:srom|altsyncram:rom_block                                ; altsyncram      ; work         ;
+;             |altsyncram_2501:auto_generated| ; 0 (0)               ; 0 (0)                     ; 1536        ; 0            ; 0       ; 0         ; 0    ; 0            ; |rom2627|lpm_rom:inst|altrom:srom|altsyncram:rom_block|altsyncram_2501:auto_generated ; altsyncram_2501 ; work         ;
++----------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------+-----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                     ;
++-----------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+-----------+
+; Name                                                                                    ; Type ; Mode ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF       ;
++-----------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+-----------+
+; lpm_rom:inst|altrom:srom|altsyncram:rom_block|altsyncram_2501:auto_generated|ALTSYNCRAM ; AUTO ; ROM  ; 64           ; 24           ; --           ; --           ; 1536 ; ucode.hex ;
++-----------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+-----------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 0     ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Source assignments for LPM_ROM:inst|altrom:srom|altsyncram:rom_block|altsyncram_2501:auto_generated ;
++---------------------------------+--------------------+------+---------------------------------------+
+; Assignment                      ; Value              ; From ; To                                    ;
++---------------------------------+--------------------+------+---------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                     ;
++---------------------------------+--------------------+------+---------------------------------------+
+
+
++-----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: LPM_ROM:inst ;
++------------------------+--------------+-------------------+
+; Parameter Name         ; Value        ; Type              ;
++------------------------+--------------+-------------------+
+; LPM_WIDTH              ; 24           ; Untyped           ;
+; LPM_WIDTHAD            ; 6            ; Untyped           ;
+; LPM_NUMWORDS           ; 64           ; Untyped           ;
+; LPM_ADDRESS_CONTROL    ; REGISTERED   ; Untyped           ;
+; LPM_OUTDATA            ; UNREGISTERED ; Untyped           ;
+; LPM_FILE               ; ucode.hex    ; Untyped           ;
+; DEVICE_FAMILY          ; Cyclone IV E ; Untyped           ;
+; AUTO_CARRY_CHAINS      ; ON           ; AUTO_CARRY        ;
+; IGNORE_CARRY_BUFFERS   ; OFF          ; IGNORE_CARRY      ;
+; AUTO_CASCADE_CHAINS    ; ON           ; AUTO_CASCADE      ;
+; IGNORE_CASCADE_BUFFERS ; OFF          ; IGNORE_CASCADE    ;
++------------------------+--------------+-------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++----------------------+------------------------------+
+; Type                 ; Count                        ;
++----------------------+------------------------------+
+; boundary_port        ; 31                           ;
+; cycloneiii_ram_block ; 24                           ;
+;                      ;                              ;
+; Max LUT depth        ; 0.00                         ;
+; Average LUT depth    ; 0.00                         ;
++----------------------+------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+    Info: Processing started: Mon Oct 09 23:37:15 2023
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off rom2627 -c rom2627
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file rom2627.bdf
+    Info (12023): Found entity 1: rom2627
+Info (12127): Elaborating entity "rom2627" for the top level hierarchy
+Warning (275006): Can't find a definition for parameter LPM_FILE -- assuming ucode.hex was intended to be a quoted string
+Info (12128): Elaborating entity "LPM_ROM" for hierarchy "LPM_ROM:inst"
+Info (12130): Elaborated megafunction instantiation "LPM_ROM:inst"
+Info (12133): Instantiated megafunction "LPM_ROM:inst" with the following parameter:
+    Info (12134): Parameter "LPM_FILE" = "ucode.hex"
+    Info (12134): Parameter "LPM_OUTDATA" = "UNREGISTERED"
+    Info (12134): Parameter "LPM_WIDTH" = "24"
+    Info (12134): Parameter "LPM_WIDTHAD" = "6"
+Info (12128): Elaborating entity "altrom" for hierarchy "LPM_ROM:inst|altrom:srom" File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 54
+Info (12131): Elaborated megafunction instantiation "LPM_ROM:inst|altrom:srom", which is child of megafunction instantiation "LPM_ROM:inst" File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 54
+Info (12128): Elaborating entity "altsyncram" for hierarchy "LPM_ROM:inst|altrom:srom|altsyncram:rom_block" File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/altrom.tdf Line: 88
+Info (12131): Elaborated megafunction instantiation "LPM_ROM:inst|altrom:srom|altsyncram:rom_block", which is child of megafunction instantiation "LPM_ROM:inst" File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/altrom.tdf Line: 88
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_2501.tdf
+    Info (12023): Found entity 1: altsyncram_2501 File: D:/Projects/quartus/rom/db/altsyncram_2501.tdf Line: 27
+Info (12128): Elaborating entity "altsyncram_2501" for hierarchy "LPM_ROM:inst|altrom:srom|altsyncram:rom_block|altsyncram_2501:auto_generated" File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
+Warning (13044): Always-enabled tri-state buffer(s) removed
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[23]" to the node "q[23]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[22]" to the node "q[22]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[21]" to the node "q[21]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[20]" to the node "q[20]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[19]" to the node "q[19]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[18]" to the node "q[18]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[17]" to the node "q[17]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[16]" to the node "q[16]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[15]" to the node "q[15]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[14]" to the node "q[14]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[13]" to the node "q[13]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[12]" to the node "q[12]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[11]" to the node "q[11]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[10]" to the node "q[10]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[9]" to the node "q[9]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[8]" to the node "q[8]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[7]" to the node "q[7]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[6]" to the node "q[6]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[5]" to the node "q[5]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[4]" to the node "q[4]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[3]" to the node "q[3]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[2]" to the node "q[2]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[1]" to the node "q[1]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:inst|otri[0]" to the node "q[0]" into a wire File: d:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 67
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 55 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 7 input pins
+    Info (21059): Implemented 24 output pins
+    Info (21064): Implemented 24 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 27 warnings
+    Info: Peak virtual memory: 4754 megabytes
+    Info: Processing ended: Mon Oct 09 23:37:25 2023
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:19
+
+

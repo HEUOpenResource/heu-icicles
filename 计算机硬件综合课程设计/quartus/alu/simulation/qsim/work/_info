@@ -1,0 +1,73 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/Projects/quartus/alu/simulation/qsim
+valu2627
+Z1 !s110 1696903282
+!i10b 1
+!s100 Ef[N?@eI3TC<S?3>4]B4G1
+IS5Zj^>S0B1TA05aDG7:Ic0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1696903280
+Z4 8alu2627.vo
+Z5 Falu2627.vo
+L0 31
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1696903282.000000
+Z8 !s107 alu2627.vo|
+Z9 !s90 -work|work|alu2627.vo|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+valu2627_vlg_vec_tst
+R1
+!i10b 1
+!s100 e>iBB]emnH8iG2UE::]`52
+I@K=i:QF2T7Kj:0:DGUI3d2
+R2
+R0
+w1696903279
+8Waveform.vwf.vt
+FWaveform.vwf.vt
+L0 29
+R6
+r1
+!s85 0
+31
+R7
+!s107 Waveform.vwf.vt|
+!s90 -work|work|Waveform.vwf.vt|
+!i113 1
+R10
+R11
+vhard_block
+R1
+!i10b 1
+!s100 9iW9:LATaP^G`5Pk=o<H41
+I4?8j65zOMV4PM`4Lf<mbj1
+R2
+R0
+R3
+R4
+R5
+L0 1190
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11

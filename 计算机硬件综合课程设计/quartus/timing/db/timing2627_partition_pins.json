@@ -1,0 +1,45 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "T1",
+					"strict" : false
+				},
+				{
+					"name" : "T4",
+					"strict" : false
+				},
+				{
+					"name" : "T3",
+					"strict" : false
+				},
+				{
+					"name" : "T2",
+					"strict" : false
+				},
+				{
+					"name" : "debug_clk",
+					"strict" : false
+				},
+				{
+					"name" : "debug_D",
+					"strict" : false
+				},
+				{
+					"name" : "s0",
+					"strict" : false
+				},
+				{
+					"name" : "RST1",
+					"strict" : false
+				},
+				{
+					"name" : "CLK1",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

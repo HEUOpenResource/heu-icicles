@@ -1,0 +1,1781 @@
+$comment
+	File created using the following command:
+		vcd file alu2627.msim.vcd -direction
+$end
+$date
+	Tue Oct 10 10:01:23 2023
+$end
+$version
+	ModelSim Version 10.5b
+$end
+$timescale
+	1ps
+$end
+
+$scope module alu2627_vlg_vec_tst $end
+$var reg 8 ! A [7:0] $end
+$var reg 8 " B [7:0] $end
+$var reg 1 # CN $end
+$var reg 1 $ M $end
+$var reg 4 % S [3:0] $end
+$var wire 1 & AEQB $end
+$var wire 1 ' CN4 $end
+$var wire 1 ( F [7] $end
+$var wire 1 ) F [6] $end
+$var wire 1 * F [5] $end
+$var wire 1 + F [4] $end
+$var wire 1 , F [3] $end
+$var wire 1 - F [2] $end
+$var wire 1 . F [1] $end
+$var wire 1 / F [0] $end
+
+$scope module i1 $end
+$var wire 1 0 gnd $end
+$var wire 1 1 vcc $end
+$var wire 1 2 unknown $end
+$var tri1 1 3 devclrn $end
+$var tri1 1 4 devpor $end
+$var tri1 1 5 devoe $end
+$var wire 1 6 AEQB~output_o $end
+$var wire 1 7 CN4~output_o $end
+$var wire 1 8 F[7]~output_o $end
+$var wire 1 9 F[6]~output_o $end
+$var wire 1 : F[5]~output_o $end
+$var wire 1 ; F[4]~output_o $end
+$var wire 1 < F[3]~output_o $end
+$var wire 1 = F[2]~output_o $end
+$var wire 1 > F[1]~output_o $end
+$var wire 1 ? F[0]~output_o $end
+$var wire 1 @ M~input_o $end
+$var wire 1 A B[3]~input_o $end
+$var wire 1 B A[3]~input_o $end
+$var wire 1 C S[0]~input_o $end
+$var wire 1 D S[1]~input_o $end
+$var wire 1 E inst1|51~0_combout $end
+$var wire 1 F A[0]~input_o $end
+$var wire 1 G B[0]~input_o $end
+$var wire 1 H inst1|43~0_combout $end
+$var wire 1 I S[3]~input_o $end
+$var wire 1 J A[1]~input_o $end
+$var wire 1 K S[2]~input_o $end
+$var wire 1 L B[1]~input_o $end
+$var wire 1 M inst1|47~0_combout $end
+$var wire 1 N inst1|46~0_combout $end
+$var wire 1 O CN~input_o $end
+$var wire 1 P inst1|78~0_combout $end
+$var wire 1 Q inst1|44~0_combout $end
+$var wire 1 R inst1|52~0_combout $end
+$var wire 1 S B[2]~input_o $end
+$var wire 1 T A[2]~input_o $end
+$var wire 1 U inst1|48~0_combout $end
+$var wire 1 V inst1|78~2_combout $end
+$var wire 1 W inst1|45~0_combout $end
+$var wire 1 X inst1|78~3_combout $end
+$var wire 1 Y A[4]~input_o $end
+$var wire 1 Z B[4]~input_o $end
+$var wire 1 [ inst|46~0_combout $end
+$var wire 1 \ inst|43~0_combout $end
+$var wire 1 ] inst|80~combout $end
+$var wire 1 ^ inst|79~combout $end
+$var wire 1 _ A[5]~input_o $end
+$var wire 1 ` B[5]~input_o $end
+$var wire 1 a inst|44~0_combout $end
+$var wire 1 b inst|47~0_combout $end
+$var wire 1 c inst|81~combout $end
+$var wire 1 d inst|77~0_combout $end
+$var wire 1 e inst|77~1_combout $end
+$var wire 1 f B[6]~input_o $end
+$var wire 1 g A[6]~input_o $end
+$var wire 1 h inst|45~0_combout $end
+$var wire 1 i inst|48~0_combout $end
+$var wire 1 j inst|82~0_combout $end
+$var wire 1 k inst|83~0_combout $end
+$var wire 1 l inst1|78~1_combout $end
+$var wire 1 m inst1|82~0_combout $end
+$var wire 1 n inst1|79~combout $end
+$var wire 1 o inst1|81~combout $end
+$var wire 1 p inst1|77~0_combout $end
+$var wire 1 q inst1|77~1_combout $end
+$var wire 1 r inst1|80~0_combout $end
+$var wire 1 s inst1|83~0_combout $end
+$var wire 1 t A[7]~input_o $end
+$var wire 1 u B[7]~input_o $end
+$var wire 1 v inst|52~0_combout $end
+$var wire 1 w inst|77~2_combout $end
+$var wire 1 x inst|51~0_combout $end
+$var wire 1 y inst|77~3_combout $end
+$var wire 1 z inst2~combout $end
+$var wire 1 { inst|78~0_combout $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b1001011 !
+b11111010 "
+0#
+1$
+b0 %
+0&
+1'
+0/
+0.
+1-
+0,
+1+
+1*
+0)
+1(
+00
+11
+x2
+13
+14
+15
+06
+17
+18
+09
+1:
+1;
+0<
+1=
+0>
+0?
+1@
+1A
+1B
+0C
+0D
+1E
+1F
+0G
+1H
+0I
+1J
+0K
+1L
+0M
+0N
+0O
+0P
+1Q
+0R
+0S
+0T
+0U
+0V
+0W
+1X
+0Y
+1Z
+0[
+0\
+0]
+0^
+0_
+1`
+0a
+0b
+0c
+0d
+0e
+1f
+1g
+1h
+0i
+0j
+0k
+0l
+1m
+0n
+1o
+1p
+0q
+1r
+0s
+0t
+1u
+0v
+0w
+0x
+1y
+0z
+1{
+$end
+#1000
+b1 %
+1#
+1C
+1O
+1x
+1a
+1\
+1P
+1c
+1]
+1l
+1V
+0y
+08
+0;
+0:
+0*
+0+
+0(
+#2000
+b11 %
+b10 %
+0C
+1D
+0x
+0a
+0\
+1W
+0c
+0]
+1y
+0m
+0=
+18
+1;
+1:
+1*
+1+
+1(
+0-
+#3000
+0#
+b11 %
+0O
+1C
+0P
+1x
+1a
+1\
+0l
+0V
+1c
+1]
+0y
+08
+0;
+0:
+0X
+0*
+0+
+0(
+1e
+1w
+0{
+07
+0'
+#4000
+b111 %
+b101 %
+b100 %
+0C
+0D
+1K
+0x
+0a
+0\
+0W
+1N
+0e
+0c
+0]
+1X
+0r
+1{
+1y
+1m
+1=
+18
+17
+1?
+1;
+1:
+0w
+1*
+1+
+1/
+1'
+1(
+1-
+#5000
+b101 %
+1C
+1x
+1a
+1\
+1c
+1]
+0y
+08
+0;
+0:
+0*
+0+
+0(
+#6000
+b111 %
+b110 %
+0C
+1D
+0x
+0a
+0\
+1W
+0c
+0]
+0X
+1y
+0m
+0=
+18
+1;
+1:
+1*
+1+
+1(
+0-
+#7000
+1#
+b111 %
+1O
+1C
+1x
+1a
+1\
+1e
+1c
+1]
+0y
+08
+0;
+0:
+1w
+0*
+0+
+0(
+0{
+07
+0'
+#8000
+b1111 %
+b1011 %
+b1001 %
+b1000 %
+0C
+0D
+0K
+1I
+0x
+0a
+0\
+0W
+1i
+1R
+0N
+1M
+0e
+0c
+0]
+1r
+0o
+1{
+1y
+1m
+1j
+1q
+1<
+19
+1=
+18
+17
+1>
+0?
+1;
+1:
+1k
+1*
+1+
+0/
+1.
+1'
+1(
+1-
+1)
+1,
+1z
+16
+1&
+#9000
+0#
+b1001 %
+0O
+1C
+1x
+1a
+1\
+1e
+1c
+1]
+0{
+0y
+08
+07
+0;
+0:
+0k
+0*
+0+
+0'
+0(
+0z
+06
+0&
+#10000
+b1011 %
+b1010 %
+0C
+1D
+0x
+0a
+0\
+1W
+0e
+0c
+0]
+1{
+1y
+0m
+0=
+18
+17
+1;
+1:
+1k
+1*
+1+
+1'
+1(
+0-
+1z
+16
+1&
+#11000
+b1011 %
+1C
+1x
+1a
+1\
+1e
+1c
+1]
+0{
+0y
+08
+07
+0;
+0:
+0k
+0*
+0+
+0'
+0(
+0z
+06
+0&
+#12000
+b1111 %
+b1101 %
+b1100 %
+0C
+0D
+1K
+0x
+0a
+0\
+0W
+1N
+0e
+0c
+0]
+0r
+1{
+1y
+1m
+1=
+18
+17
+1?
+1;
+1:
+1k
+1s
+1*
+1+
+1/
+1'
+1(
+1-
+1z
+16
+1&
+#13000
+b1101 %
+1C
+1x
+1a
+1\
+1e
+1c
+1]
+0{
+0y
+08
+07
+0;
+0:
+0k
+0*
+0+
+0'
+0(
+#14000
+b1111 %
+b1110 %
+0C
+1D
+0x
+0a
+0\
+1W
+0e
+0c
+0]
+1{
+1y
+0m
+0=
+18
+17
+1;
+1:
+1k
+0s
+1*
+1+
+1'
+1(
+0-
+#15000
+b1111 %
+1C
+1x
+1a
+1\
+1e
+1c
+1]
+0{
+0y
+08
+07
+0;
+0:
+0k
+0*
+0+
+0'
+0(
+0z
+06
+0&
+#16000
+0$
+b111 %
+1#
+b11 %
+b1 %
+b0 %
+0@
+0C
+0D
+0K
+0I
+1O
+1r
+0x
+0a
+0\
+0W
+0i
+0R
+0N
+0M
+0?
+0e
+0c
+1^
+0]
+0p
+1X
+0r
+1n
+1P
+1o
+0/
+1{
+1y
+1m
+0j
+0q
+0<
+09
+1=
+18
+17
+0>
+1?
+1;
+1:
+0w
+1c
+1]
+0o
+1l
+1V
+1*
+1+
+1/
+0.
+1'
+1(
+1-
+0)
+0,
+1j
+1q
+1<
+19
+1>
+0;
+0:
+1s
+0*
+0+
+1.
+1)
+1,
+0y
+0m
+0=
+08
+0s
+0(
+0-
+1z
+16
+1&
+0z
+06
+0&
+#17000
+b1 %
+1C
+1x
+1a
+1\
+0c
+0]
+1y
+18
+1;
+1:
+1k
+1*
+1+
+1(
+1z
+16
+1&
+#18000
+b11 %
+b10 %
+0C
+1D
+0x
+0a
+0\
+1W
+1c
+1]
+0y
+1m
+1=
+08
+0;
+0:
+0k
+1s
+0*
+0+
+0(
+1-
+0z
+06
+0&
+1z
+16
+1&
+#19000
+b11 %
+1C
+1x
+1a
+1\
+0c
+0]
+1y
+18
+1;
+1:
+1k
+1*
+1+
+1(
+#20000
+b111 %
+b101 %
+b100 %
+0C
+0D
+1K
+0x
+0a
+0\
+0W
+1N
+1c
+1]
+1r
+0n
+0P
+0y
+0m
+0=
+08
+0?
+0;
+0:
+0k
+0s
+1o
+0l
+0V
+0*
+0+
+0/
+0(
+0-
+0>
+0.
+0z
+1m
+1=
+06
+0&
+1-
+#21000
+b101 %
+1C
+1x
+1a
+1\
+0c
+0]
+1y
+18
+1;
+1:
+1k
+1*
+1+
+1(
+1z
+16
+1&
+#22000
+b111 %
+b110 %
+0C
+1D
+0x
+0a
+0\
+1W
+1c
+1]
+1p
+0X
+0y
+0m
+0=
+08
+0;
+0:
+0k
+0]
+0*
+0+
+0(
+0-
+0q
+0z
+06
+0<
+1;
+1+
+0,
+0&
+#23000
+b111 %
+1C
+1x
+1a
+1\
+1e
+0c
+0^
+1]
+1y
+18
+0;
+1:
+1w
+1c
+1*
+0+
+1(
+0j
+09
+0:
+0*
+0)
+0{
+0y
+08
+07
+0'
+0(
+#24000
+b1111 %
+b1011 %
+b1001 %
+b1000 %
+0C
+0D
+0K
+1I
+0x
+0a
+0\
+0W
+1i
+1R
+0N
+1M
+0e
+0c
+1^
+0]
+0p
+0r
+1n
+0o
+1{
+1y
+1m
+1j
+1q
+1<
+19
+1=
+18
+17
+1>
+1?
+1;
+1:
+1k
+1c
+1s
+1o
+1*
+1+
+1/
+1.
+1'
+1(
+1-
+1)
+1,
+0j
+0q
+0<
+09
+0>
+0:
+0k
+0s
+0*
+0.
+0)
+0,
+1z
+16
+1&
+0z
+06
+0&
+#25000
+b1001 %
+1C
+1x
+1a
+1\
+1e
+0c
+0^
+1]
+0{
+0y
+08
+07
+0;
+1:
+1c
+1*
+0+
+0'
+0(
+1j
+19
+0:
+0*
+1)
+#26000
+b1011 %
+b1010 %
+0C
+1D
+0x
+0a
+0\
+1W
+0e
+0c
+1^
+0]
+1p
+1{
+1y
+0m
+0=
+18
+17
+1;
+1:
+1k
+1c
+1*
+1+
+1'
+1(
+0-
+0j
+1q
+1<
+09
+0:
+0k
+0*
+0)
+1,
+1z
+16
+1&
+0z
+06
+0&
+#27000
+b1011 %
+1C
+1x
+1a
+1\
+1e
+0c
+0^
+1]
+0{
+0y
+08
+07
+0;
+1:
+1c
+1*
+0+
+0'
+0(
+1j
+19
+0:
+0*
+1)
+#28000
+b1111 %
+b1101 %
+b1100 %
+0C
+0D
+1K
+0x
+0a
+0\
+0W
+1N
+0e
+0c
+1^
+0]
+0p
+1r
+0n
+1{
+1y
+1m
+1=
+18
+17
+0?
+1;
+1:
+1k
+1c
+0o
+1*
+1+
+0/
+1'
+1(
+1-
+0j
+0q
+0<
+09
+1>
+0:
+0k
+0*
+1.
+0)
+0,
+1z
+16
+1&
+0z
+06
+0&
+#29000
+b1101 %
+1C
+1x
+1a
+1\
+1e
+0c
+0^
+1]
+0{
+0y
+08
+07
+0;
+1:
+1c
+1*
+0+
+0'
+0(
+1j
+19
+0:
+0*
+1)
+#30000
+b1111 %
+b1110 %
+0C
+1D
+0x
+0a
+0\
+1W
+0e
+0c
+1^
+0]
+1p
+1{
+1y
+0m
+0=
+18
+17
+1;
+1:
+1k
+1c
+1*
+1+
+1'
+1(
+0-
+0j
+1q
+1<
+09
+0:
+0k
+0*
+0)
+1,
+1z
+16
+1&
+0z
+06
+0&
+#31000
+b1111 %
+1C
+1x
+1a
+1\
+1e
+0c
+0^
+1]
+0{
+0y
+08
+07
+0;
+1:
+1c
+1*
+0+
+0'
+0(
+1j
+19
+0:
+0*
+1)
+#32000
+0#
+b111 %
+b11 %
+b1 %
+b0 %
+0O
+0C
+0D
+0K
+0I
+0r
+0x
+0a
+0\
+0W
+0i
+0R
+0N
+0M
+1?
+0e
+0c
+1^
+0]
+0p
+1X
+1r
+1o
+1/
+1{
+1y
+1m
+0j
+0q
+0<
+09
+1=
+18
+17
+0>
+0?
+1;
+1:
+0w
+1c
+1]
+1*
+1+
+0/
+0.
+1'
+1(
+1-
+0)
+0,
+1j
+1q
+1<
+19
+0;
+0:
+0*
+0+
+1)
+1,
+0y
+08
+0(
+#33000
+b1 %
+1C
+1x
+1a
+1\
+0c
+0]
+1y
+18
+1;
+1:
+1k
+1*
+1+
+1(
+1z
+16
+1&
+#34000
+b11 %
+b10 %
+0C
+1D
+0x
+0a
+0\
+1W
+1c
+1]
+1p
+0X
+0y
+0m
+0=
+08
+0;
+0:
+0k
+0]
+0*
+0+
+0(
+0-
+0q
+0z
+06
+0<
+1;
+1+
+0,
+0&
+#35000
+b11 %
+1C
+1x
+1a
+1\
+1e
+0c
+0^
+1]
+1y
+18
+0;
+1:
+1w
+1c
+1*
+0+
+1(
+0j
+09
+0:
+0*
+0)
+0{
+0y
+08
+07
+0'
+0(
+#36000
+b111 %
+b101 %
+b100 %
+0C
+0D
+1K
+0x
+0a
+0\
+0W
+1N
+0e
+0c
+1^
+0]
+0p
+1X
+0r
+1{
+1y
+1m
+1=
+18
+17
+1?
+1;
+1:
+0w
+1c
+1]
+1*
+1+
+1/
+1'
+1(
+1-
+1j
+1q
+1<
+19
+0;
+0:
+0*
+0+
+1)
+1,
+0y
+08
+0(
+#37000
+b101 %
+1C
+1x
+1a
+1\
+0c
+0]
+1y
+18
+1;
+1:
+1k
+1*
+1+
+1(
+1z
+16
+1&
+#38000
+b111 %
+b110 %
+0C
+1D
+0x
+0a
+0\
+1W
+1c
+1]
+1p
+0X
+0y
+0m
+0=
+08
+0;
+0:
+0k
+0]
+0*
+0+
+0(
+0-
+0q
+0z
+06
+0<
+1;
+1+
+0,
+0&
+#39000
+b111 %
+1C
+1x
+1a
+1\
+1e
+0c
+0^
+1]
+1y
+18
+0;
+1:
+1w
+1c
+1*
+0+
+1(
+0j
+09
+0:
+0*
+0)
+0{
+0y
+08
+07
+0'
+0(
+#40000
+b1111 %
+b1011 %
+b1001 %
+b1000 %
+0C
+0D
+0K
+1I
+0x
+0a
+0\
+0W
+1i
+1R
+0N
+1M
+0e
+0c
+1^
+0]
+0p
+1r
+0o
+1{
+1y
+1m
+1j
+1q
+1<
+19
+1=
+18
+17
+1>
+0?
+1;
+1:
+1k
+1c
+1*
+1+
+0/
+1.
+1'
+1(
+1-
+1)
+1,
+0j
+0q
+0<
+09
+0:
+0k
+0*
+0)
+0,
+1z
+16
+1&
+0z
+06
+0&
+#41000
+b1001 %
+1C
+1x
+1a
+1\
+1e
+0c
+0^
+1]
+0{
+0y
+08
+07
+0;
+1:
+1c
+1*
+0+
+0'
+0(
+1j
+19
+0:
+0*
+1)
+#42000
+b1011 %
+b1010 %
+0C
+1D
+0x
+0a
+0\
+1W
+0e
+0c
+1^
+0]
+1p
+1{
+1y
+0m
+0=
+18
+17
+1;
+1:
+1k
+1c
+1*
+1+
+1'
+1(
+0-
+0j
+1q
+1<
+09
+0:
+0k
+0*
+0)
+1,
+1z
+16
+1&
+0z
+06
+0&
+#43000
+b1011 %
+1C
+1x
+1a
+1\
+1e
+0c
+0^
+1]
+0{
+0y
+08
+07
+0;
+1:
+1c
+1*
+0+
+0'
+0(
+1j
+19
+0:
+0*
+1)
+#44000
+b1111 %
+b1101 %
+b1100 %
+0C
+0D
+1K
+0x
+0a
+0\
+0W
+1N
+0e
+0c
+1^
+0]
+0p
+0r
+1{
+1y
+1m
+1=
+18
+17
+1?
+1;
+1:
+1k
+1c
+1s
+1*
+1+
+1/
+1'
+1(
+1-
+0j
+0q
+0<
+09
+0:
+0k
+0s
+0*
+0)
+0,
+1z
+16
+1&
+0z
+06
+0&
+#45000
+b1101 %
+1C
+1x
+1a
+1\
+1e
+0c
+0^
+1]
+0{
+0y
+08
+07
+0;
+1:
+1c
+1*
+0+
+0'
+0(
+1j
+19
+0:
+0*
+1)
+#46000
+b1111 %
+b1110 %
+0C
+1D
+0x
+0a
+0\
+1W
+0e
+0c
+1^
+0]
+1p
+1{
+1y
+0m
+0=
+18
+17
+1;
+1:
+1k
+1c
+1*
+1+
+1'
+1(
+0-
+0j
+1q
+1<
+09
+0:
+0k
+0*
+0)
+1,
+1z
+16
+1&
+0z
+06
+0&
+#47000
+b1111 %
+1C
+1x
+1a
+1\
+1e
+0c
+0^
+1]
+0{
+0y
+08
+07
+0;
+1:
+1c
+1*
+0+
+0'
+0(
+1j
+19
+0:
+0*
+1)
+#48000

@@ -1,0 +1,133 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "bus[7]",
+					"strict" : false
+				},
+				{
+					"name" : "bus[6]",
+					"strict" : false
+				},
+				{
+					"name" : "bus[5]",
+					"strict" : false
+				},
+				{
+					"name" : "bus[4]",
+					"strict" : false
+				},
+				{
+					"name" : "bus[3]",
+					"strict" : false
+				},
+				{
+					"name" : "bus[2]",
+					"strict" : false
+				},
+				{
+					"name" : "bus[1]",
+					"strict" : false
+				},
+				{
+					"name" : "bus[0]",
+					"strict" : false
+				},
+				{
+					"name" : "led[7]",
+					"strict" : false
+				},
+				{
+					"name" : "led[6]",
+					"strict" : false
+				},
+				{
+					"name" : "led[5]",
+					"strict" : false
+				},
+				{
+					"name" : "led[4]",
+					"strict" : false
+				},
+				{
+					"name" : "led[3]",
+					"strict" : false
+				},
+				{
+					"name" : "led[2]",
+					"strict" : false
+				},
+				{
+					"name" : "led[1]",
+					"strict" : false
+				},
+				{
+					"name" : "led[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SELECT[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SELECT[1]",
+					"strict" : false
+				},
+				{
+					"name" : "d0[7]",
+					"strict" : false
+				},
+				{
+					"name" : "d0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "d0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "d0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "d0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "d0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "d0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "d0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "CLK1",
+					"strict" : false
+				},
+				{
+					"name" : "we",
+					"strict" : false
+				},
+				{
+					"name" : "CLK3",
+					"strict" : false
+				},
+				{
+					"name" : "CLK2",
+					"strict" : false
+				},
+				{
+					"name" : "CLK4",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,85 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2017  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+# Date created = 11:58:21  October 17, 2023
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		bus2627_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE55F23C8
+set_global_assignment -name TOP_LEVEL_ENTITY bus2627
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 17.1.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "11:58:21  OCTOBER 17, 2023"
+set_global_assignment -name LAST_QUARTUS_VERSION "17.1.0 Lite Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name QIP_FILE lpm_mux0.qip
+set_global_assignment -name BDF_FILE bus2627.bdf
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform.vwf
+set_location_assignment PIN_AA9 -to bus[7]
+set_location_assignment PIN_AB9 -to bus[6]
+set_location_assignment PIN_AA7 -to bus[5]
+set_location_assignment PIN_AB7 -to bus[4]
+set_location_assignment PIN_W7 -to bus[3]
+set_location_assignment PIN_Y8 -to bus[2]
+set_location_assignment PIN_V6 -to bus[1]
+set_location_assignment PIN_Y6 -to bus[0]
+set_location_assignment PIN_AA4 -to led[7]
+set_location_assignment PIN_AA5 -to led[6]
+set_location_assignment PIN_Y2 -to led[5]
+set_location_assignment PIN_AA1 -to led[4]
+set_location_assignment PIN_V2 -to led[3]
+set_location_assignment PIN_W1 -to led[2]
+set_location_assignment PIN_R2 -to led[1]
+set_location_assignment PIN_U1 -to led[0]
+set_location_assignment PIN_M2 -to SELECT[1]
+set_location_assignment PIN_P2 -to SELECT[0]
+set_location_assignment PIN_AA6 -to d0[5]
+set_location_assignment PIN_AB3 -to d0[4]
+set_location_assignment PIN_AB6 -to d0[7]
+set_location_assignment PIN_Y7 -to d0[6]
+set_location_assignment PIN_Y1 -to d0[3]
+set_location_assignment PIN_V1 -to d0[2]
+set_location_assignment PIN_R1 -to d0[1]
+set_location_assignment PIN_N1 -to d0[0]
+set_location_assignment PIN_J3 -to CLK1
+set_location_assignment PIN_J4 -to CLK2
+set_location_assignment PIN_H4 -to CLK3
+set_location_assignment PIN_G4 -to CLK4
+set_location_assignment PIN_B1 -to we
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

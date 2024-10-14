@@ -1,0 +1,124 @@
+Flow report for mux21a2627
+Mon Nov 06 09:18:40 2023
+Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Flow Summary                                                                     ;
++------------------------------------+---------------------------------------------+
+; Flow Status                        ; Successful - Mon Nov 06 09:18:37 2023       ;
+; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
+; Revision Name                      ; mux21a2627                                  ;
+; Top-level Entity Name              ; mux21a2627                                  ;
+; Family                             ; Cyclone IV E                                ;
+; Total logic elements               ; 201 / 6,272 ( 3 % )                         ;
+;     Total combinational functions  ; 168 / 6,272 ( 3 % )                         ;
+;     Dedicated logic registers      ; 75 / 6,272 ( 1 % )                          ;
+; Total registers                    ; 75                                          ;
+; Total pins                         ; 93 / 180 ( 52 % )                           ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 2,560 / 276,480 ( < 1 % )                   ;
+; Embedded Multiplier 9-bit elements ; 0 / 30 ( 0 % )                              ;
+; Total PLLs                         ; 0 / 2 ( 0 % )                               ;
+; Device                             ; EP4CE6F17C6                                 ;
+; Timing Models                      ; Final                                       ;
++------------------------------------+---------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 11/06/2023 09:18:16 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; mux21a2627          ;
++-------------------+---------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                        ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
+; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
+; COMPILER_SIGNATURE_ID               ; 62619206303055.169923349616784         ; --            ; --          ; --         ;
+; MISC_FILE                           ; lpm_mux1.bsf                           ; --            ; --          ; --         ;
+; MISC_FILE                           ; lpm_mux1_bb.v                          ; --            ; --          ; --         ;
+; MISC_FILE                           ; lpm_counter0.bsf                       ; --            ; --          ; --         ;
+; MISC_FILE                           ; lpm_counter0_bb.v                      ; --            ; --          ; --         ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --          ; --         ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:00:10     ; 1.0                     ; 4861 MB             ; 00:00:20                           ;
+; Fitter                    ; 00:00:08     ; 1.2                     ; 6470 MB             ; 00:00:15                           ;
+; Assembler                 ; 00:00:01     ; 1.0                     ; 4669 MB             ; 00:00:01                           ;
+; TimeQuest Timing Analyzer ; 00:00:02     ; 1.1                     ; 4915 MB             ; 00:00:02                           ;
+; Total                     ; 00:00:21     ; --                      ; --                  ; 00:00:38                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++------------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                          ;
++---------------------------+-------------------+------------+------------+----------------+
+; Module Name               ; Machine Hostname  ; OS Name    ; OS Version ; Processor type ;
++---------------------------+-------------------+------------+------------+----------------+
+; Analysis & Synthesis      ; Kurorin¡®s-Laptop ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter                    ; Kurorin¡®s-Laptop ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler                 ; Kurorin¡®s-Laptop ; Windows 10 ; 10.0       ; x86_64         ;
+; TimeQuest Timing Analyzer ; Kurorin¡®s-Laptop ; Windows 10 ; 10.0       ; x86_64         ;
++---------------------------+-------------------+------------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off mux21a2627 -c mux21a2627
+quartus_fit --read_settings_files=off --write_settings_files=off mux21a2627 -c mux21a2627
+quartus_asm --read_settings_files=off --write_settings_files=off mux21a2627 -c mux21a2627
+quartus_sta mux21a2627 -c mux21a2627
+
+
+

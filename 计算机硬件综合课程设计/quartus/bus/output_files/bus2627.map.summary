@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Fri Oct 20 13:28:00 2023
+Quartus Prime Version : 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+Revision Name : bus2627
+Top-level Entity Name : bus2627
+Family : Cyclone IV E
+Total logic elements : 32
+    Total combinational functions : 16
+    Dedicated logic registers : 24
+Total registers : 24
+Total pins : 31
+Total virtual pins : 0
+Total memory bits : 2,048
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

@@ -1,0 +1,16 @@
+Fitter Status : Successful - Mon Nov 06 09:18:35 2023
+Quartus Prime Version : 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+Revision Name : mux21a2627
+Top-level Entity Name : mux21a2627
+Family : Cyclone IV E
+Device : EP4CE6F17C6
+Timing Models : Final
+Total logic elements : 201 / 6,272 ( 3 % )
+    Total combinational functions : 168 / 6,272 ( 3 % )
+    Dedicated logic registers : 75 / 6,272 ( 1 % )
+Total registers : 75
+Total pins : 93 / 180 ( 52 % )
+Total virtual pins : 0
+Total memory bits : 2,560 / 276,480 ( < 1 % )
+Embedded Multiplier 9-bit elements : 0 / 30 ( 0 % )
+Total PLLs : 0 / 2 ( 0 % )

@@ -1,0 +1,11 @@
+LPM_SIZE=4
+LPM_TYPE=LPM_MUX
+LPM_WIDTH=8
+LPM_WIDTHS=2
+DEVICE_FAMILY="Cyclone IV E"
+data
+data
+data
+data
+sel
+result

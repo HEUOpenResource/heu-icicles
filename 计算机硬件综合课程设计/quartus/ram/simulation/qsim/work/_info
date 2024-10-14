@@ -1,0 +1,73 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/Projects/quartus/ram/simulation/qsim
+vhard_block
+Z1 !s110 1696867927
+!i10b 1
+!s100 AaCI[R]68NTGOO1mlECeh2
+IIe]9B31AMk1BXVR4l:]SB1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1696867926
+Z4 8ram2627.vo
+Z5 Fram2627.vo
+L0 491
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1696867927.000000
+Z8 !s107 ram2627.vo|
+Z9 !s90 -work|work|ram2627.vo|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+vram2627
+R1
+!i10b 1
+!s100 8GBK=EAI>R1=mhPkfU;im0
+IYDnWR7Qf0@H=`X^SAYd180
+R2
+R0
+R3
+R4
+R5
+L0 31
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vram2627_vlg_vec_tst
+R1
+!i10b 1
+!s100 VD`mo33i;VC7G3_YVQS:70
+Inl=^mDA_bI=d_;>R1L<_O2
+R2
+R0
+R3
+8Waveform.vwf.vt
+FWaveform.vwf.vt
+L0 29
+R6
+r1
+!s85 0
+31
+R7
+!s107 Waveform.vwf.vt|
+!s90 -work|work|Waveform.vwf.vt|
+!i113 1
+R10
+R11

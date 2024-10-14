@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Fri Oct 20 16:29:01 2023
+Quartus Prime Version : 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+Revision Name : PC_AR
+Top-level Entity Name : PC_AR
+Family : Cyclone IV E
+Total logic elements : 50
+    Total combinational functions : 50
+    Dedicated logic registers : 16
+Total registers : 16
+Total pins : 21
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

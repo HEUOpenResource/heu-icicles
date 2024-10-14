@@ -1,0 +1,16 @@
+Fitter Status : Successful - Fri Oct 20 13:28:22 2023
+Quartus Prime Version : 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+Revision Name : bus2627
+Top-level Entity Name : bus2627
+Family : Cyclone IV E
+Device : EP4CE55F23C8
+Timing Models : Final
+Total logic elements : 40 / 55,856 ( < 1 % )
+    Total combinational functions : 16 / 55,856 ( < 1 % )
+    Dedicated logic registers : 24 / 55,856 ( < 1 % )
+Total registers : 24
+Total pins : 31 / 325 ( 10 % )
+Total virtual pins : 0
+Total memory bits : 2,048 / 2,396,160 ( < 1 % )
+Embedded Multiplier 9-bit elements : 0 / 308 ( 0 % )
+Total PLLs : 0 / 4 ( 0 % )

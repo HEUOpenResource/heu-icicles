@@ -1,0 +1,258 @@
+$comment
+	File created using the following command:
+		vcd file PC_AR.msim.vcd -direction
+$end
+$date
+	Fri Oct 20 16:30:09 2023
+$end
+$version
+	ModelSim Version 10.5b
+$end
+$timescale
+	1ps
+$end
+
+$scope module PC_AR_vlg_vec_tst $end
+$var reg 1 ! CLR $end
+$var reg 8 " D [7:0] $end
+$var reg 1 # LOAD $end
+$var reg 1 $ PC_B $end
+$var reg 1 % T2 $end
+$var reg 1 & T4 $end
+$var wire 1 ' Q [7] $end
+$var wire 1 ( Q [6] $end
+$var wire 1 ) Q [5] $end
+$var wire 1 * Q [4] $end
+$var wire 1 + Q [3] $end
+$var wire 1 , Q [2] $end
+$var wire 1 - Q [1] $end
+$var wire 1 . Q [0] $end
+
+$scope module i1 $end
+$var wire 1 / gnd $end
+$var wire 1 0 vcc $end
+$var wire 1 1 unknown $end
+$var tri1 1 2 devclrn $end
+$var tri1 1 3 devpor $end
+$var tri1 1 4 devoe $end
+$var wire 1 5 Q[7]~output_o $end
+$var wire 1 6 Q[6]~output_o $end
+$var wire 1 7 Q[5]~output_o $end
+$var wire 1 8 Q[4]~output_o $end
+$var wire 1 9 Q[3]~output_o $end
+$var wire 1 : Q[2]~output_o $end
+$var wire 1 ; Q[1]~output_o $end
+$var wire 1 < Q[0]~output_o $end
+$var wire 1 = T4~input_o $end
+$var wire 1 > T4~inputclkctrl_outclk $end
+$var wire 1 ? CLR~input_o $end
+$var wire 1 @ LOAD~input_o $end
+$var wire 1 A PC_B~input_o $end
+$var wire 1 B inst2|$00000|auto_generated|result_node[7]~30_combout $end
+$var wire 1 C D[7]~input_o $end
+$var wire 1 D inst2|$00000|auto_generated|result_node[7]~14_combout $end
+$var wire 1 E T2~input_o $end
+$var wire 1 F T2~inputclkctrl_outclk $end
+$var wire 1 G LOAD~inputclkctrl_outclk $end
+$var wire 1 H inst5|LPM_COUNTER_component|auto_generated|latch_signal[7]~8_combout $end
+$var wire 1 I D[5]~input_o $end
+$var wire 1 J inst5|LPM_COUNTER_component|auto_generated|latch_signal[5]~10_combout $end
+$var wire 1 K D[4]~input_o $end
+$var wire 1 L inst5|LPM_COUNTER_component|auto_generated|latch_signal[4]~11_combout $end
+$var wire 1 M D[3]~input_o $end
+$var wire 1 N inst5|LPM_COUNTER_component|auto_generated|latch_signal[3]~12_combout $end
+$var wire 1 O D[2]~input_o $end
+$var wire 1 P inst5|LPM_COUNTER_component|auto_generated|latch_signal[2]~13_combout $end
+$var wire 1 Q D[1]~input_o $end
+$var wire 1 R inst5|LPM_COUNTER_component|auto_generated|latch_signal[1]~14_combout $end
+$var wire 1 S D[0]~input_o $end
+$var wire 1 T inst5|LPM_COUNTER_component|auto_generated|latch_signal[0]~15_combout $end
+$var wire 1 U inst5|LPM_COUNTER_component|auto_generated|counter_comb_bita0~combout $end
+$var wire 1 V inst5|LPM_COUNTER_component|auto_generated|counter_reg_bit[0]~7_combout $end
+$var wire 1 W inst5|LPM_COUNTER_component|auto_generated|aclr_actual~0_combout $end
+$var wire 1 X inst5|LPM_COUNTER_component|auto_generated|counter_comb_bita0~COUT $end
+$var wire 1 Y inst5|LPM_COUNTER_component|auto_generated|counter_comb_bita1~combout $end
+$var wire 1 Z inst5|LPM_COUNTER_component|auto_generated|counter_reg_bit[1]~6_combout $end
+$var wire 1 [ inst5|LPM_COUNTER_component|auto_generated|counter_comb_bita1~COUT $end
+$var wire 1 \ inst5|LPM_COUNTER_component|auto_generated|counter_comb_bita2~combout $end
+$var wire 1 ] inst5|LPM_COUNTER_component|auto_generated|counter_reg_bit[2]~5_combout $end
+$var wire 1 ^ inst5|LPM_COUNTER_component|auto_generated|counter_comb_bita2~COUT $end
+$var wire 1 _ inst5|LPM_COUNTER_component|auto_generated|counter_comb_bita3~combout $end
+$var wire 1 ` inst5|LPM_COUNTER_component|auto_generated|counter_reg_bit[3]~4_combout $end
+$var wire 1 a inst5|LPM_COUNTER_component|auto_generated|counter_comb_bita3~COUT $end
+$var wire 1 b inst5|LPM_COUNTER_component|auto_generated|counter_comb_bita4~combout $end
+$var wire 1 c inst5|LPM_COUNTER_component|auto_generated|counter_reg_bit[4]~3_combout $end
+$var wire 1 d inst5|LPM_COUNTER_component|auto_generated|counter_comb_bita4~COUT $end
+$var wire 1 e inst5|LPM_COUNTER_component|auto_generated|counter_comb_bita5~combout $end
+$var wire 1 f inst5|LPM_COUNTER_component|auto_generated|counter_reg_bit[5]~2_combout $end
+$var wire 1 g inst5|LPM_COUNTER_component|auto_generated|counter_comb_bita5~COUT $end
+$var wire 1 h inst5|LPM_COUNTER_component|auto_generated|counter_comb_bita6~combout $end
+$var wire 1 i D[6]~input_o $end
+$var wire 1 j inst5|LPM_COUNTER_component|auto_generated|latch_signal[6]~9_combout $end
+$var wire 1 k inst5|LPM_COUNTER_component|auto_generated|counter_reg_bit[6]~1_combout $end
+$var wire 1 l inst5|LPM_COUNTER_component|auto_generated|counter_comb_bita6~COUT $end
+$var wire 1 m inst5|LPM_COUNTER_component|auto_generated|counter_comb_bita7~combout $end
+$var wire 1 n inst5|LPM_COUNTER_component|auto_generated|counter_reg_bit[7]~0_combout $end
+$var wire 1 o inst2|$00000|auto_generated|result_node[7]~15_combout $end
+$var wire 1 p inst|12~q $end
+$var wire 1 q inst2|$00000|auto_generated|result_node[6]~16_combout $end
+$var wire 1 r inst2|$00000|auto_generated|result_node[6]~17_combout $end
+$var wire 1 s inst|13~q $end
+$var wire 1 t inst2|$00000|auto_generated|result_node[5]~18_combout $end
+$var wire 1 u inst2|$00000|auto_generated|result_node[5]~19_combout $end
+$var wire 1 v inst|14~q $end
+$var wire 1 w inst2|$00000|auto_generated|result_node[4]~20_combout $end
+$var wire 1 x inst2|$00000|auto_generated|result_node[4]~21_combout $end
+$var wire 1 y inst|15~q $end
+$var wire 1 z inst2|$00000|auto_generated|result_node[3]~22_combout $end
+$var wire 1 { inst2|$00000|auto_generated|result_node[3]~23_combout $end
+$var wire 1 | inst|16~q $end
+$var wire 1 } inst2|$00000|auto_generated|result_node[2]~24_combout $end
+$var wire 1 ~ inst2|$00000|auto_generated|result_node[2]~25_combout $end
+$var wire 1 !! inst|17~q $end
+$var wire 1 "! inst2|$00000|auto_generated|result_node[1]~26_combout $end
+$var wire 1 #! inst2|$00000|auto_generated|result_node[1]~27_combout $end
+$var wire 1 $! inst|18~q $end
+$var wire 1 %! inst2|$00000|auto_generated|result_node[0]~28_combout $end
+$var wire 1 &! inst2|$00000|auto_generated|result_node[0]~29_combout $end
+$var wire 1 '! inst|19~q $end
+$var wire 1 (! inst5|LPM_COUNTER_component|auto_generated|counter_reg_bit [7] $end
+$var wire 1 )! inst5|LPM_COUNTER_component|auto_generated|counter_reg_bit [6] $end
+$var wire 1 *! inst5|LPM_COUNTER_component|auto_generated|counter_reg_bit [5] $end
+$var wire 1 +! inst5|LPM_COUNTER_component|auto_generated|counter_reg_bit [4] $end
+$var wire 1 ,! inst5|LPM_COUNTER_component|auto_generated|counter_reg_bit [3] $end
+$var wire 1 -! inst5|LPM_COUNTER_component|auto_generated|counter_reg_bit [2] $end
+$var wire 1 .! inst5|LPM_COUNTER_component|auto_generated|counter_reg_bit [1] $end
+$var wire 1 /! inst5|LPM_COUNTER_component|auto_generated|counter_reg_bit [0] $end
+$var wire 1 0! inst5|LPM_COUNTER_component|auto_generated|pre_hazard [7] $end
+$var wire 1 1! inst5|LPM_COUNTER_component|auto_generated|pre_hazard [6] $end
+$var wire 1 2! inst5|LPM_COUNTER_component|auto_generated|pre_hazard [5] $end
+$var wire 1 3! inst5|LPM_COUNTER_component|auto_generated|pre_hazard [4] $end
+$var wire 1 4! inst5|LPM_COUNTER_component|auto_generated|pre_hazard [3] $end
+$var wire 1 5! inst5|LPM_COUNTER_component|auto_generated|pre_hazard [2] $end
+$var wire 1 6! inst5|LPM_COUNTER_component|auto_generated|pre_hazard [1] $end
+$var wire 1 7! inst5|LPM_COUNTER_component|auto_generated|pre_hazard [0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+b0 "
+0#
+0$
+0%
+0&
+0.
+0-
+0,
+0+
+0*
+0)
+0(
+0'
+0/
+10
+x1
+12
+13
+14
+05
+06
+07
+08
+09
+0:
+0;
+0<
+0=
+0>
+0?
+0@
+0A
+1B
+0C
+0D
+0E
+0F
+0G
+xH
+0I
+xJ
+0K
+xL
+0M
+xN
+0O
+xP
+0Q
+xR
+0S
+xT
+xU
+xV
+0W
+xX
+xY
+xZ
+x[
+x\
+x]
+x^
+x_
+x`
+xa
+xb
+xc
+xd
+xe
+xf
+xg
+xh
+0i
+xj
+xk
+xl
+xm
+xn
+xo
+0p
+0q
+xr
+0s
+0t
+xu
+0v
+0w
+xx
+0y
+0z
+x{
+0|
+0}
+x~
+0!!
+0"!
+x#!
+0$!
+0%!
+x&!
+0'!
+0/!
+0.!
+0-!
+0,!
+0+!
+0*!
+0)!
+0(!
+x7!
+x6!
+x5!
+x4!
+x3!
+x2!
+x1!
+x0!
+$end
+#1000000

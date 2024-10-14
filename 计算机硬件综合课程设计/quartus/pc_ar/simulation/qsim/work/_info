@@ -1,0 +1,119 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dF:/quartus/pc_ar/simulation/qsim
+vhard_block
+Z1 !s110 1698132818
+!i10b 1
+!s100 Yo;3nE;;G4MNDA;J8<e@f0
+IMzb:Mza6n9oYjG4Nl3PGE3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dD:/Projects/quartus/pc_ar/simulation/qsim
+Z4 w1698132817
+Z5 8PC_AR2627.vo
+Z6 FPC_AR2627.vo
+L0 1646
+Z7 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z8 !s108 1698132818.000000
+Z9 !s107 PC_AR2627.vo|
+Z10 !s90 -work|work|PC_AR2627.vo|
+!i113 1
+Z11 o-work work
+Z12 tCvgOpt 0
+vPC_AR
+Z13 !s110 1697790609
+!i10b 1
+!s100 N9IUQ<ClPhe9EC2TIheaE1
+ICoHL:gZ;bfebkZ`zn61zU0
+R2
+R0
+Z14 w1697790610
+8PC_AR.vo
+FPC_AR.vo
+Z15 L0 31
+R7
+r1
+!s85 0
+31
+Z16 !s108 1697790609.000000
+!s107 PC_AR.vo|
+!s90 -work|work|PC_AR.vo|
+!i113 1
+R11
+R12
+n@p@c_@a@r
+vPC_AR2627
+R1
+!i10b 1
+!s100 KLZPSPz<Qlz9bmK1f2j`S1
+IHX2h3WXj0[J^biX:?dE2F3
+R2
+R3
+R4
+R5
+R6
+R15
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+n@p@c_@a@r2627
+vPC_AR2627_vlg_vec_tst
+R1
+!i10b 1
+!s100 Hgc7P4ehK;V@0J490`EH[3
+I`Fc=JE?:kenFE<nfz59oM1
+R2
+R3
+w1698132816
+Z17 8Waveform.vwf.vt
+Z18 FWaveform.vwf.vt
+Z19 L0 29
+R7
+r1
+!s85 0
+31
+R8
+!s107 Waveform.vwf.vt|
+Z20 !s90 -work|work|Waveform.vwf.vt|
+!i113 1
+R11
+R12
+n@p@c_@a@r2627_vlg_vec_tst
+vPC_AR_vlg_vec_tst
+R13
+!i10b 1
+!s100 VmjaCUc[`TIZOT[4R6GM60
+Ic2RRI1I@c10P[ECK`PZEY3
+R2
+R0
+R14
+R17
+R18
+R19
+R7
+r1
+!s85 0
+31
+R16
+!s107 Waveform.vwf.vt|
+R20
+!i113 1
+R11
+R12
+n@p@c_@a@r_vlg_vec_tst

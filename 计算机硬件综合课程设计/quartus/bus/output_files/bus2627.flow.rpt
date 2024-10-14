@@ -1,0 +1,130 @@
+Flow report for bus2627
+Fri Oct 20 13:29:31 2023
+Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Flow Summary                                                                     ;
++------------------------------------+---------------------------------------------+
+; Flow Status                        ; Successful - Fri Oct 20 13:29:31 2023       ;
+; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
+; Revision Name                      ; bus2627                                     ;
+; Top-level Entity Name              ; bus2627                                     ;
+; Family                             ; Cyclone IV E                                ;
+; Device                             ; EP4CE55F23C8                                ;
+; Timing Models                      ; Final                                       ;
+; Total logic elements               ; 40 / 55,856 ( < 1 % )                       ;
+;     Total combinational functions  ; 16 / 55,856 ( < 1 % )                       ;
+;     Dedicated logic registers      ; 24 / 55,856 ( < 1 % )                       ;
+; Total registers                    ; 24                                          ;
+; Total pins                         ; 31 / 325 ( 10 % )                           ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 2,048 / 2,396,160 ( < 1 % )                 ;
+; Embedded Multiplier 9-bit elements ; 0 / 308 ( 0 % )                             ;
+; Total PLLs                         ; 0 / 4 ( 0 % )                               ;
++------------------------------------+---------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 10/20/2023 13:27:36 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; bus2627             ;
++-------------------+---------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                        ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
+; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
+; COMPILER_SIGNATURE_ID               ; 62619206303055.169777965536324         ; --            ; --          ; --         ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
+; MISC_FILE                           ; lpm_mux0.bsf                           ; --            ; --          ; --         ;
+; MISC_FILE                           ; lpm_mux0_bb.v                          ; --            ; --          ; --         ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --          ; --         ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:00:25     ; 1.0                     ; 4842 MB             ; 00:00:46                           ;
+; Fitter                    ; 00:00:21     ; 1.0                     ; 6577 MB             ; 00:00:34                           ;
+; Assembler                 ; 00:00:04     ; 1.0                     ; 4676 MB             ; 00:00:04                           ;
+; TimeQuest Timing Analyzer ; 00:00:04     ; 1.1                     ; 4932 MB             ; 00:00:04                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 4625 MB             ; 00:00:01                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 4633 MB             ; 00:00:01                           ;
+; Total                     ; 00:00:56     ; --                      ; --                  ; 00:01:30                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++-----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                         ;
++---------------------------+------------------+------------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
++---------------------------+------------------+------------+------------+----------------+
+; Analysis & Synthesis      ; LAPTOP-O2IOGI6C  ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter                    ; LAPTOP-O2IOGI6C  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler                 ; LAPTOP-O2IOGI6C  ; Windows 10 ; 10.0       ; x86_64         ;
+; TimeQuest Timing Analyzer ; LAPTOP-O2IOGI6C  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer        ; LAPTOP-O2IOGI6C  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer        ; LAPTOP-O2IOGI6C  ; Windows 10 ; 10.0       ; x86_64         ;
++---------------------------+------------------+------------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off bus2627 -c bus2627
+quartus_fit --read_settings_files=off --write_settings_files=off bus2627 -c bus2627
+quartus_asm --read_settings_files=off --write_settings_files=off bus2627 -c bus2627
+quartus_sta bus2627 -c bus2627
+quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off bus2627 -c bus2627 --vector_source=D:/Projects/quartus/bus/Waveform.vwf --testbench_file=D:/Projects/quartus/bus/simulation/qsim/Waveform.vwf.vt
+quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory=D:/Projects/quartus/bus/simulation/qsim/ bus2627 -c bus2627
+
+
+
