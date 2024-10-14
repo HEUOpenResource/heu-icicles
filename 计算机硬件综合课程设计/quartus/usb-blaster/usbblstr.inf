@@ -1,0 +1,170 @@
+; USBBLSTR.INF
+; Copyright (c) 2007-2012 Altera Corporation
+; USB Blaster driver installation for Windows XP and Windows 7 (x86 and x64).
+;
+; Contents derived from FTDIBUS.INF
+;
+; FTDIBUS.INF
+; 
+; Copyright © 2000-2012 Future Technology Devices International Limited
+; 
+; USB serial converter driver installation file for Windows 2000, XP, Server 2003, Vista, Server 2008,
+; Windows 7 and Server 2008 R2 (x86 and x64).
+; 
+; 
+; THIS SOFTWARE IS PROVIDED BY FUTURE TECHNOLOGY DEVICES INTERNATIONAL LIMITED ``AS IS'' AND ANY EXPRESS 
+; OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+; FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL FUTURE TECHNOLOGY DEVICES INTERNATIONAL LIMITED
+; BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+; BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+; (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+; THE POSSIBILITY OF SUCH DAMAGE. 
+ 
+; FTDI DRIVERS MAY BE USED ONLY IN CONJUNCTION WITH PRODUCTS BASED ON FTDI PARTS.
+ 
+; FTDI DRIVERS MAY BE DISTRIBUTED IN ANY FORM AS LONG AS LICENSE INFORMATION IS NOT MODIFIED.
+
+; IF A CUSTOM VENDOR ID AND/OR PRODUCT ID OR DESCRIPTION STRING ARE USED, IT IS THE RESPONSIBILITY OF
+; THE PRODUCT MANUFACTURER TO MAINTAIN ANY CHANGES AND SUBSEQUENT WHQL RE-CERTIFICATION AS A RESULT OF
+; MAKING THESE CHANGES.
+;
+
+
+[Version]
+Signature="$Windows NT$"
+DriverPackageType=PlugAndPlay
+DriverPackageDisplayName=%DESC%
+Class=USB
+ClassGUID={36fc9e60-c465-11cf-8056-444553540000}
+Provider=%Altera%
+CatalogFile=usbblstr.cat
+DriverVer=04/21/2009,2.04.16
+
+[SourceDisksNames]
+1=%DriversDisk%,,,
+
+[SourceDisksFiles]
+usbblstr.sys = 1,x32
+usbblstrui.dll = 1,x32
+usbblstr32.dll = 1,x32
+usbblstrlang.dll = 1,x32
+
+[SourceDisksFiles.amd64]
+usbblstr.sys = 1,x64
+usbblstrui.dll = 1,x64
+usbblstr64.dll = 1,x64
+usbblstr32.dll = 1,x32
+usbblstrlang.dll = 1,x64
+
+[DestinationDirs]
+AlteraUSBBlaster.NT.Copy = 10,system32\drivers
+AlteraUSBBlaster.NT.Copy2 = 10,system32
+AlteraUSBBlaster.NTamd64.Copy = 10,system32\drivers
+AlteraUSBBlaster.NTamd64.Copy2 = 10,system32
+AlteraUSBBlaster.NTamd64.Copy3 = 10,syswow64
+
+[Manufacturer]
+%Altera%=AlteraHw,NTamd64
+
+[AlteraHw]
+%USB\VID_09FB&PID_6001.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6001
+%USB\VID_09FB&PID_6002.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6002
+%USB\VID_09FB&PID_6003.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6003
+%USB\VID_09FB&PID_6004.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6004
+%USB\VID_09FB&PID_6005.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6005
+%USB\VID_09FB&PID_6006.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6006
+%USB\VID_09FB&PID_6007.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6007
+%USB\VID_09FB&PID_6008.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6008
+%USB\VID_09FB&PID_6009.DeviceDesc%=AlteraUSBBlaster.NT,USB\VID_09FB&PID_6009
+
+[AlteraHw.NTamd64]
+%USB\VID_09FB&PID_6001.DeviceDesc%=AlteraUSBBlaster.NTamd64,USB\VID_09FB&PID_6001
+%USB\VID_09FB&PID_6002.DeviceDesc%=AlteraUSBBlaster.NTamd64,USB\VID_09FB&PID_6002
+%USB\VID_09FB&PID_6003.DeviceDesc%=AlteraUSBBlaster.NTamd64,USB\VID_09FB&PID_6003
+%USB\VID_09FB&PID_6004.DeviceDesc%=AlteraUSBBlaster.NTamd64,USB\VID_09FB&PID_6004
+%USB\VID_09FB&PID_6005.DeviceDesc%=AlteraUSBBlaster.NTamd64,USB\VID_09FB&PID_6005
+%USB\VID_09FB&PID_6006.DeviceDesc%=AlteraUSBBlaster.NTamd64,USB\VID_09FB&PID_6006
+%USB\VID_09FB&PID_6007.DeviceDesc%=AlteraUSBBlaster.NTamd64,USB\VID_09FB&PID_6007
+%USB\VID_09FB&PID_6008.DeviceDesc%=AlteraUSBBlaster.NTamd64,USB\VID_09FB&PID_6008
+%USB\VID_09FB&PID_6009.DeviceDesc%=AlteraUSBBlaster.NTamd64,USB\VID_09FB&PID_6009
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[AlteraUSBBlaster.NT]
+CopyFiles=AlteraUSBBlaster.NT.Copy,AlteraUSBBlaster.NT.Copy2
+AddReg=AlteraUSBBlaster.NT.AddReg
+
+[AlteraUSBBlaster.NTamd64]
+CopyFiles=AlteraUSBBlaster.NTamd64.Copy,AlteraUSBBlaster.NTamd64.Copy2,AlteraUSBBlaster.NTamd64.Copy3
+AddReg=AlteraUSBBlaster.NT.AddReg
+
+[AlteraUSBBlaster.NT.Services]
+AddService = AlteraUSBBlaster, 0x00000002, AlteraUSBBlaster.NT.AddService
+
+[AlteraUSBBlaster.NTamd64.Services]
+AddService = AlteraUSBBlaster, 0x00000002, AlteraUSBBlaster.NT.AddService
+
+[AlteraUSBBlaster.NT.AddService]
+DisplayName = %SvcDesc%
+ServiceType = 1 ; SERVICE_KERNEL_DRIVER
+StartType = 3 ; SERVICE_DEMAND_START
+ErrorControl = 1 ; SERVICE_ERROR_NORMAL
+ServiceBinary = %10%\system32\drivers\usbblstr.sys
+LoadOrderGroup = Base
+AddReg = AlteraUSBBlaster.NT.AddService.AddReg
+
+[AlteraUSBBlaster.NT.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,usbblstr.sys
+HKR,,EnumPropPages32,,"usbblstrui.dll,FTBUSUIPropPageProvider"
+
+[AlteraUSBBlaster.NT.AddService.AddReg]
+;HKR,Parameters,"LocIds",1,31,00,00,00,32,00,00,00,00
+;HKR,Parameters,"RetryResetCount",0x10001,50
+
+[AlteraUSBBlaster.NT.Copy]
+usbblstr.sys
+
+[AlteraUSBBlaster.NT.Copy2]
+usbblstrui.dll
+usbblstr32.dll
+usbblstrlang.dll
+
+[AlteraUSBBlaster.NTamd64.Copy]
+usbblstr.sys
+
+[AlteraUSBBlaster.NTamd64.Copy2]
+usbblstrui.dll
+usbblstr32.dll,usbblstr64.dll
+usbblstrlang.dll
+
+[AlteraUSBBlaster.NTamd64.Copy3]
+usbblstr32.dll
+
+[AlteraUSBBlaster.NT.HW]
+AddReg=AlteraUSBBlaster.NT.HW.AddReg
+
+[AlteraUSBBlaster.NTamd64.HW]
+AddReg=AlteraUSBBlaster.NT.HW.AddReg
+
+[AlteraUSBBlaster.NT.HW.AddReg]
+HKR,,"ConfigData",0x00010001,16
+
+[Strings]
+Altera="Altera"
+DESC="Altera USB-Blaster Device Driver Package"
+DriversDisk="Altera USB-Blaster Device Driver Disk"
+USB\VID_09FB&PID_6001.DeviceDesc="Altera USB-Blaster"
+USB\VID_09FB&PID_6002.DeviceDesc="Altera Cubic Cyclonium"
+USB\VID_09FB&PID_6003.DeviceDesc="Altera Nios II Evaluation Board"
+USB\VID_09FB&PID_6004.DeviceDesc="Altera Cyclone III EP3C25 Starter Kit"
+USB\VID_09FB&PID_6005.DeviceDesc="Altera Cyclone III EP3C120 Development Kit"
+USB\VID_09FB&PID_6006.DeviceDesc="Altera Stratix III EP3SL150 Development Kit"
+USB\VID_09FB&PID_6007.DeviceDesc="Altera Stratix III EP3SL340 Development Kit"
+USB\VID_09FB&PID_6008.DeviceDesc="Altera Nios Embedded Evaluation Kit"
+USB\VID_09FB&PID_6009.DeviceDesc="Altera Nios Development Kit, Cyclone III Edition"
+WINUN="Software\Microsoft\Windows\CurrentVersion\Uninstall"
+SvcDesc="Altera USB-Blaster Device Driver"
+ClassName="USB"

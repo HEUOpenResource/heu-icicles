@@ -1,0 +1,17 @@
+vendor_name = ModelSim
+source_file = 1, D:/1.decoder24/Waveform.vwf
+source_file = 1, D:/1.decoder24/decoder2627.bdf
+design_name = decoder2627
+instance = comp, \F[3]~output , F[3]~output, decoder2627, 1
+instance = comp, \F[2]~output , F[2]~output, decoder2627, 1
+instance = comp, \F[1]~output , F[1]~output, decoder2627, 1
+instance = comp, \F[0]~output , F[0]~output, decoder2627, 1
+instance = comp, \B~input , B~input, decoder2627, 1
+instance = comp, \A~input , A~input, decoder2627, 1
+instance = comp, \inst2~0 , inst2~0, decoder2627, 1
+instance = comp, \inst2~1 , inst2~1, decoder2627, 1
+instance = comp, \inst2~2 , inst2~2, decoder2627, 1
+design_name = hard_block
+instance = comp, \~ALTERA_ASDO_DATA1~~ibuf , ~ALTERA_ASDO_DATA1~~ibuf, hard_block, 1
+instance = comp, \~ALTERA_FLASH_nCE_nCSO~~ibuf , ~ALTERA_FLASH_nCE_nCSO~~ibuf, hard_block, 1
+instance = comp, \~ALTERA_DATA0~~ibuf , ~ALTERA_DATA0~~ibuf, hard_block, 1

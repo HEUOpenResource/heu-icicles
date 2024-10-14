@@ -1,0 +1,517 @@
+$comment
+	File created using the following command:
+		vcd file count2627.msim.vcd -direction
+$end
+$date
+	Mon Oct 09 21:53:37 2023
+$end
+$version
+	ModelSim Version 10.5b
+$end
+$timescale
+	1ps
+$end
+
+$scope module count2627_vlg_vec_tst $end
+$var reg 1 ! ACLR $end
+$var reg 1 " ALOAD $end
+$var reg 1 # CLK $end
+$var reg 8 $ data [7:0] $end
+$var wire 1 % q [7] $end
+$var wire 1 & q [6] $end
+$var wire 1 ' q [5] $end
+$var wire 1 ( q [4] $end
+$var wire 1 ) q [3] $end
+$var wire 1 * q [2] $end
+$var wire 1 + q [1] $end
+$var wire 1 , q [0] $end
+
+$scope module i1 $end
+$var wire 1 - gnd $end
+$var wire 1 . vcc $end
+$var wire 1 / unknown $end
+$var tri1 1 0 devclrn $end
+$var tri1 1 1 devpor $end
+$var tri1 1 2 devoe $end
+$var wire 1 3 q[7]~output_o $end
+$var wire 1 4 q[6]~output_o $end
+$var wire 1 5 q[5]~output_o $end
+$var wire 1 6 q[4]~output_o $end
+$var wire 1 7 q[3]~output_o $end
+$var wire 1 8 q[2]~output_o $end
+$var wire 1 9 q[1]~output_o $end
+$var wire 1 : q[0]~output_o $end
+$var wire 1 ; CLK~input_o $end
+$var wire 1 < CLK~inputclkctrl_outclk $end
+$var wire 1 = data[7]~input_o $end
+$var wire 1 > ACLR~input_o $end
+$var wire 1 ? ALOAD~input_o $end
+$var wire 1 @ ALOAD~inputclkctrl_outclk $end
+$var wire 1 A inst|LPM_COUNTER_component|auto_generated|latch_signal[7]~8_combout $end
+$var wire 1 B data[6]~input_o $end
+$var wire 1 C inst|LPM_COUNTER_component|auto_generated|latch_signal[6]~9_combout $end
+$var wire 1 D data[4]~input_o $end
+$var wire 1 E inst|LPM_COUNTER_component|auto_generated|latch_signal[4]~11_combout $end
+$var wire 1 F data[2]~input_o $end
+$var wire 1 G inst|LPM_COUNTER_component|auto_generated|latch_signal[2]~13_combout $end
+$var wire 1 H data[1]~input_o $end
+$var wire 1 I inst|LPM_COUNTER_component|auto_generated|latch_signal[1]~14_combout $end
+$var wire 1 J data[0]~input_o $end
+$var wire 1 K inst|LPM_COUNTER_component|auto_generated|latch_signal[0]~15_combout $end
+$var wire 1 L inst|LPM_COUNTER_component|auto_generated|counter_comb_bita0~combout $end
+$var wire 1 M inst|LPM_COUNTER_component|auto_generated|counter_reg_bit[0]~7_combout $end
+$var wire 1 N inst|LPM_COUNTER_component|auto_generated|safe_q[7]~8_combout $end
+$var wire 1 O inst|LPM_COUNTER_component|auto_generated|counter_comb_bita0~COUT $end
+$var wire 1 P inst|LPM_COUNTER_component|auto_generated|counter_comb_bita1~combout $end
+$var wire 1 Q inst|LPM_COUNTER_component|auto_generated|counter_reg_bit[1]~6_combout $end
+$var wire 1 R inst|LPM_COUNTER_component|auto_generated|counter_comb_bita1~COUT $end
+$var wire 1 S inst|LPM_COUNTER_component|auto_generated|counter_comb_bita2~combout $end
+$var wire 1 T inst|LPM_COUNTER_component|auto_generated|counter_reg_bit[2]~5_combout $end
+$var wire 1 U inst|LPM_COUNTER_component|auto_generated|counter_comb_bita2~COUT $end
+$var wire 1 V inst|LPM_COUNTER_component|auto_generated|counter_comb_bita3~combout $end
+$var wire 1 W data[3]~input_o $end
+$var wire 1 X inst|LPM_COUNTER_component|auto_generated|latch_signal[3]~12_combout $end
+$var wire 1 Y inst|LPM_COUNTER_component|auto_generated|counter_reg_bit[3]~4_combout $end
+$var wire 1 Z inst|LPM_COUNTER_component|auto_generated|counter_comb_bita3~COUT $end
+$var wire 1 [ inst|LPM_COUNTER_component|auto_generated|counter_comb_bita4~combout $end
+$var wire 1 \ inst|LPM_COUNTER_component|auto_generated|counter_reg_bit[4]~3_combout $end
+$var wire 1 ] inst|LPM_COUNTER_component|auto_generated|counter_comb_bita4~COUT $end
+$var wire 1 ^ inst|LPM_COUNTER_component|auto_generated|counter_comb_bita5~combout $end
+$var wire 1 _ data[5]~input_o $end
+$var wire 1 ` inst|LPM_COUNTER_component|auto_generated|latch_signal[5]~10_combout $end
+$var wire 1 a inst|LPM_COUNTER_component|auto_generated|counter_reg_bit[5]~2_combout $end
+$var wire 1 b inst|LPM_COUNTER_component|auto_generated|counter_comb_bita5~COUT $end
+$var wire 1 c inst|LPM_COUNTER_component|auto_generated|counter_comb_bita6~combout $end
+$var wire 1 d inst|LPM_COUNTER_component|auto_generated|counter_reg_bit[6]~1_combout $end
+$var wire 1 e inst|LPM_COUNTER_component|auto_generated|counter_comb_bita6~COUT $end
+$var wire 1 f inst|LPM_COUNTER_component|auto_generated|counter_comb_bita7~combout $end
+$var wire 1 g inst|LPM_COUNTER_component|auto_generated|counter_reg_bit[7]~0_combout $end
+$var wire 1 h inst|LPM_COUNTER_component|auto_generated|safe_q[7]~0_combout $end
+$var wire 1 i inst|LPM_COUNTER_component|auto_generated|safe_q[6]~1_combout $end
+$var wire 1 j inst|LPM_COUNTER_component|auto_generated|safe_q[5]~2_combout $end
+$var wire 1 k inst|LPM_COUNTER_component|auto_generated|safe_q[4]~3_combout $end
+$var wire 1 l inst|LPM_COUNTER_component|auto_generated|safe_q[3]~4_combout $end
+$var wire 1 m inst|LPM_COUNTER_component|auto_generated|safe_q[2]~5_combout $end
+$var wire 1 n inst|LPM_COUNTER_component|auto_generated|safe_q[1]~6_combout $end
+$var wire 1 o inst|LPM_COUNTER_component|auto_generated|safe_q[0]~7_combout $end
+$var wire 1 p inst|LPM_COUNTER_component|auto_generated|counter_reg_bit [7] $end
+$var wire 1 q inst|LPM_COUNTER_component|auto_generated|counter_reg_bit [6] $end
+$var wire 1 r inst|LPM_COUNTER_component|auto_generated|counter_reg_bit [5] $end
+$var wire 1 s inst|LPM_COUNTER_component|auto_generated|counter_reg_bit [4] $end
+$var wire 1 t inst|LPM_COUNTER_component|auto_generated|counter_reg_bit [3] $end
+$var wire 1 u inst|LPM_COUNTER_component|auto_generated|counter_reg_bit [2] $end
+$var wire 1 v inst|LPM_COUNTER_component|auto_generated|counter_reg_bit [1] $end
+$var wire 1 w inst|LPM_COUNTER_component|auto_generated|counter_reg_bit [0] $end
+$var wire 1 x inst|LPM_COUNTER_component|auto_generated|pre_hazard [7] $end
+$var wire 1 y inst|LPM_COUNTER_component|auto_generated|pre_hazard [6] $end
+$var wire 1 z inst|LPM_COUNTER_component|auto_generated|pre_hazard [5] $end
+$var wire 1 { inst|LPM_COUNTER_component|auto_generated|pre_hazard [4] $end
+$var wire 1 | inst|LPM_COUNTER_component|auto_generated|pre_hazard [3] $end
+$var wire 1 } inst|LPM_COUNTER_component|auto_generated|pre_hazard [2] $end
+$var wire 1 ~ inst|LPM_COUNTER_component|auto_generated|pre_hazard [1] $end
+$var wire 1 !! inst|LPM_COUNTER_component|auto_generated|pre_hazard [0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+1"
+0#
+b0 $
+0,
+0+
+0*
+0)
+0(
+0'
+0&
+0%
+0-
+1.
+x/
+10
+11
+12
+03
+04
+05
+06
+07
+08
+09
+0:
+0;
+0<
+0=
+0>
+1?
+1@
+1A
+0B
+1C
+0D
+1E
+0F
+1G
+0H
+1I
+0J
+1K
+1L
+1M
+1N
+0O
+0P
+0Q
+1R
+0S
+0T
+0U
+0V
+0W
+1X
+0Y
+1Z
+0[
+0\
+0]
+0^
+0_
+1`
+0a
+1b
+0c
+0d
+0e
+0f
+0g
+0h
+0i
+0j
+0k
+0l
+0m
+0n
+0o
+0w
+0v
+0u
+0t
+0s
+0r
+0q
+0p
+1!!
+1~
+1}
+1|
+1{
+1z
+1y
+1x
+$end
+#5000
+1#
+b1 $
+1;
+1J
+1<
+0K
+1o
+1:
+0!!
+1,
+0M
+1O
+0L
+1P
+1M
+1Q
+#10000
+b101 $
+0#
+b100 $
+0J
+1F
+0;
+0<
+1K
+0G
+0o
+1m
+18
+0:
+1!!
+0}
+0,
+1*
+0M
+1T
+0O
+1L
+1S
+0P
+1M
+0T
+0Q
+#15000
+1#
+b101 $
+1;
+1J
+1<
+0K
+1o
+1:
+0!!
+1,
+0M
+1O
+0L
+1P
+1M
+1Q
+#20000
+1!
+b10101 $
+b10001 $
+0#
+b10000 $
+1>
+0J
+0F
+1D
+0;
+0<
+1K
+1G
+0o
+0m
+08
+0:
+1!!
+1}
+0,
+0*
+0M
+1T
+0O
+1L
+0S
+0P
+1M
+0T
+0Q
+#25000
+1#
+b10001 $
+1;
+1J
+1<
+#30000
+0"
+b10101 $
+0#
+b10100 $
+0?
+0J
+1F
+0;
+0@
+0<
+#35000
+1#
+b10101 $
+1;
+1J
+1<
+#40000
+b10010101 $
+0!
+b10000101 $
+1"
+b10000001 $
+0#
+b10000000 $
+0J
+0F
+0D
+1=
+0>
+1?
+0;
+1@
+0<
+0A
+1h
+13
+0x
+1%
+1g
+1f
+0g
+#45000
+1#
+b10000001 $
+1;
+1J
+1<
+0K
+1o
+1:
+0!!
+1,
+0M
+1O
+0L
+1P
+1M
+1Q
+#50000
+b1 $
+0#
+b0 $
+0J
+0=
+0;
+0<
+1K
+1A
+0o
+0h
+03
+0:
+1!!
+1x
+0,
+0%
+0M
+1g
+0O
+1L
+0f
+0P
+1M
+0g
+0Q
+#55000
+1#
+1;
+1<
+#60000
+0"
+0#
+0?
+0;
+0@
+0<
+0N
+#65000
+1#
+1;
+1<
+1w
+0!!
+1O
+0L
+1o
+1:
+1P
+1,
+0M
+1Q
+#70000
+0#
+0;
+0<
+#75000
+1#
+1;
+1<
+1v
+0w
+0~
+1!!
+0R
+0P
+0O
+1L
+1n
+0o
+0:
+19
+1S
+1R
+1P
+1+
+0,
+0Q
+1M
+0S
+1T
+1Q
+0T
+#80000
+0#
+0;
+0<
+#85000
+1#
+1;
+1<
+1w
+0!!
+1O
+0L
+1o
+1:
+0R
+0P
+1,
+0M
+1S
+0Q
+1T
+#90000
+0#
+0;
+0<
+#95000
+1#
+1;
+1<
+1u
+0v
+0w
+0}
+1~
+1!!
+1U
+0S
+1R
+1P
+0O
+1L
+1m
+0n
+0o
+0:
+09
+18
+1V
+0U
+1S
+0P
+1*
+0+
+0,
+0T
+1Q
+1M
+0V
+1Y
+1T
+0Q
+0Y
+#100000

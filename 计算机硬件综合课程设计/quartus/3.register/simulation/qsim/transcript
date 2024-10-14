@@ -1,0 +1,39 @@
+# do register2627.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 11:12:27 on Sep 26,2023
+# vlog -work work register2627.vo 
+# -- Compiling module register2627
+# -- Compiling module hard_block
+# 
+# Top level modules:
+# 	register2627
+# End time: 11:12:27 on Sep 26,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 11:12:27 on Sep 26,2023
+# vlog -work work Waveform.vwf.vt 
+# -- Compiling module register2627_vlg_vec_tst
+# 
+# Top level modules:
+# 	register2627_vlg_vec_tst
+# End time: 11:12:27 on Sep 26,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -novopt -c -t 1ps -L cycloneive_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.register2627_vlg_vec_tst 
+# Start time: 11:12:27 on Sep 26,2023
+# Loading work.register2627_vlg_vec_tst
+# Loading work.register2627
+# Loading work.hard_block
+# Loading cycloneive_ver.cycloneive_io_obuf
+# Loading cycloneive_ver.cycloneive_io_ibuf
+# Loading cycloneive_ver.cycloneive_clkctrl
+# Loading cycloneive_ver.cycloneive_mux41
+# Loading cycloneive_ver.cycloneive_ena_reg
+# Loading altera_ver.dffeas
+# Loading cycloneive_ver.cycloneive_lcell_comb
+# Loading altera_ver.PRIM_GDFF_LOW
+# after#26
+# ** Note: $finish    : Waveform.vwf.vt(46)
+#    Time: 256 ns  Iteration: 0  Instance: /register2627_vlg_vec_tst
+# End time: 11:12:27 on Sep 26,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

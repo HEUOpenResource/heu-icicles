@@ -1,0 +1,73 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/2zy/simulation/qsim
+vcount2627
+Z0 !s110 1696859616
+!i10b 1
+!s100 2B528nN<d_<YO[bzM@BIb2
+I3I@8K:H<8^KfUR2ZAWmk]0
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dF:/quartus/2.counter/simulation/qsim
+Z3 w1696859614
+Z4 8count2627.vo
+Z5 Fcount2627.vo
+L0 31
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1696859616.000000
+Z8 !s107 count2627.vo|
+Z9 !s90 -work|work|count2627.vo|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+vcount2627_vlg_vec_tst
+R0
+!i10b 1
+!s100 f0Ik=S]6Hz5a^aU;HC]VC2
+IA_?hT2L0@2WL>c8PZ`^ao1
+R1
+R2
+R3
+8Waveform.vwf.vt
+FWaveform.vwf.vt
+L0 29
+R6
+r1
+!s85 0
+31
+R7
+!s107 Waveform.vwf.vt|
+!s90 -work|work|Waveform.vwf.vt|
+!i113 1
+R10
+R11
+vhard_block
+R0
+!i10b 1
+!s100 a?7C7T<6HGeWN@VBf92760
+IDJ]V@>4_ZzeI[fWdO:Faf0
+R1
+R2
+R3
+R4
+R5
+L0 1274
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11

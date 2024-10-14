@@ -1,0 +1,16 @@
+Fitter Status : Successful - Tue Oct 24 16:02:23 2023
+Quartus Prime Version : 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+Revision Name : timing2627
+Top-level Entity Name : timing2627
+Family : Cyclone IV E
+Device : EP4CE55F23C8
+Timing Models : Final
+Total logic elements : 7 / 55,856 ( < 1 % )
+    Total combinational functions : 3 / 55,856 ( < 1 % )
+    Dedicated logic registers : 5 / 55,856 ( < 1 % )
+Total registers : 5
+Total pins : 9 / 325 ( 3 % )
+Total virtual pins : 0
+Total memory bits : 0 / 2,396,160 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 308 ( 0 % )
+Total PLLs : 0 / 4 ( 0 % )

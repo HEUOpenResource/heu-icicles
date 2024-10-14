@@ -1,0 +1,47 @@
+|register2627
+Q[0] <= 273:inst.Q[0]
+Q[1] <= 273:inst.Q[1]
+Q[2] <= 273:inst.Q[2]
+Q[3] <= 273:inst.Q[3]
+Q[4] <= 273:inst.Q[4]
+Q[5] <= 273:inst.Q[5]
+Q[6] <= 273:inst.Q[6]
+Q[7] <= 273:inst.Q[7]
+CLK => 273:inst.CLK
+D[0] => 273:inst.D[0]
+D[1] => 273:inst.D[1]
+D[2] => 273:inst.D[2]
+D[3] => 273:inst.D[3]
+D[4] => 273:inst.D[4]
+D[5] => 273:inst.D[5]
+D[6] => 273:inst.D[6]
+D[7] => 273:inst.D[7]
+
+
+|register2627|273:inst
+Q[0] <= 19.DB_MAX_OUTPUT_PORT_TYPE
+Q[1] <= 18.DB_MAX_OUTPUT_PORT_TYPE
+Q[2] <= 17.DB_MAX_OUTPUT_PORT_TYPE
+Q[3] <= 16.DB_MAX_OUTPUT_PORT_TYPE
+Q[4] <= 15.DB_MAX_OUTPUT_PORT_TYPE
+Q[5] <= 14.DB_MAX_OUTPUT_PORT_TYPE
+Q[6] <= 13.DB_MAX_OUTPUT_PORT_TYPE
+Q[7] <= 12.DB_MAX_OUTPUT_PORT_TYPE
+CLK => 19.CLK
+CLK => 18.CLK
+CLK => 17.CLK
+CLK => 16.CLK
+CLK => 15.CLK
+CLK => 14.CLK
+CLK => 13.CLK
+CLK => 12.CLK
+D[0] => 19.DATAIN
+D[1] => 18.DATAIN
+D[2] => 17.DATAIN
+D[3] => 16.DATAIN
+D[4] => 15.DATAIN
+D[5] => 14.DATAIN
+D[6] => 13.DATAIN
+D[7] => 12.DATAIN
+
+

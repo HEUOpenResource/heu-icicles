@@ -1,0 +1,156 @@
+--lpm_counter CBX_DECLARE_ALL_CONNECTED_PORTS="OFF" DEVICE_FAMILY="Cyclone IV E" lpm_direction="UP" lpm_port_updown="PORT_UNUSED" lpm_width=8 aclr aload clock data q CARRY_CHAIN="MANUAL" CARRY_CHAIN_LENGTH=48
+--VERSION_BEGIN 17.1 cbx_cycloneii 2017:10:25:18:06:53:SJ cbx_lpm_add_sub 2017:10:25:18:06:53:SJ cbx_lpm_compare 2017:10:25:18:06:53:SJ cbx_lpm_counter 2017:10:25:18:06:53:SJ cbx_lpm_decode 2017:10:25:18:06:53:SJ cbx_mgl 2017:10:25:18:08:29:SJ cbx_nadder 2017:10:25:18:06:53:SJ cbx_stratix 2017:10:25:18:06:53:SJ cbx_stratixii 2017:10:25:18:06:53:SJ  VERSION_END
+
+
+-- Copyright (C) 2017  Intel Corporation. All rights reserved.
+--  Your use of Intel Corporation's design tools, logic functions 
+--  and other software and tools, and its AMPP partner logic 
+--  functions, and any output files from any of the foregoing 
+--  (including device programming or simulation files), and any 
+--  associated documentation or information are expressly subject 
+--  to the terms and conditions of the Intel Program License 
+--  Subscription Agreement, the Intel Quartus Prime License Agreement,
+--  the Intel FPGA IP License Agreement, or other applicable license
+--  agreement, including, without limitation, that your use is for
+--  the sole purpose of programming logic devices manufactured by
+--  Intel and sold by Intel or its authorized distributors.  Please
+--  refer to the applicable agreement for further details.
+
+
+FUNCTION cycloneive_lcell_comb (cin, dataa, datab, datac, datad)
+WITH ( DONT_TOUCH, LUT_MASK, SUM_LUTC_INPUT)
+RETURNS ( combout, cout);
+
+--synthesis_resources = lut 8 mux21 16 reg 8 
+OPTIONS ALTERA_INTERNAL_OPTION = "suppress_da_rule_internal=a101;suppress_da_rule_internal=s102;suppress_da_rule_internal=s103";
+
+SUBDESIGN cntr_b6j
+( 
+	aclr	:	input;
+	aload	:	input;
+	clock	:	input;
+	data[7..0]	:	input;
+	q[7..0]	:	output;
+) 
+VARIABLE 
+	counter_comb_bita0 : cycloneive_lcell_comb
+		WITH (
+			LUT_MASK = "5A90",
+			SUM_LUTC_INPUT = "cin"
+		);
+	counter_comb_bita1 : cycloneive_lcell_comb
+		WITH (
+			LUT_MASK = "5A90",
+			SUM_LUTC_INPUT = "cin"
+		);
+	counter_comb_bita2 : cycloneive_lcell_comb
+		WITH (
+			LUT_MASK = "5A90",
+			SUM_LUTC_INPUT = "cin"
+		);
+	counter_comb_bita3 : cycloneive_lcell_comb
+		WITH (
+			LUT_MASK = "5A90",
+			SUM_LUTC_INPUT = "cin"
+		);
+	counter_comb_bita4 : cycloneive_lcell_comb
+		WITH (
+			LUT_MASK = "5A90",
+			SUM_LUTC_INPUT = "cin"
+		);
+	counter_comb_bita5 : cycloneive_lcell_comb
+		WITH (
+			LUT_MASK = "5A90",
+			SUM_LUTC_INPUT = "cin"
+		);
+	counter_comb_bita6 : cycloneive_lcell_comb
+		WITH (
+			LUT_MASK = "5A90",
+			SUM_LUTC_INPUT = "cin"
+		);
+	counter_comb_bita7 : cycloneive_lcell_comb
+		WITH (
+			LUT_MASK = "5A90",
+			SUM_LUTC_INPUT = "cin"
+		);
+	counter_reg_bit[7..0] : dffeas;
+	mux211_dataout	:	WIRE;
+	mux2110_dataout	:	WIRE;
+	mux2111_dataout	:	WIRE;
+	mux2112_dataout	:	WIRE;
+	mux2113_dataout	:	WIRE;
+	mux2114_dataout	:	WIRE;
+	mux2115_dataout	:	WIRE;
+	mux2116_dataout	:	WIRE;
+	mux212_dataout	:	WIRE;
+	mux213_dataout	:	WIRE;
+	mux214_dataout	:	WIRE;
+	mux215_dataout	:	WIRE;
+	mux216_dataout	:	WIRE;
+	mux217_dataout	:	WIRE;
+	mux218_dataout	:	WIRE;
+	mux219_dataout	:	WIRE;
+	a_val[7..0]	: WIRE;
+	aclr_actual	: WIRE;
+	aset	: NODE;
+	clk_en	: NODE;
+	cnt_en	: NODE;
+	external_cin	: WIRE;
+	latch_signal[7..0]	: WIRE;
+	pre_hazard[7..0]	: WIRE;
+	pre_latch_signal[7..0]	: WIRE;
+	s_val[7..0]	: WIRE;
+	safe_q[7..0]	: WIRE;
+	sclr	: NODE;
+	sload	: NODE;
+	sset	: NODE;
+	updown_dir	: WIRE;
+
+BEGIN 
+	counter_comb_bita[7..0].cin = ( counter_comb_bita[6..0].cout, external_cin);
+	counter_comb_bita[7..0].dataa = ( (! pre_hazard[7..7]), (! pre_hazard[6..6]), (! pre_hazard[5..5]), (! pre_hazard[4..4]), (! pre_hazard[3..3]), (! pre_hazard[2..2]), (! pre_hazard[1..1]), (! pre_hazard[0..0]));
+	counter_comb_bita[7..0].datab = ( updown_dir, updown_dir, updown_dir, updown_dir, updown_dir, updown_dir, updown_dir, updown_dir);
+	counter_comb_bita[7..0].datad = ( B"1", B"1", B"1", B"1", B"1", B"1", B"1", B"1");
+	counter_reg_bit[].asdata = ((! latch_signal[]) $ ((! sclr) & ((sset & s_val[]) # ((! sset) & data[]))));
+	counter_reg_bit[].clk = clock;
+	counter_reg_bit[].clrn = (! aclr_actual);
+	counter_reg_bit[].d = ( ((! latch_signal[7..7]) $ counter_comb_bita[7].combout), ((! latch_signal[6..6]) $ counter_comb_bita[6].combout), ((! latch_signal[5..5]) $ counter_comb_bita[5].combout), ((! latch_signal[4..4]) $ counter_comb_bita[4].combout), ((! latch_signal[3..3]) $ counter_comb_bita[3].combout), ((! latch_signal[2..2]) $ counter_comb_bita[2].combout), ((! latch_signal[1..1]) $ counter_comb_bita[1].combout), ((! latch_signal[0..0]) $ counter_comb_bita[0].combout));
+	counter_reg_bit[].ena = (clk_en & (((cnt_en # sclr) # sset) # sload));
+	counter_reg_bit[].sload = ((sclr # sset) # sload);
+	mux211_dataout = aload & (! data[0..0]) # !(aload) & pre_latch_signal[0..0];
+	mux2110_dataout = aset & (! a_val[4..4]) # !(aset) & mux219_dataout;
+	mux2111_dataout = aload & (! data[5..5]) # !(aload) & pre_latch_signal[5..5];
+	mux2112_dataout = aset & (! a_val[5..5]) # !(aset) & mux2111_dataout;
+	mux2113_dataout = aload & (! data[6..6]) # !(aload) & pre_latch_signal[6..6];
+	mux2114_dataout = aset & (! a_val[6..6]) # !(aset) & mux2113_dataout;
+	mux2115_dataout = aload & (! data[7..7]) # !(aload) & pre_latch_signal[7..7];
+	mux2116_dataout = aset & (! a_val[7..7]) # !(aset) & mux2115_dataout;
+	mux212_dataout = aset & (! a_val[0..0]) # !(aset) & mux211_dataout;
+	mux213_dataout = aload & (! data[1..1]) # !(aload) & pre_latch_signal[1..1];
+	mux214_dataout = aset & (! a_val[1..1]) # !(aset) & mux213_dataout;
+	mux215_dataout = aload & (! data[2..2]) # !(aload) & pre_latch_signal[2..2];
+	mux216_dataout = aset & (! a_val[2..2]) # !(aset) & mux215_dataout;
+	mux217_dataout = aload & (! data[3..3]) # !(aload) & pre_latch_signal[3..3];
+	mux218_dataout = aset & (! a_val[3..3]) # !(aset) & mux217_dataout;
+	mux219_dataout = aload & (! data[4..4]) # !(aload) & pre_latch_signal[4..4];
+	a_val[] = B"11111111";
+	aclr_actual = ((aclr # aset) # aload);
+	aset = GND;
+	clk_en = VCC;
+	cnt_en = VCC;
+	external_cin = B"1";
+	latch_signal[] = ( (aclr # mux2116_dataout), (aclr # mux2114_dataout), (aclr # mux2112_dataout), (aclr # mux2110_dataout), (aclr # mux218_dataout), (aclr # mux216_dataout), (aclr # mux214_dataout), (aclr # mux212_dataout));
+	pre_hazard[] = (latch_signal[] $ counter_reg_bit[].q);
+	pre_latch_signal[] = latch_signal[];
+	q[] = safe_q[];
+	s_val[] = B"11111111";
+	safe_q[] = ((! aclr) & ((aset & a_val[]) # ((! aset) & ((aload & data[]) # ((! aload) & (! pre_hazard[]))))));
+	sclr = GND;
+	sload = GND;
+	sset = GND;
+	updown_dir = B"1";
+	ASSERT (0) 
+	REPORT "Counter will power up to an undefined state.  An asynchronous signal should be asserted before the counter reaches a known state."
+	SEVERITY WARNING;
+END;
+--VALID FILE

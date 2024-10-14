@@ -1,0 +1,12 @@
+Copyright © 2000-2012 Future Technology Devices International Limited
+All rights reserved.
+Drivers and related code is owned by Future Technology Designs, Inc.
+Please contact FTDI at www.ftdichip.com.
+
+Drivers and related code is provided by Altera Corporation on an "as-is"
+basis and therefore all warranties, representations or guarantees of any
+kind (whether express, implied or statutory) including, without
+limitation, warranties of merchantability, non-infringement, or fitness
+for a particular purpose, are specifically disclaimed.  Altera products
+are protected under numerous U.S. and foreign patents, maskwork rights,
+copyrights and other intellectual property laws.

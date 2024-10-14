@@ -1,0 +1,33 @@
+|timing2627
+T1 <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+RST1 => inst4.ACLR
+RST1 => inst8.ACLR
+RST1 => inst7.ACLR
+RST1 => inst6.ACLR
+RST1 => inst5.ACLR
+CLK1 => ins10t.IN0
+s0 => 21mux:inst9.S
+s0 => 21mux:inst3.S
+T4 <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+T3 <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+T2 <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+debug_clk <= ins10t.DB_MAX_OUTPUT_PORT_TYPE
+debug_D <= 21mux:inst3.Y
+
+
+|timing2627|21mux:inst9
+Y <= 5.DB_MAX_OUTPUT_PORT_TYPE
+A => 6.IN0
+S => 6.IN1
+S => 7.IN1
+B => 8.IN0
+
+
+|timing2627|21mux:inst3
+Y <= 5.DB_MAX_OUTPUT_PORT_TYPE
+A => 6.IN0
+S => 6.IN1
+S => 7.IN1
+B => 8.IN0
+
+

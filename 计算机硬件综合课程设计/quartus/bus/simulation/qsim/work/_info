@@ -1,0 +1,73 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/Projects/quartus/bus/simulation/qsim
+vbus2627
+Z1 !s110 1697779780
+!i10b 1
+!s100 GjYK0eYL0eb92_^aJ9V`Z2
+Ilh8U^1NfCCRfPi76knhX[2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1697779771
+Z4 8bus2627.vo
+Z5 Fbus2627.vo
+L0 31
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1697779780.000000
+Z8 !s107 bus2627.vo|
+Z9 !s90 -work|work|bus2627.vo|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+vbus2627_vlg_vec_tst
+R1
+!i10b 1
+!s100 Je<<<OPJdZfWZc=_bj1=^3
+ITl[2jL3Xljf=V?`izI][Z3
+R2
+R0
+w1697779769
+8Waveform.vwf.vt
+FWaveform.vwf.vt
+L0 29
+R6
+r1
+!s85 0
+31
+R7
+!s107 Waveform.vwf.vt|
+!s90 -work|work|Waveform.vwf.vt|
+!i113 1
+R10
+R11
+vhard_block
+R1
+!i10b 1
+!s100 Hl4zZcCP[:PZ=]@`_<76C2
+Ij;8nWLc^Q2[MOW?=^ZFR<3
+R2
+R0
+R3
+R4
+R5
+L0 1811
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
