@@ -1,0 +1,133 @@
+From df931ee9f1d42ac174f98cdca031ad17bcc98a08 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=A7=9C=E6=B5=B7=E5=A4=A9?= <1076168468@qq.com>
+Date: Wed, 2 Nov 2022 01:08:04 +0800
+Subject: [PATCH] =?UTF-8?q?=E4=BB=BB=E5=8A=A1=E5=AE=8C=E6=88=90=EF=BC=8C?=
+ =?UTF-8?q?=E6=8F=90=E4=BA=A4=E4=BD=9C=E4=B8=9A?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ block.c   | 74 +++++++++++++++++++++++++++++++++++--------------------
+ sysproc.c |  6 ++---
+ 2 files changed, 50 insertions(+), 30 deletions(-)
+
+diff --git a/block.c b/block.c
+index 4102969..8530316 100644
+--- a/block.c
++++ b/block.c
+@@ -387,45 +387,65 @@ ULONG SubQueueRemainLength = SUB_QUEUE_LENGTH;
+ BOOL ScanInside = TRUE;
+ 
+ 
+-PREQUEST
+-IopDiskSchedule(
+-	VOID
+-	)
+-/*++
++/*
++提供该示例代码是为了阐释一个概念，或者进行一个测试，并不代表着
++最安全的编码实践，因此不应在应用程序或网站中使用该示例代码。对
++于超出本示例代码的预期用途以外的使用所造成的偶然或继发性损失，
++北京英真时代科技有限公司不承担任何责任。
++*/
+ 
+-功能描述：
+-	磁盘调度。可以在本函数中实现多种磁盘调度算法
+-	（包括 FCFS、SSTF、SCAN、CSCAN、N-Step-SCAN 等）。
+ 
+-参数：
+-	无。
++/*
++在下面的函数中实现了 SSTF (Shortest Seek Time First) 磁盘调度算法。
++该算法选择这样的线程，其要求访问的磁道与当前磁头所在的磁道距离最近，
++以使每次的寻道时间最短，但这种算法却不能保证平均寻道时间最短。
++*/
+ 
+-返回值：
+-	返回从请求队列中选择的下一个要被处理的请求的指针。
+ 
+-说明：
+-	多数磁盘调度算法都是根据当前磁头所在的磁道和各个线程要访问的磁道来
+-	进行调度的。其中当前磁头所在的磁道保存在全局变量 CurrentCylinder 中，
+-	而请求队列中各个请求的 Cylinder 域保存了对应线程要访问的磁道。
+-
+-	注意，该函数只是从请求队列中选择下一个要被处理的请求，而不需要将选中
+-	的请求从请求队列中移除，也不需要将请求对应的线程唤醒。
+-
+---*/
++PREQUEST
++IopDiskSchedule(
++	VOID
++	)
+ {
+ 	PLIST_ENTRY pListEntry;
++	PREQUEST pRequest;
++	LONG Offset;
++	
++	ULONG ShortestDistance = 0xFFFFFFFF;
+ 	PREQUEST pNextRequest;
+ 	
+ 	//
+-	// FCFS (First-Come,First-Served) 磁盘调度算法是一种最简单的磁盘调度算法，
+-	// 总是选择请求队列中的第一个请求，从而按照线程访问磁盘的先后顺序进行调度。
++	// 遍历请求队列选择这样的请求，其对应的线程所访问的磁道与当前磁头所在的磁道距离最近。
+ 	//
+-	pListEntry = RequestListHead.Next;	// 请求队列中的第一个请求是链表头指向的下一个请求。
++	for (pListEntry = RequestListHead.Next;	// 请求队列中的第一个请求是链表头指向的下一个请求。
++	     pListEntry != &RequestListHead;	// 遍历到请求队列头时结束循环。
++	     pListEntry = pListEntry->Next) {
++	
++		//
++		// 根据链表项获得请求的指针
++		//
++		pRequest = CONTAINING_RECORD(pListEntry, REQUEST, ListEntry);
++		
++		//
++		// 计算请求对应的线程所访问的磁道与当前磁头所在磁道的偏移
++		//
++		Offset = pRequest->Cylinder - CurrentCylinder;
++		
++		//
++		// 记录下最短的距离和对应的请求的指针
++		// 注意，由于 ShortestDistance 被初始化为最大的无符号整型，
++		// 所以在第一次循环时，条件语句的布尔表达式的值一定为真。
++		//
++		if (abs(Offset) < ShortestDistance) {
++		
++			ShortestDistance = abs(Offset);
++			pNextRequest = pRequest;
++		}
++	}
+ 	
+ 	//
+-	// 根据链表项获得请求指针
++	// 循环结束后，pNextRequest 指向的请求对应的线程所访问
++	// 的磁道与当前磁头所在的磁道距离最短。 
+ 	//
+-	pNextRequest = CONTAINING_RECORD(pListEntry, REQUEST, ListEntry);
+-	
+ 	return pNextRequest;
+ }
+diff --git a/sysproc.c b/sysproc.c
+index ba79659..1f1ea25 100644
+--- a/sysproc.c
++++ b/sysproc.c
+@@ -611,11 +611,11 @@ ConsoleCmdDiskSchedule(
+ 	// 创建多个访问不同磁道的线程。由于设备忙，这些线程的请求
+ 	// 都会被放入请求队列中，直到被磁盘调度算法选中后才会被处理。
+ 	//
+-	NewThreadAccessCylinder(StdHandle,  8);
++	NewThreadAccessCylinder(StdHandle, 78);
+ 	NewThreadAccessCylinder(StdHandle, 21);
+ 	NewThreadAccessCylinder(StdHandle,  9);
+-	NewThreadAccessCylinder(StdHandle, 78);
+-	NewThreadAccessCylinder(StdHandle,  0);
++	NewThreadAccessCylinder(StdHandle,  8);
++	NewThreadAccessCylinder(StdHandle, 11);
+ 	NewThreadAccessCylinder(StdHandle, 41);
+ 	NewThreadAccessCylinder(StdHandle, 10);
+ 	NewThreadAccessCylinder(StdHandle, 67);
+-- 
+2.34.1.windows.1
+

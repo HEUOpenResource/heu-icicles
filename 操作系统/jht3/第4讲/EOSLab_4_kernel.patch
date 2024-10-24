@@ -1,0 +1,79 @@
+From 6b35b0156164a1cce4fdaa6677e6db187284fd84 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=A7=9C=E6=B5=B7=E5=A4=A9?= <1076168468@qq.com>
+Date: Tue, 25 Oct 2022 22:39:46 +0800
+Subject: [PATCH] =?UTF-8?q?=E4=BF=AE=E6=94=B9PsWaitForSemaphore=20?=
+ =?UTF-8?q?=E5=87=BD=E6=95=B0=E4=BD=BF=E5=85=B6=E6=94=AF=E6=8C=81Milliseco?=
+ =?UTF-8?q?nds=20=E5=8F=82=E6=95=B0=E3=80=82=E4=BF=AE=E6=94=B9PsReleaseSem?=
+ =?UTF-8?q?aphore=20=E5=87=BD=E6=95=B0=E4=BD=BF=E5=85=B6=E6=94=AF=E6=8C=81?=
+ =?UTF-8?q?ReleaseCount=E5=8F=82=E6=95=B0=E3=80=82?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ semaphore.c | 24 ++++++++++++++----------
+ 1 file changed, 14 insertions(+), 10 deletions(-)
+
+diff --git a/semaphore.c b/semaphore.c
+index 2061d22..caea593 100644
+--- a/semaphore.c
++++ b/semaphore.c
+@@ -66,21 +66,26 @@ PsWaitForSemaphore(
+ 	BOOL IntState;
+ 
+ 	ASSERT(KeGetIntNesting() == 0); // 中断环境下不能调用此函数。
++	
++	STATUS status;
+ 
+ 	IntState = KeEnableInterrupts(FALSE); // 开始原子操作，禁止中断。
+ 
+ 	//
+-	// 目前仅实现了标准记录型信号量，不支持超时唤醒功能，所以 PspWait 函数
+-	// 的第二个参数的值只能是 INFINITE。
++	// 实现了超时唤醒功能，PspWait函数的第二个参数的值是Milliseconds
++	// 当Count值大于 0 时，表示信号量为 signaled 状态
++	// 当Count值等于 0 时，表示信号量为 nonsignaled 状态
+ 	//
+-	Semaphore->Count--;
+-	if (Semaphore->Count < 0) {
+-		PspWait(&Semaphore->WaitListHead, INFINITE);
++	if (Semaphore->Count > 0) {
++		Semaphore->Count--;
++		status = STATUS_SUCCESS;
++	}else{
++		status = PspWait(&Semaphore->WaitListHead, Milliseconds);
+ 	}
+ 
+ 	KeEnableInterrupts(IntState); // 原子操作完成，恢复中断。
+ 
+-	return STATUS_SUCCESS;
++	return status;
+ }
+ 
+ STATUS
+@@ -96,8 +101,7 @@ PsReleaseSemaphore(
+ 
+ 参数：
+ 	Semaphore -- Wait 操作的信号量对象。
+-	ReleaseCount -- 信号量计数增加的数量。当前只能为 1。当你修改信号量使之支持
+-					超时唤醒功能后，此参数的值能够大于等于 1。
++	ReleaseCount -- 信号量计数增加的数量。
+ 	PreviousCount -- 返回信号量计数在增加之前的值。
+ 
+ 返回值：
+@@ -127,10 +131,10 @@ PsReleaseSemaphore(
+ 		// 目前仅实现了标准记录型信号量，每执行一次信号量的释放操作
+ 		// 只能使信号量的值增加 1。
+ 		//
+-		Semaphore->Count++;
+-		if (Semaphore->Count <= 0) {
++		for(;ReleaseCount && !ListIsEmpty(&Semaphore->WaitListHead); --ReleaseCount){
+ 			PspWakeThread(&Semaphore->WaitListHead, STATUS_SUCCESS);
+ 		}
++		Semaphore->Count += ReleaseCount;
+ 
+ 		//
+ 		// 可能有线程被唤醒，执行线程调度。
+-- 
+2.34.1.windows.1
+

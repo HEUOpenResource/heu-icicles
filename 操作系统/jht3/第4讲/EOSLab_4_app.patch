@@ -1,0 +1,205 @@
+From f1e2de8edd5d4aff802dcc7c4801e4834f51e8ba Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=A7=9C=E6=B5=B7=E5=A4=A9?= <1076168468@qq.com>
+Date: Tue, 25 Oct 2022 14:56:16 +0800
+Subject: [PATCH] =?UTF-8?q?=E4=BD=BF=E7=94=A8pc.c?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ EOSApp.c | 171 +++++++++++++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 165 insertions(+), 6 deletions(-)
+
+diff --git a/EOSApp.c b/EOSApp.c
+index d8f2bae..d9756f6 100644
+--- a/EOSApp.c
++++ b/EOSApp.c
+@@ -1,5 +1,36 @@
++/*
++提供该示例代码是为了阐释一个概念，或者进行一个测试，并不代表着
++最安全的编码实践，因此不应在应用程序或网站中使用该示例代码。对
++于超出本示例代码的预期用途以外的使用所造成的偶然或继发性损失，
++北京英真时代科技有限公司不承担任何责任。
++*/
++
+ #include "EOSApp.h"
+ 
++//
++// 缓冲池。
++//
++#define BUFFER_SIZE		10
++int Buffer[BUFFER_SIZE];
++
++//
++// 产品数量。
++//
++#define PRODUCT_COUNT	30
++
++//
++// 用于生产者和消费者同步的对象句柄。
++//
++HANDLE MutexHandle;
++HANDLE EmptySemaphoreHandle;
++HANDLE FullSemaphoreHandle;
++
++//
++// 生产者和消费者的线程函数
++//
++ULONG Producer(PVOID Param);
++ULONG Consumer(PVOID Param);
++
+ //
+ // main 函数参数的意义：
+ // argc - argv 数组的长度，大小至少为 1，argc - 1 为命令行参数的数量。
+@@ -13,14 +44,142 @@
+ int main(int argc, char* argv[])
+ {
+ 	//
+-	// 如果需要在调试应用程序时能够调试进入内核并显示对应的源码，
+-	// 必须使用 EOS 内核项目编译生成完全版本的 SDK 文件夹，然
+-	// 后使用刚刚生成的 SDK 文件夹覆盖此应用程序项目中的 SDK 文件
+-	// 夹，并且 EOS 内核项目在磁盘上的位置不能改变。
++	// 启动调试 EOS 应用程序前要特别注意下面的问题：
++	//
++	// 1、如果要在调试应用程序时能够调试进入内核并显示对应的源码，
++	//    必须使用 EOS 核心项目编译生成完全版本的 SDK 文件夹，然
++	//    后使用此文件夹覆盖应用程序项目中的 SDK 文件夹，并且 EOS
++	//    核心项目在磁盘上的位置不能改变。
++	//
++	
++	HANDLE ProducerHandle;
++	HANDLE ConsumerHandle;
++
++	//
++	// 创建用于互斥访问缓冲池的 Mutex 对象。
++	//
++	MutexHandle = CreateMutex(FALSE, NULL);
++	if (NULL == MutexHandle) {
++		return 1;
++	}
++
++	//
++	// 创建 Empty 信号量，表示缓冲池中空缓冲区数量。初始计数和最大计数都为 BUFFER_SIZE。
++	//
++	EmptySemaphoreHandle = CreateSemaphore(BUFFER_SIZE, BUFFER_SIZE, NULL);
++	if (NULL == EmptySemaphoreHandle) {
++		return 2;
++	}
++
++	//
++	// 创建 Full 信号量，表示缓冲池中满缓冲区数量。初始计数为 0，最大计数为 BUFFER_SIZE。
++	//
++	FullSemaphoreHandle = CreateSemaphore(0, BUFFER_SIZE, NULL);
++	if (NULL == FullSemaphoreHandle) {
++		return 3;
++	}
++
++	//
++	// 创建生产者线程。
++	//
++	ProducerHandle = CreateThread( 0,			// 默认堆栈大小
++								   Producer,	// 线程函数入口地址
++								   NULL,		// 线程函数参数
++								   0,			// 创建标志
++								   NULL );		// 线程 ID
++
++	if (NULL == ProducerHandle) {
++		return 4;
++	}
++
+ 	//
++	// 创建消费者线程。
++	//
++	ConsumerHandle = CreateThread( 0,
++								   Consumer,
++								   NULL,
++								   0,
++								   NULL );
++
++	if (NULL == ConsumerHandle) {
++		return 5;
++	}
++
++	//
++	// 等待生产者线程和消费者线程结束。
++	//
++	WaitForSingleObject(ProducerHandle, INFINITE);
++	WaitForSingleObject(ConsumerHandle, INFINITE);
++	
++	//
++	// 关闭句柄
++	//
++	CloseHandle(MutexHandle);
++	CloseHandle(EmptySemaphoreHandle);
++	CloseHandle(FullSemaphoreHandle);
++	CloseHandle(ProducerHandle);
++	CloseHandle(ConsumerHandle);
++
++	return 0;
++}
++
++//
++// 生产者线程函数。
++//
++ULONG Producer(PVOID Param) 
++{
++	int i;
++	int InIndex = 0;
++
++	for (i = 0; i < PRODUCT_COUNT; i++) {
++
++		WaitForSingleObject(EmptySemaphoreHandle, INFINITE);
++		WaitForSingleObject(MutexHandle, INFINITE);
++
++		printf("Produce a %d\n", i);
++		Buffer[InIndex] = i;
++		InIndex = (InIndex + 1) % BUFFER_SIZE;
++
++		ReleaseMutex(MutexHandle);
++		ReleaseSemaphore(FullSemaphoreHandle, 1, NULL);
++
++		//
++		// 休息一会。每 500 毫秒生产一个数。
++		//
++		Sleep(500);
++	}
++	
++	return 0;
++}
++
++//
++// 消费者线程函数。
++//
++ULONG Consumer(PVOID Param)
++{
++	int i;
++	int OutIndex = 0;
++
++	for (i = 0; i < PRODUCT_COUNT; i++) {
++
++		WaitForSingleObject(FullSemaphoreHandle, INFINITE);
++		WaitForSingleObject(MutexHandle, INFINITE);
++
++		printf("\t\t\tConsume a %d\n", Buffer[OutIndex]);
++		OutIndex = (OutIndex + 1) % BUFFER_SIZE;
+ 
+-	/* TODO: 在此处添加自己的代码 */
+-	printf("Hello world!\n");
++		ReleaseMutex(MutexHandle);
++		ReleaseSemaphore(EmptySemaphoreHandle, 1, NULL);
+ 
++		//
++		// 休息一会儿。让前 10 个数的消费速度比较慢，后面的较快。
++		//
++		if (i < 10) {
++			Sleep(2000);
++		} else {
++			Sleep(100);
++		}
++	}
++	
+ 	return 0;
+ }
+-- 
+2.34.1.windows.1
+

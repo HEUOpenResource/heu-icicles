@@ -1,0 +1,132 @@
+From cbe5ca0e2c70b4ae1ba2c146824517751b651aa0 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=A7=9C=E6=B5=B7=E5=A4=A9?= <1076168468@qq.com>
+Date: Wed, 2 Nov 2022 19:04:48 +0800
+Subject: [PATCH] =?UTF-8?q?=E4=BB=BB=E5=8A=A1=E5=AE=8C=E6=88=90=EF=BC=8C?=
+ =?UTF-8?q?=E6=8F=90=E4=BA=A4=E4=BD=9C=E4=B8=9A?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ block.c   | 69 ++++++++++++++++++++++++++++++++++++++++++++++---------
+ sysproc.c | 14 +++++------
+ 2 files changed, 65 insertions(+), 18 deletions(-)
+
+diff --git a/block.c b/block.c
+index 4102969..0881585 100644
+--- a/block.c
++++ b/block.c
+@@ -387,6 +387,7 @@ ULONG SubQueueRemainLength = SUB_QUEUE_LENGTH;
+ BOOL ScanInside = TRUE;
+ 
+ 
++
+ PREQUEST
+ IopDiskSchedule(
+ 	VOID
+@@ -414,18 +415,64 @@ IopDiskSchedule(
+ --*/
+ {
+ 	PLIST_ENTRY pListEntry;
+-	PREQUEST pNextRequest;
++	PREQUEST pRequest;
++	LONG Offset;
+ 	
+-	//
+-	// FCFS (First-Come,First-Served) 磁盘调度算法是一种最简单的磁盘调度算法，
+-	// 总是选择请求队列中的第一个请求，从而按照线程访问磁盘的先后顺序进行调度。
+-	//
+-	pListEntry = RequestListHead.Next;	// 请求队列中的第一个请求是链表头指向的下一个请求。
++	ULONG InsideShortestDistance = 0xFFFFFFFF;
++	ULONG OutsideShortestDistance  = 0xFFFFFFFF;
++	PREQUEST pNextRequest[2] = { NULL , NULL };
+ 	
+-	//
+-	// 根据链表项获得请求指针
+-	//
+-	pNextRequest = CONTAINING_RECORD(pListEntry, REQUEST, ListEntry);
++	static ULONG sub_queue_length = SUB_QUEUE_LENGTH;
++	if(0 == sub_queue_length){
++		sub_queue_length = SUB_QUEUE_LENGTH;
++	}
++	
++	ULONG i=sub_queue_length;
++	--sub_queue_length;
++	
++	for (pListEntry = RequestListHead.Next;	// 请求队列中的第一个请求是链表头指向的下一个请求。
++	     pListEntry != &RequestListHead && 0 != i;	// 遍历到请求队列头时结束循环。
++	     pListEntry = pListEntry->Next , --i) {
++	
++		//
++		// 根据链表项获得请求的指针
++		//
++		pRequest = CONTAINING_RECORD(pListEntry, REQUEST, ListEntry);
++		
++		//
++		// 计算请求对应的线程所访问的磁道与当前磁头所在磁道的偏移（方向由正负表示）
++		//
++		Offset = pRequest->Cylinder - CurrentCylinder;
++		
++		if (0 == Offset) {
++			//
++			// 如果线程要访问的磁道与当前磁头所在磁道相同，可立即返回。
++			//
++			return pRequest;
++		} else if (Offset > 0) {
++			//
++			// 记录向内移动距离最短的线程
++			//
++			if (Offset < InsideShortestDistance) {
++		
++				InsideShortestDistance = Offset;
++				pNextRequest[1] = pRequest;
++			}
++		} else if (Offset < 0) {
++			//
++			// 记录向外移动距离最短的线程
++			//
++			if (-Offset < OutsideShortestDistance) {
++		
++				OutsideShortestDistance = -Offset;
++				pNextRequest[0] = pRequest;
++			}
++		}
++	}
++	
++	if(!pNextRequest[ScanInside]){
++		ScanInside=!ScanInside;
++	}
+ 	
+-	return pNextRequest;
++	return pNextRequest[ScanInside];
+ }
+diff --git a/sysproc.c b/sysproc.c
+index ba79659..c17123f 100644
+--- a/sysproc.c
++++ b/sysproc.c
+@@ -611,15 +611,15 @@ ConsoleCmdDiskSchedule(
+ 	// 创建多个访问不同磁道的线程。由于设备忙，这些线程的请求
+ 	// 都会被放入请求队列中，直到被磁盘调度算法选中后才会被处理。
+ 	//
+-	NewThreadAccessCylinder(StdHandle,  8);
+-	NewThreadAccessCylinder(StdHandle, 21);
+-	NewThreadAccessCylinder(StdHandle,  9);
+ 	NewThreadAccessCylinder(StdHandle, 78);
+-	NewThreadAccessCylinder(StdHandle,  0);
+-	NewThreadAccessCylinder(StdHandle, 41);
+ 	NewThreadAccessCylinder(StdHandle, 10);
+-	NewThreadAccessCylinder(StdHandle, 67);
+-	NewThreadAccessCylinder(StdHandle, 12);
++	NewThreadAccessCylinder(StdHandle, 10);
++	NewThreadAccessCylinder(StdHandle, 10);
++	NewThreadAccessCylinder(StdHandle, 10);
++	NewThreadAccessCylinder(StdHandle, 10);
++	NewThreadAccessCylinder(StdHandle, 10);
++	NewThreadAccessCylinder(StdHandle, 10);
++	NewThreadAccessCylinder(StdHandle, 10);
+ 	NewThreadAccessCylinder(StdHandle, 10);
+ 	
+ 	//
+-- 
+2.34.1.windows.1
+

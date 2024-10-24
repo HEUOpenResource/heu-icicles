@@ -1,0 +1,121 @@
+From 80908e1f237f323172590c6bf6edd9d94cf42290 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=A7=9C=E6=B5=B7=E5=A4=A9?= <1076168468@qq.com>
+Date: Wed, 2 Nov 2022 16:54:18 +0800
+Subject: [PATCH] =?UTF-8?q?=E4=BB=BB=E5=8A=A1=E5=AE=8C=E6=88=90=EF=BC=8C?=
+ =?UTF-8?q?=E6=8F=90=E4=BA=A4=E4=BD=9C=E4=B8=9A?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ block.c | 87 ++++++++++++++++++++++++++++++++++++---------------------
+ 1 file changed, 55 insertions(+), 32 deletions(-)
+
+diff --git a/block.c b/block.c
+index 4102969..49ff9ba 100644
+--- a/block.c
++++ b/block.c
+@@ -387,45 +387,68 @@ ULONG SubQueueRemainLength = SUB_QUEUE_LENGTH;
+ BOOL ScanInside = TRUE;
+ 
+ 
++/*
++在下面的函数中实现了 SCAN 磁盘调度算法（电梯算法）。
++该算法优先考虑磁头移动的方向，然后再考虑移动距离最短。
++*/
++
++
+ PREQUEST
+ IopDiskSchedule(
+ 	VOID
+ 	)
+-/*++
+-
+-功能描述：
+-	磁盘调度。可以在本函数中实现多种磁盘调度算法
+-	（包括 FCFS、SSTF、SCAN、CSCAN、N-Step-SCAN 等）。
+-
+-参数：
+-	无。
+-
+-返回值：
+-	返回从请求队列中选择的下一个要被处理的请求的指针。
+-
+-说明：
+-	多数磁盘调度算法都是根据当前磁头所在的磁道和各个线程要访问的磁道来
+-	进行调度的。其中当前磁头所在的磁道保存在全局变量 CurrentCylinder 中，
+-	而请求队列中各个请求的 Cylinder 域保存了对应线程要访问的磁道。
+-
+-	注意，该函数只是从请求队列中选择下一个要被处理的请求，而不需要将选中
+-	的请求从请求队列中移除，也不需要将请求对应的线程唤醒。
+-
+---*/
+ {
+ 	PLIST_ENTRY pListEntry;
+-	PREQUEST pNextRequest;
++	PREQUEST pRequest;
++	LONG Offset;
+ 	
+-	//
+-	// FCFS (First-Come,First-Served) 磁盘调度算法是一种最简单的磁盘调度算法，
+-	// 总是选择请求队列中的第一个请求，从而按照线程访问磁盘的先后顺序进行调度。
+-	//
+-	pListEntry = RequestListHead.Next;	// 请求队列中的第一个请求是链表头指向的下一个请求。
++	ULONG InsideShortestDistance = 0xFFFFFFFF;
++	ULONG OutsideShortestDistance = 0xFFFFFFFF;
++	PREQUEST pNextRequest[2] = { NULL , NULL };
+ 	
+-	//
+-	// 根据链表项获得请求指针
+-	//
+-	pNextRequest = CONTAINING_RECORD(pListEntry, REQUEST, ListEntry);
++	for (pListEntry = RequestListHead.Next;	// 请求队列中的第一个请求是链表头指向的下一个请求。
++	     pListEntry != &RequestListHead;	// 遍历到请求队列头时结束循环。
++	     pListEntry = pListEntry->Next) {
++	
++		//
++		// 根据链表项获得请求的指针
++		//
++		pRequest = CONTAINING_RECORD(pListEntry, REQUEST, ListEntry);
++		
++		//
++		// 计算请求对应的线程所访问的磁道与当前磁头所在磁道的偏移（方向由正负表示）
++		//
++		Offset = pRequest->Cylinder - CurrentCylinder;
++		
++		if (0 == Offset) {
++			//
++			// 如果线程要访问的磁道与当前磁头所在磁道相同，可立即返回。
++			//
++			return pRequest;
++		} else if (Offset > 0) {
++			//
++			// 记录向内移动距离最短的线程
++			//
++			if (Offset < InsideShortestDistance) {
++		
++				InsideShortestDistance = Offset;
++				pNextRequest[1] = pRequest;
++			}
++		} else if (Offset < 0) {
++			//
++			// 记录向外移动距离最短的线程
++			//
++			if (-Offset < OutsideShortestDistance) {
++		
++				OutsideShortestDistance = -Offset;
++				pNextRequest[0] = pRequest;
++			}
++		}
++	}
++	
++	if(!pNextRequest[ScanInside]){
++		ScanInside=!ScanInside;
++	}
+ 	
+-	return pNextRequest;
++	return pNextRequest[ScanInside];
+ }
+-- 
+2.34.1.windows.1
+

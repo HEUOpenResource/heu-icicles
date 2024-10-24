@@ -1,0 +1,371 @@
+From d9e07f6e89f7eaaaadcc1b01c8b92095ef102b51 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=A7=9C=E6=B5=B7=E5=A4=A9?= <1076168468@qq.com>
+Date: Sat, 29 Oct 2022 15:33:43 +0800
+Subject: [PATCH 1/2] =?UTF-8?q?=E4=BB=BB=E5=8A=A1=E5=AE=8C=E6=88=90?=
+ =?UTF-8?q?=EF=BC=8C=E6=8F=90=E4=BA=A4=E4=BD=9C=E4=B8=9A?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ pfnlist.c |  10 +--
+ sysproc.c | 207 ++++++++++++++++++++++++++++++++++++++++++++++--------
+ 2 files changed, 182 insertions(+), 35 deletions(-)
+
+diff --git a/pfnlist.c b/pfnlist.c
+index fa77e0b..3a4ad74 100644
+--- a/pfnlist.c
++++ b/pfnlist.c
+@@ -145,13 +145,13 @@ MiAllocateAnyPages(
+ 		//
+ 		for (i = 0; i < NumberOfPages && MiFreePageCount > 0; i++) {
+ 
+-			Pfn = MiFreePageListHead;
+-			MiFreePageListHead = MiGetPfnDatabaseEntry(Pfn)->Next;
+-			MiFreePageCount--;
++			Pfn = MiFreePageListHead;	//记录首个空闲页
++			MiFreePageListHead = MiGetPfnDatabaseEntry(Pfn)->Next;	//将空闲页从链表中取下
++			MiFreePageCount--;	//减少空闲页总数量记录
+ 
+-			MiGetPfnDatabaseEntry(Pfn)->PageState = BUSY_PAGE;
++			MiGetPfnDatabaseEntry(Pfn)->PageState = BUSY_PAGE;	//将空闲页标记为BUSY_PAGE
+ 
+-			PfnArray[i] = Pfn;
++			PfnArray[i] = Pfn;	//记录返回的空闲页的页框号
+ 		}
+ 
+ 		//
+diff --git a/sysproc.c b/sysproc.c
+index ba79659..957b1bf 100644
+--- a/sysproc.c
++++ b/sysproc.c
+@@ -953,25 +953,20 @@ ConsoleCmdResumeThread(
+ // 下面是和控制台命令 vm 相关的代码。
+ //
+ 
++/*
++提供该示例代码是为了阐释一个概念，或者进行一个测试，并不代表着
++最安全的编码实践，因此不应在应用程序或网站中使用该示例代码。对
++于超出本示例代码的预期用途以外的使用所造成的偶然或继发性损失，
++北京英真时代科技有限公司不承担任何责任。
++*/
++
++
+ PRIVATE
+ VOID
+ ConsoleCmdVM(
+ 	IN HANDLE StdHandle,
+ 	IN PCSTR Arg
+ 	)
+-/*++
+-
+-功能描述：
+-	统计输出由进程 ID 指定的进程的虚拟地址描述符的信息。控制台命令“vm processid”。
+-
+-参数：
+-	StdHandle -- 标准输入、输出句柄。
+-	Arg -- 命令参数字符串。进程的 ID。
+-
+-返回值：
+-	无。
+-
+---*/
+ {
+ 	BOOL IntState;
+ 	ULONG ProcID;
+@@ -982,6 +977,8 @@ ConsoleCmdVM(
+ 	ULONG Index, TotalVpnCount, AllocatedVpnCount, FreeVpnCount, VpnCount;
+ 	STATUS Status;
+ 	
++	const char* OutputFormat = NULL;
++	
+ 	//
+ 	// 从命令参数字符串中获得进程 ID。
+ 	//
+@@ -1010,7 +1007,8 @@ ConsoleCmdVM(
+ 	//
+ 	// 输出 VAD 链表中记录的起始页框号，结束页框号
+ 	//
+-	fprintf(StdHandle, "Total Vpn from %d to %d. (0x%X - 0x%X)\n\n",
++	OutputFormat = "Total Vpn from %d to %d. (0x%X - 0x%X)\n\n";
++	fprintf(StdHandle, OutputFormat,
+ 		pVadList->StartingVpn, pVadList->EndVpn,
+ 		pVadList->StartingVpn * PAGE_SIZE, (pVadList->EndVpn + 1) * PAGE_SIZE - 1);
+ 	
+@@ -1026,7 +1024,8 @@ ConsoleCmdVM(
+ 		pVad = CONTAINING_RECORD(pListEntry, MMVAD, VadListEntry);
+ 		
+ 		VpnCount = pVad->EndVpn - pVad->StartingVpn + 1;
+-		fprintf(StdHandle, "%d# Vad Include %d Vpn From %d to %d. (0x%X - 0x%X)\n",
++		OutputFormat = "%d# Vad Include %d Vpn From %d to %d. (0x%X - 0x%X)\n";
++		fprintf(StdHandle, OutputFormat,
+ 			Index, VpnCount, pVad->StartingVpn, pVad->EndVpn,
+ 			pVad->StartingVpn * PAGE_SIZE, (pVad->EndVpn + 1) * PAGE_SIZE - 1);
+ 		
+@@ -1037,41 +1036,165 @@ ConsoleCmdVM(
+ 	// 统计虚拟页框总数、已分配的虚拟页框和未分配的虚拟页框
+ 	//
+ 	TotalVpnCount = pVadList->EndVpn - pVadList->StartingVpn + 1;
+-	fprintf(StdHandle, "\nTotal Vpn Count: %d.\n", TotalVpnCount);
+-	fprintf(StdHandle, "Allocated Vpn Count: %d.\n", AllocatedVpnCount);
++	OutputFormat = "\nTotal Vpn Count: %d.\n";
++	fprintf(StdHandle, OutputFormat, TotalVpnCount);
++	
++	OutputFormat = "Allocated Vpn Count: %d.\n";
++	fprintf(StdHandle, OutputFormat, AllocatedVpnCount);
++	
+ 	FreeVpnCount = TotalVpnCount - AllocatedVpnCount;
+-	fprintf(StdHandle, "Free Vpn Count: %d.\n", FreeVpnCount);
++	OutputFormat = "Free Vpn Count: %d.\n\n";
++	fprintf(StdHandle, OutputFormat, FreeVpnCount);
++	
++	//
++	// 输出物理页的零页数量和空闲页数量
++	//
++	OutputFormat = "Zeroed Physical Page Count: %d.\n";
++	fprintf(StdHandle, OutputFormat, MiZeroedPageCount);
++	
++	OutputFormat = "Free Physical Page Count: %d.\n\n";
++	fprintf(StdHandle, OutputFormat, MiFreePageCount);
++	
+ 	
++	//////////////////////////////////////////////////////////////////////////
++	//
++	// 分配一块新的虚拟内存。但是没有使用 MEM_COMMIT 标志为其分配物理页。
++	//
++	PVOID BaseAddress = 0;
++	SIZE_T RegionSize = 1;	
++	Status = MmAllocateVirtualMemory(&BaseAddress, &RegionSize, MEM_RESERVE, TRUE);
++	if (!EOS_SUCCESS(Status)) {
++		fprintf(StdHandle, "Allocate virtual memory at 0x%X faild.\n", BaseAddress);
++		goto VM_RETURN;
++	}
++	
++	//
++	// 输出新分配的内存的基址和大小
++	//
++	OutputFormat = "New VM's base address: 0x%X. Size: 0x%X.\n\n";
++	fprintf(StdHandle, OutputFormat, BaseAddress, RegionSize);
++	
++	//
++	// 遍历 VAD 链表，输出所有 VAD 的起始页框号，结束页框号和包含的虚拟页框数量
++	//
++	Index = AllocatedVpnCount = 0;
++	for(pListEntry = pVadList->VadListHead.Next;
++		pListEntry != &pVadList->VadListHead;
++		pListEntry = pListEntry->Next) {
++	
++		Index++;
++		pVad = CONTAINING_RECORD(pListEntry, MMVAD, VadListEntry);
++		
++		VpnCount = pVad->EndVpn - pVad->StartingVpn + 1;
++		OutputFormat = "%d# Vad Include %d Vpn From %d to %d. (0x%X - 0x%X)\n";
++		fprintf(StdHandle, OutputFormat,
++			Index, VpnCount, pVad->StartingVpn, pVad->EndVpn,
++			pVad->StartingVpn * PAGE_SIZE, (pVad->EndVpn + 1) * PAGE_SIZE - 1);
++		
++		AllocatedVpnCount += VpnCount;
++	}
++	
++	//
++	// 统计已分配的虚拟页框和未分配的虚拟页框
++	//
++	OutputFormat = "\nAllocated Vpn Count: %d.\n";
++	fprintf(StdHandle, OutputFormat, AllocatedVpnCount);
++	
++	FreeVpnCount = TotalVpnCount - AllocatedVpnCount;
++	OutputFormat = "Free Vpn Count: %d.\n\n";
++	fprintf(StdHandle, OutputFormat, FreeVpnCount);
++	
++	//
++	// 输出物理页的零页数量和空闲页数量
++	//
++	OutputFormat = "Zeroed Physical Page Count: %d.\n";
++	fprintf(StdHandle, OutputFormat, MiZeroedPageCount);
++	
++	OutputFormat = "Free Physical Page Count: %d.\n\n";
++	fprintf(StdHandle, OutputFormat, MiFreePageCount);
++	
++	
++	//////////////////////////////////////////////////////////////////////////
++	//
++	// 释放刚刚分配的虚拟内存。
++	//
++	RegionSize = 0;		// 所释放虚拟内存的大小必须赋值为 0
++	MmFreeVirtualMemory(&BaseAddress, &RegionSize, MEM_RELEASE, TRUE);
++	
++	//
++	// 输出释放的的虚拟内存的基址和大小
++	//
++	OutputFormat = "Free VM's base address: 0x%X. Size: 0x%X.\n\n";
++	fprintf(StdHandle, OutputFormat, BaseAddress, RegionSize);
++	
++	//
++	// 遍历 VAD 链表，输出所有 VAD 的起始页框号，结束页框号和包含的虚拟页框数量
++	//
++	Index = AllocatedVpnCount = 0;
++	for(pListEntry = pVadList->VadListHead.Next;
++		pListEntry != &pVadList->VadListHead;
++		pListEntry = pListEntry->Next) {
++	
++		Index++;
++		pVad = CONTAINING_RECORD(pListEntry, MMVAD, VadListEntry);
++		
++		VpnCount = pVad->EndVpn - pVad->StartingVpn + 1;
++		OutputFormat = "%d# Vad Include %d Vpn From %d to %d. (0x%X - 0x%X)\n";
++		fprintf(StdHandle, OutputFormat,
++			Index, VpnCount, pVad->StartingVpn, pVad->EndVpn,
++			pVad->StartingVpn * PAGE_SIZE, (pVad->EndVpn + 1) * PAGE_SIZE - 1);
++		
++		AllocatedVpnCount += VpnCount;
++	}
++	
++	//
++	// 统计已分配的虚拟页框和未分配的虚拟页框
++	//
++	OutputFormat = "\nAllocated Vpn Count: %d.\n";
++	fprintf(StdHandle, OutputFormat, AllocatedVpnCount);
++	
++	FreeVpnCount = TotalVpnCount - AllocatedVpnCount;
++	OutputFormat = "Free Vpn Count: %d.\n\n";
++	fprintf(StdHandle, OutputFormat, FreeVpnCount);
++	
++	//
++	// 输出物理页的零页数量和空闲页数量
++	//
++	OutputFormat = "Zeroed Physical Page Count: %d.\n";
++	fprintf(StdHandle, OutputFormat, MiZeroedPageCount);
++	
++	OutputFormat = "Free Physical Page Count: %d.\n\n";
++	fprintf(StdHandle, OutputFormat, MiFreePageCount);
++	
++VM_RETURN:	
+ 	KeEnableInterrupts(IntState);	// 开中断
+ 	
+ 	ObDerefObject(pProcCtrlBlock);
+ }
+ 
+ 
++
+ //////////////////////////////////////////////////////////////////////////
+ //
+ // 下面是和控制台命令 pm 相关的代码。
+ //
+ 
++/*
++提供该示例代码是为了阐释一个概念，或者进行一个测试，并不代表着
++最安全的编码实践，因此不应在应用程序或网站中使用该示例代码。对
++于超出本示例代码的预期用途以外的使用所造成的偶然或继发性损失，
++北京英真时代科技有限公司不承担任何责任。
++*/
++
++
+ PRIVATE
+ VOID
+ ConsoleCmdPhysicalMemory(
+ 	IN HANDLE StdHandle
+ 	)
+-/*++
+-
+-功能描述：
+-	统计输出物理存储器的信息。控制台命令“pm”。
+-
+-参数：
+-	StdHandle -- 标准输入、输出句柄。
+-
+-返回值：
+-	无。
+-
+---*/
+ {
+ 	BOOL IntState;
++	ULONG_PTR PfnArray[4];
+ 
+ 	IntState = KeEnableInterrupts(FALSE);	// 关中断
+ 	
+@@ -1094,10 +1217,34 @@ ConsoleCmdPhysicalMemory(
+ 	//
+ 	fprintf(StdHandle, "\nUsed Page Count: %d.\n", MiTotalPageFrameCount - MiZeroedPageCount - MiFreePageCount);
+ 	
++	
++	//////////////////////////////////////////////////////////////////////////
++	// 分配一个物理页
++	//
++	MiAllocateAnyPages(4, PfnArray);
++	
++	fprintf(StdHandle, "\n****** After Allocate One Page ******\n");
++	fprintf(StdHandle, "Zeroed Page Count: %d.\n", MiZeroedPageCount);
++	fprintf(StdHandle, "Free Page Count: %d.\n", MiFreePageCount);
++	fprintf(StdHandle, "Used Page Count: %d.\n", MiTotalPageFrameCount - MiZeroedPageCount - MiFreePageCount);
++	
++	
++	//////////////////////////////////////////////////////////////////////////
++	//
++	// 然后再释放这个物理页
++	//
++	MiFreePages(4, PfnArray);
++	
++	fprintf(StdHandle, "\n****** After Free One Page ******\n");
++	fprintf(StdHandle, "Zeroed Page Count: %d.\n", MiZeroedPageCount);
++	fprintf(StdHandle, "Free Page Count: %d.\n", MiFreePageCount);
++	fprintf(StdHandle, "Used Page Count: %d.\n", MiTotalPageFrameCount - MiZeroedPageCount - MiFreePageCount);
++	
+ 	KeEnableInterrupts(IntState);	// 开中断
+ }
+ 
+ 
++
+ //////////////////////////////////////////////////////////////////////////
+ //
+ // 下面是和控制台命令 pt 相关的代码。
+-- 
+2.34.1.windows.1
+
+
+From 4d88b016b47e5f799018315560addc74daf43a57 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=A7=9C=E6=B5=B7=E5=A4=A9?= <1076168468@qq.com>
+Date: Sat, 29 Oct 2022 16:48:13 +0800
+Subject: [PATCH 2/2] =?UTF-8?q?=E5=A4=84=E7=90=86MiAllocateAnyPages?=
+ =?UTF-8?q?=E5=87=BD=E6=95=B0=E6=97=A0=E6=B3=95=E5=88=86=E9=85=8D=E5=86=85?=
+ =?UTF-8?q?=E5=AD=98=E6=83=85=E5=86=B5?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ pfnlist.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/pfnlist.c b/pfnlist.c
+index 3a4ad74..19bf349 100644
+--- a/pfnlist.c
++++ b/pfnlist.c
+@@ -135,6 +135,7 @@ MiAllocateAnyPages(
+ 	BOOL IntState;
+ 	ULONG_PTR Pfn;
+ 	ULONG_PTR i;
++	STATUS status;
+ 
+ 	IntState = KeEnableInterrupts(FALSE);
+ 
+@@ -167,11 +168,16 @@ MiAllocateAnyPages(
+ 
+ 			PfnArray[i] = Pfn;
+ 		}
++		
++		status = STATUS_SUCCESS;
++		
++	}else{
++		status = STATUS_NO_MEMORY;
+ 	}
+ 
+ 	KeEnableInterrupts(IntState);
+ 
+-	return STATUS_SUCCESS;
++	return status;
+ }
+ 
+ STATUS
+-- 
+2.34.1.windows.1
+

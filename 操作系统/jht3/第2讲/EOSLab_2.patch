@@ -1,0 +1,134 @@
+From c35c6d94b66e443f77103f1ede56d06c0ba7fdb5 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=A7=9C=E6=B5=B7=E5=A4=A9?= <1076168468@qq.com>
+Date: Sat, 22 Oct 2022 20:38:03 +0800
+Subject: [PATCH 1/2] =?UTF-8?q?=E6=B7=BB=E5=8A=A0help=E5=8A=9F=E8=83=BD?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ sysproc.c | 43 +++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 41 insertions(+), 2 deletions(-)
+
+diff --git a/sysproc.c b/sysproc.c
+index ba79659..4ed552d 100644
+--- a/sysproc.c
++++ b/sysproc.c
+@@ -22,7 +22,6 @@ Copyright (c) 2008 
+ #include "obp.h"
+ #include "fat12.h"
+ 
+-
+ PRIVATE
+ VOID
+ ConsoleCmdVersionNumber(
+@@ -98,6 +97,12 @@ ConsoleCmdDir(
+ 	IN HANDLE StdHandle
+ 	);
+ 
++PRIVATE
++VOID
++ConsoleCmdHelp(
++	IN HANDLE StdHandle
++	);
++
+ ULONG
+ KiInitializationThread(
+ 	IN PVOID Parameter
+@@ -303,6 +308,9 @@ KiShellThread(
+ 		} else if (0 == stricmp(Line, "dir")) {
+ 			ConsoleCmdDir(StdHandle);
+ 			continue;
++		} else if (0 == stricmp(Line, "help")) {
++			ConsoleCmdHelp(StdHandle);
++			continue;
+ 		}
+ 
+ 		//
+@@ -1309,6 +1317,38 @@ ConsoleCmdDir(
+ 	KeEnableInterrupts(IntState);	// 开中断
+ }
+ 
++PRIVATE
++VOID
++ConsoleCmdHelp(
++	IN HANDLE StdHandle
++	)
++/*++
++
++功能描述：
++	显示帮助信息。控制台命令“help”。
++
++参数：
++	StdHandle -- 标准输入、输出句柄。
++
++返回值：
++	无。
++
++--*/
++{
++	fprintf(StdHandle,"ver:show EOS version.\n");
++	fprintf(StdHandle,"mm:Dump the secondary page table mapping information of the system process.\n");
++	fprintf(StdHandle,"ds:Testing Disk Scheduling Algorithms.\n");
++	fprintf(StdHandle,"rr:Test time slice round-robin scheduling.\n");
++	fprintf(StdHandle,"loop:Console command \"loop\".\n");
++	fprintf(StdHandle,"suspend:Suspends the thread specified by ID.\n");
++	fprintf(StdHandle,"resume:Resume the thread specified by ID.\n");
++	fprintf(StdHandle,"pm:Statistics output physical memory information.\n");
++	fprintf(StdHandle,"vm:Statistically prints information about the virtual address descriptor of the process specified by the process ID.\n");
++	fprintf(StdHandle,"pt:Statistics output process and thread information.\n");
++	fprintf(StdHandle,"sd:Scan the floppy disk and output relevant information.\n");
++	fprintf(StdHandle,"dir:Print information about files in the root directory of a floppy disk.\n");
++	fprintf(StdHandle,"help:Display help information.\n");
++}
+ 
+ //////////////////////////////////////////////////////////////////////////
+ //
+@@ -2482,5 +2522,4 @@ PRIVATE VOID GetDevice( )
+ 	StopKeyboard = 0;
+ }
+ 
+-
+ #endif
+-- 
+2.34.1.windows.1
+
+
+From b4c336e4b3d7ee6dbc8c5665d14636439030ad21 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=A7=9C=E6=B5=B7=E5=A4=A9?= <1076168468@qq.com>
+Date: Sat, 22 Oct 2022 20:40:00 +0800
+Subject: [PATCH 2/2] =?UTF-8?q?=E4=BD=BF=E7=94=A8=E5=86=85=E8=81=94?=
+ =?UTF-8?q?=E6=B1=87=E7=BC=96=E5=B0=86=20i++=E6=9B=BF=E6=8D=A2=E4=B8=BA?=
+ =?UTF-8?q?=E5=81=9C=E6=9C=BA=E6=8C=87=E4=BB=A4HLT?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ sysproc.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/sysproc.c b/sysproc.c
+index 4ed552d..2efa47b 100644
+--- a/sysproc.c
++++ b/sysproc.c
+@@ -120,7 +120,6 @@ KiSystemProcessRoutine(
+ {
+ 	STATUS Status;
+ 	HANDLE ThreadHandle;
+-	ULONG i;
+ 
+ 	//
+ 	// 创建初始化线程，由初始化线程来执行第二步初始化。
+@@ -145,7 +144,7 @@ KiSystemProcessRoutine(
+ 	PsSetThreadPriority(CURRENT_THREAD_HANDLE, 0);
+ 
+ 	for(;;) {
+-		i++;
++		asm volatile("HLT");
+ 	}
+ }
+ 
+-- 
+2.34.1.windows.1
+

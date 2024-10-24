@@ -1,0 +1,100 @@
+From a1f763a15abc041815da97b79bab8d56513a6741 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=A7=9C=E6=B5=B7=E5=A4=A9?= <1076168468@qq.com>
+Date: Wed, 2 Nov 2022 17:36:40 +0800
+Subject: [PATCH] =?UTF-8?q?=E4=BB=BB=E5=8A=A1=E5=AE=8C=E6=88=90=EF=BC=8C?=
+ =?UTF-8?q?=E6=8F=90=E4=BA=A4=E4=BD=9C=E4=B8=9A?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ block.c | 65 ++++++++++++++++++++++++++++++++++++++++-----------------
+ 1 file changed, 46 insertions(+), 19 deletions(-)
+
+diff --git a/block.c b/block.c
+index 4102969..c544041 100644
+--- a/block.c
++++ b/block.c
+@@ -379,14 +379,6 @@ RETURN:
+ //
+ ULONG SubQueueRemainLength = SUB_QUEUE_LENGTH;
+ 
+-//
+-// 扫描算法中磁头移动的方向。操作系统启动时初始化为磁头向内移动。
+-// TRUE，磁头向内移动，磁道号增加。
+-// FALSE，磁头向外移动，磁道号减少。
+-//
+-BOOL ScanInside = TRUE;
+-
+-
+ PREQUEST
+ IopDiskSchedule(
+ 	VOID
+@@ -414,18 +406,53 @@ IopDiskSchedule(
+ --*/
+ {
+ 	PLIST_ENTRY pListEntry;
+-	PREQUEST pNextRequest;
++	PREQUEST pRequest;
++	LONG Offset;
+ 	
+-	//
+-	// FCFS (First-Come,First-Served) 磁盘调度算法是一种最简单的磁盘调度算法，
+-	// 总是选择请求队列中的第一个请求，从而按照线程访问磁盘的先后顺序进行调度。
+-	//
+-	pListEntry = RequestListHead.Next;	// 请求队列中的第一个请求是链表头指向的下一个请求。
++	ULONG InsideShortestDistance = 0xFFFFFFFF;
++	ULONG OutsideLongestDistance = 0;
++	PREQUEST pNextInsideRequest = NULL;
++	PREQUEST pNextOutsideRequest = NULL;
+ 	
+-	//
+-	// 根据链表项获得请求指针
+-	//
+-	pNextRequest = CONTAINING_RECORD(pListEntry, REQUEST, ListEntry);
++	for (pListEntry = RequestListHead.Next;	// 请求队列中的第一个请求是链表头指向的下一个请求。
++	     pListEntry != &RequestListHead;	// 遍历到请求队列头时结束循环。
++	     pListEntry = pListEntry->Next) {
++	
++		//
++		// 根据链表项获得请求的指针
++		//
++		pRequest = CONTAINING_RECORD(pListEntry, REQUEST, ListEntry);
++		
++		//
++		// 计算请求对应的线程所访问的磁道与当前磁头所在磁道的偏移（方向由正负表示）
++		//
++		Offset = pRequest->Cylinder - CurrentCylinder;
++		
++		if (0 == Offset) {
++			//
++			// 如果线程要访问的磁道与当前磁头所在磁道相同，可立即返回。
++			//
++			return pRequest;
++		} else if (Offset > 0) {
++			//
++			// 记录向内移动距离最短的线程
++			//
++			if (Offset < InsideShortestDistance) {
++		
++				InsideShortestDistance = Offset;
++				pNextInsideRequest = pRequest;
++			}
++		} else if (Offset < 0) {
++			//
++			// 记录向外移动距离最长的线程
++			//
++			if (-Offset > OutsideLongestDistance) {
++		
++				OutsideLongestDistance = -Offset;
++				pNextOutsideRequest = pRequest;
++			}
++		}
++	}
+ 	
+-	return pNextRequest;
++	return pNextInsideRequest ? pNextInsideRequest : pNextOutsideRequest;
+ }
+-- 
+2.34.1.windows.1
+

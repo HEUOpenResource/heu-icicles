@@ -1,0 +1,43 @@
+From d195351016eee14e9acd631c900767aaf9f0f97e Mon Sep 17 00:00:00 2001
+From: jht3QAQ <1076168468@qq.com>
+Date: Thu, 3 Nov 2022 10:21:44 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=A2=9E=E5=8A=A0for=E5=BE=AA=E7=8E=AF?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ EOSApp.c       | 6 ++++--
+ eosapp.oslproj | 2 +-
+ 2 files changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/EOSApp.c b/EOSApp.c
+index d8f2bae..fe7044b 100644
+--- a/EOSApp.c
++++ b/EOSApp.c
+@@ -20,7 +20,9 @@ int main(int argc, char* argv[])
+ 	//
+ 
+ 	/* TODO: 在此处添加自己的代码 */
+-	printf("Hello world!\n");
+-
++	int i;
++	for(i=0;i<5;++i){
++		printf("Hello world!\n");
++	}
+ 	return 0;
+ }
+diff --git a/eosapp.oslproj b/eosapp.oslproj
+index 14f4bb1..80a67db 100644
+--- a/eosapp.oslproj
++++ b/eosapp.oslproj
+@@ -1,5 +1,5 @@
+ <?xml version="1.0" encoding="gb2312"?>
+-<OSLProject Version="1.00" Name="eosapp" ProjectType="eosapp" SubjectID="1580a23c-aa04-4cf3-8cca-488dc577df8d" IncrementalUpload="-1">
++<OSLProject Version="1.00" Name="MyApp" ProjectType="eosapp" SubjectID="1580a23c-aa04-4cf3-8cca-488dc577df8d" IncrementalUpload="-1">
+ 	<Configurations>
+ 		<Configuration Name="Debug" DebuggerFlavor="1" RemoteMachine="5" AdditionalSymbolFileLocation="sdk\bin\debug\kernel.dll;0x80011000" PreDebugCommand="echo 制作软盘镜像...&#xA;echo A:\$(TargetFileName) &gt; &quot;$(OutDir)\autorun.txt&quot;&#xA;echo 将引导扇区程序 boot.bin 写入软盘镜像...&#xA;FloppyImageEditor.exe Floppy.img /mbr &quot;sdk\bin\debug\boot.bin&quot;&#xA;echo 将加载程序 loader.bin 写入软盘镜像...&#xA;FloppyImageEditor.exe Floppy.img /copy &quot;sdk\bin\debug\loader.bin&quot; /y&#xA;echo 将 EOS 内核程序 kernel.dll 写入软盘镜像...&#xA;FloppyImageEditor.exe Floppy.img /copy &quot;sdk\bin\debug\kernel.dll&quot; /y&#xA;echo 将 EOS 应用程序 $(TargetFileName) 写入软盘镜像...&#xA;FloppyImageEditor.exe Floppy.img /copy &quot;$(TargetPath)&quot; /y&#xA;echo 将自动运行脚本 autorun.txt 写入软盘镜像...&#xA;FloppyImageEditor.exe Floppy.img /copy &quot;$(OutDir)\autorun.txt&quot; /y&#xA;">
+ 			<Tool Name="PreBuildEventTool"/>
+-- 
+2.34.1.windows.1
+

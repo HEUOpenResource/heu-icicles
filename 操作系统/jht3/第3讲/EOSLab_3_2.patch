@@ -1,0 +1,212 @@
+From 203495ca2301bb69cea8c21bca30b3015c6bc810 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=A7=9C=E6=B5=B7=E5=A4=A9?= <1076168468@qq.com>
+Date: Mon, 24 Oct 2022 18:03:00 +0800
+Subject: [PATCH 1/2] =?UTF-8?q?=E4=BD=BF=E7=94=A8NewTwoProc.c?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ EOSApp.c | 69 ++++++++++++++++++++++++++++++++++++++++++++++++++------
+ 1 file changed, 62 insertions(+), 7 deletions(-)
+
+diff --git a/EOSApp.c b/EOSApp.c
+index d8f2bae..32a69d1 100644
+--- a/EOSApp.c
++++ b/EOSApp.c
+@@ -1,5 +1,13 @@
++/*
++提供该示例代码是为了阐释一个概念，或者进行一个测试，并不代表着
++最安全的编码实践，因此不应在应用程序或网站中使用该示例代码。对
++于超出本示例代码的预期用途以外的使用所造成的偶然或继发性损失，
++北京英真时代科技有限公司不承担任何责任。
++*/
++
+ #include "EOSApp.h"
+ 
++
+ //
+ // main 函数参数的意义：
+ // argc - argv 数组的长度，大小至少为 1，argc - 1 为命令行参数的数量。
+@@ -13,14 +21,61 @@
+ int main(int argc, char* argv[])
+ {
+ 	//
+-	// 如果需要在调试应用程序时能够调试进入内核并显示对应的源码，
+-	// 必须使用 EOS 内核项目编译生成完全版本的 SDK 文件夹，然
+-	// 后使用刚刚生成的 SDK 文件夹覆盖此应用程序项目中的 SDK 文件
+-	// 夹，并且 EOS 内核项目在磁盘上的位置不能改变。
++	// 启动调试 EOS 应用程序前要特别注意下面的问题：
++	//
++	// 1、如果要在调试应用程序时能够调试进入内核并显示对应的源码，
++	//    必须使用 EOS 核心项目编译生成完全版本的 SDK 文件夹，然
++	//    后使用此文件夹覆盖应用程序项目中的 SDK 文件夹，并且 EOS
++	//    核心项目在磁盘上的位置不能改变。
++	//
++	
++	STARTUPINFO StartupInfo;
++	PROCESS_INFORMATION ProcInfoOne, ProcInfoTwo;
++	ULONG ulExitCode;	// 子进程退出码
++	INT nResult = 0;	// main 函数返回值。0 表示成功，非 0 表示失败。
++
++	printf("Create two processes and wait for the processes exit...\n\n");
++
++	//
++	// 使子进程和父进程使用相同的标准句柄。
+ 	//
++	StartupInfo.StdInput = GetStdHandle(STD_INPUT_HANDLE);
++	StartupInfo.StdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
++	StartupInfo.StdError = GetStdHandle(STD_ERROR_HANDLE);
++
++	//
++	// 为一个应用程序同时创建两个子进程。
++	//
++	if (CreateProcess("A:\\Hello.exe", NULL, 0, &StartupInfo, &ProcInfoOne)
++		&& CreateProcess("A:\\Hello.exe", NULL, 0, &StartupInfo, &ProcInfoTwo)) {
++
++		//
++		// 创建子进程成功，等待子进程运行结束。
++		//
++		WaitForSingleObject(ProcInfoOne.ProcessHandle, INFINITE);
++		WaitForSingleObject(ProcInfoTwo.ProcessHandle, INFINITE);
++
++		//
++		// 得到并输出子进程的退出码。
++		//
++		GetExitCodeProcess(ProcInfoOne.ProcessHandle, &ulExitCode);
++		printf("\nThe process one exit with %d.\n", ulExitCode);
++		GetExitCodeProcess(ProcInfoTwo.ProcessHandle, &ulExitCode);
++		printf("\nThe process two exit with %d.\n", ulExitCode);
++
++		//
++		// 关闭不再使用的句柄。
++		//
++		CloseHandle(ProcInfoOne.ProcessHandle);
++		CloseHandle(ProcInfoOne.ThreadHandle);
++		CloseHandle(ProcInfoTwo.ProcessHandle);
++		CloseHandle(ProcInfoTwo.ThreadHandle);
++
++	} else {
+ 
+-	/* TODO: 在此处添加自己的代码 */
+-	printf("Hello world!\n");
++		printf("CreateProcess Failed, Error code: 0x%X.\n", GetLastError());
++		nResult = 1;
++	}
+ 
+-	return 0;
++	return nResult;
+ }
+-- 
+2.34.1.windows.1
+
+
+From b7fd4157fc78c124305a6f6df6b2e05eb794291b Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=A7=9C=E6=B5=B7=E5=A4=A9?= <1076168468@qq.com>
+Date: Mon, 24 Oct 2022 18:18:07 +0800
+Subject: [PATCH 2/2] =?UTF-8?q?=E8=BF=90=E8=A1=8C10=E4=B8=AA=E8=BF=9B?=
+ =?UTF-8?q?=E7=A8=8B?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ EOSApp.c | 67 +++++++++++++++++++++++---------------------------------
+ 1 file changed, 28 insertions(+), 39 deletions(-)
+
+diff --git a/EOSApp.c b/EOSApp.c
+index 32a69d1..fbcd75d 100644
+--- a/EOSApp.c
++++ b/EOSApp.c
+@@ -20,21 +20,12 @@
+ //
+ int main(int argc, char* argv[])
+ {
+-	//
+-	// 启动调试 EOS 应用程序前要特别注意下面的问题：
+-	//
+-	// 1、如果要在调试应用程序时能够调试进入内核并显示对应的源码，
+-	//    必须使用 EOS 核心项目编译生成完全版本的 SDK 文件夹，然
+-	//    后使用此文件夹覆盖应用程序项目中的 SDK 文件夹，并且 EOS
+-	//    核心项目在磁盘上的位置不能改变。
+-	//
+ 	
+ 	STARTUPINFO StartupInfo;
+-	PROCESS_INFORMATION ProcInfoOne, ProcInfoTwo;
++	PROCESS_INFORMATION ProcInfo[10];
+ 	ULONG ulExitCode;	// 子进程退出码
+-	INT nResult = 0;	// main 函数返回值。0 表示成功，非 0 表示失败。
+ 
+-	printf("Create two processes and wait for the processes exit...\n\n");
++	printf("Create ten processes and wait for the processes exit...\n\n");
+ 
+ 	//
+ 	// 使子进程和父进程使用相同的标准句柄。
+@@ -44,38 +35,36 @@ int main(int argc, char* argv[])
+ 	StartupInfo.StdError = GetStdHandle(STD_ERROR_HANDLE);
+ 
+ 	//
+-	// 为一个应用程序同时创建两个子进程。
++	// 为一个应用程序同时创建10个子进程。
+ 	//
+-	if (CreateProcess("A:\\Hello.exe", NULL, 0, &StartupInfo, &ProcInfoOne)
+-		&& CreateProcess("A:\\Hello.exe", NULL, 0, &StartupInfo, &ProcInfoTwo)) {
+-
+-		//
+-		// 创建子进程成功，等待子进程运行结束。
+-		//
+-		WaitForSingleObject(ProcInfoOne.ProcessHandle, INFINITE);
+-		WaitForSingleObject(ProcInfoTwo.ProcessHandle, INFINITE);
+-
+-		//
+-		// 得到并输出子进程的退出码。
+-		//
+-		GetExitCodeProcess(ProcInfoOne.ProcessHandle, &ulExitCode);
+-		printf("\nThe process one exit with %d.\n", ulExitCode);
+-		GetExitCodeProcess(ProcInfoTwo.ProcessHandle, &ulExitCode);
+-		printf("\nThe process two exit with %d.\n", ulExitCode);
+-
++	int i;
++	for(i=0;i<10;++i){
++		if(!CreateProcess("A:\\Hello.exe", NULL, 0, &StartupInfo, &ProcInfo[i])){
++			printf("CreateProcess Failed, Error code: 0x%X.\n", GetLastError());
++			return 1;
++		}
++	}
++	
++	//
++	// 创建子进程成功，等待子进程运行结束。
++	//
++	for(i=0;i<10;++i){
++		WaitForSingleObject(ProcInfo[i].ProcessHandle, INFINITE);
++	}
++	
++	//
++	// 得到并输出子进程的退出码。
++	//
++	for(i=0;i<10;++i){
++		GetExitCodeProcess(ProcInfo[i].ProcessHandle, &ulExitCode);
++		printf("\nThe process %d exit with %d.\n", i, ulExitCode);
++		
+ 		//
+ 		// 关闭不再使用的句柄。
+ 		//
+-		CloseHandle(ProcInfoOne.ProcessHandle);
+-		CloseHandle(ProcInfoOne.ThreadHandle);
+-		CloseHandle(ProcInfoTwo.ProcessHandle);
+-		CloseHandle(ProcInfoTwo.ThreadHandle);
+-
+-	} else {
+-
+-		printf("CreateProcess Failed, Error code: 0x%X.\n", GetLastError());
+-		nResult = 1;
++		CloseHandle(ProcInfo[i].ProcessHandle);
++		CloseHandle(ProcInfo[i].ThreadHandle);
+ 	}
+ 
+-	return nResult;
++	return 0;
+ }
+-- 
+2.34.1.windows.1
+
