@@ -1,0 +1,56 @@
+#安装centos-release-scl
+yum install centos-release-scl -y
+#安装devtoolset
+yum install devtoolset-7-gcc* -y
+#激活对应的devtoolset
+scl enable devtoolset-7 bash
+#安装jdk 11版本并在home目录下重命名为jdk文件夹
+#权限原因需要在home下完成
+cd /home
+wget https://mirrors.huaweicloud.com/kunpeng/archive/compiler/bisheng_jdk/bisheng-jdk-11.0.9-linux-aarch64.tar.gz
+tar -zxvf bisheng-jdk-11.0.9-linux-aarch64.tar.gz
+mv bisheng-jdk-11.0.9 jdk
+#安装系统性能优化工具
+cd /home
+wget https://mirrors.huaweicloud.com/kunpeng/archive/Tuning_kit/Packages/Hyper-Tuner-2.2.T3.tar.gz
+tar -zxvf Hyper-Tuner-2.2.T3.tar.gz
+cd /home/Hyper_tuner
+./install.sh -a -i -ip=$(ifconfig eth0 | grep "inet " | awk '{print $2}') -jh=/home/jdk
+
+#https://公有IP地址:8086/user-management/#/login
+#网页部分参考pdf手册
+
+mkdir /home/testdemo && cd /home/testdemo
+
+#multiply.tar.gz文件404 需要自己上传 上传完成后自己切换到源文件的目录
+
+#将文件中1000000000修改为130000000
+sed -i 's/1000000000/130000000/g' multiply.c
+sed -i 's/1000000000/130000000/g' multiply_simd.c
+
+#编译并赋予执行权限
+gcc -g multiply.c -o multiply && chmod -R 777 multiply
+#执行
+nohup bash $PWD/multiply_start.sh >>multiply.out 2>&1 &
+
+#查看执行结果
+jobs -l
+
+#去网页端进行两个分析
+
+#3.4 程序性能分析
+gcc -g -O2 -o multiply multiply.c && chmod -R 777 multiply
+./multiply
+#启动perf record 采集数据
+perf record --call-graph dwarf ./multiply -d 1 -b
+#解析perf.data的内容
+perf report -i perf.data > perf_multiply.txt
+#查看main函数和子函数的CPU平均占用率
+less perf_multiply.txt
+gcc -g -O2 -o multiply_simd multiply_simd.c && chmod -R 777 multiply_simd
+#启动perf record 采集数据
+perf record --call-graph dwarf ./multiply_simd -d 1 -b
+#解析perf.data的内容
+perf report -i perf.data > perf_multiply_simd.txt
+#查看main函数和子函数的CPU平均占用率
+less perf_multiply_simd.txt
