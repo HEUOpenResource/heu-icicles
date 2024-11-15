@@ -1,0 +1,118 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx} % 用于插入图片
+\usepackage{fancyvrb} % 用于代码高亮显示
+\usepackage{xeCJK} % 支持中文
+\setCJKmainfont{SimSun} % 设置中文主字体（宋体）
+\setCJKmonofont{SimSun} % 设置等宽中文字体
+
+\usepackage{caption} % 控制标题格式
+\captionsetup{labelsep=period} % 将冒号改为句号
+\renewcommand{\figurename}{图} % 将 Figure 改为 图
+\usepackage{amsmath} % 数学公式
+\usepackage{float} % 强制浮动体位置
+\usepackage{datetime} % 用于自定义日期格式
+
+\title{光电效应} % 标题
+\author{张福轩}
+% 设置中文日期格式
+\renewcommand{\today}{\number\year 年 \number\month 月 \number\day 日}
+
+\begin{document}
+
+\maketitle
+
+\section{\normalfont 整理表格}
+
+\subsection{\normalfont 测量普朗克常量}
+
+实验数据处理如图\ref{fig:table_data1} 所示。
+
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/表29-1.pdf} 
+    \caption{$U_S-v$ 关系表}
+    \label{fig:table_data1}
+\end{figure}
+
+\subsection{\normalfont 测量光电管的光电响应特性}
+
+当加速电压 $U = 45 V$ 时，6 种不同光频率所对应的光电流值如表\ref{fig:table_data2} 所示。
+
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/光电相应特性.pdf} 
+    \caption{光电响应特性}
+    \label{fig:table_data2}
+\end{figure}
+
+\subsection{\normalfont 打印数据}
+
+其余内容见结果展示以及附页的光电效应实验报告。
+
+
+\section{\normalfont 结果展示}
+
+\subsection{\normalfont 斜率 $K$ 及 $E_r$ 结果}
+
+采用线性回归法计算出 $U_S-v$ 直线的斜率如图 \ref{fig:table_data3} 所示：
+
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/拟合图像.pdf} 
+    \caption{拟合图像}
+    \label{fig:table_data3}
+\end{figure}
+
+计算结果如图 \ref{fig:table_data4} 所示：
+
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/计算结果.pdf} 
+    \caption{计算结果}
+    \label{fig:table_data4}
+\end{figure}
+
+\begin{align*}
+    K &= 4.316 \times 10^{-15} \, \text{$ V/Hz$} \\
+    E_r &= 4.35\%
+    \end{align*}
+
+% \begin{align*}
+% n &= 7143 \, \text{ 匝$/m$} \\
+% K_H &= 188 \, \text{$V \cdot A^{-1} \cdot T^{-1}$} 
+% \end{align*}
+
+\subsection{\normalfont 其余结果见附件的打印数据光电效应实验报告}
+
+这里我使用 Excel 进行计算，计算的中间过程及公式见第\ref{sec:calculation_process} 节。
+
+\section{\normalfont 计算过程}
+\label{sec:calculation_process}
+
+% 图\ref{fig:table_data3} 表 11-3 中第一行计算 $B$ 的公式如下，其余的行之后逐层下拉即可：
+% \begin{Verbatim}[frame=single, fontsize=\small]
+%     =F26*10/($I$4*$I$2)
+% \end{Verbatim}
+
+
+% 计算 $B_0$ 的公式如下，前面的系数是真空磁导率$\mu _0$:
+
+% \begin{Verbatim}[frame=single, fontsize=\small]
+%     =4*PI()*0.0000001*I3*I5*10
+% \end{Verbatim}
+
+计算 $E_r$ 的公式为：
+\begin{Verbatim}[frame=single, fontsize=\small]
+    =(B23-E21)/E21
+\end{Verbatim}
+
+Excel 行列关系及计算结果如图\ref{fig:final_table} 所示：
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/佐证材料.pdf} 
+    \caption{Excel 行列关系及计算结果}
+    \label{fig:final_table}
+\end{figure}
+
+\end{document}

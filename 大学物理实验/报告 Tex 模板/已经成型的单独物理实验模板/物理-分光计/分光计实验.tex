@@ -1,0 +1,114 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx} % 用于插入图片
+\usepackage{fancyvrb} % 用于代码高亮显示
+\usepackage{xeCJK} % 支持中文
+\setCJKmainfont{SimSun} % 设置中文主字体（宋体）
+\setCJKmonofont{SimSun} % 设置等宽中文字体
+
+\usepackage{caption} % 控制标题格式
+\captionsetup{labelsep=period} % 将冒号改为句号
+\renewcommand{\figurename}{图} % 将 Figure 改为 图
+\usepackage{amsmath} % 数学公式
+\usepackage{float} % 强制浮动体位置
+\usepackage{datetime} % 用于自定义日期格式
+
+\title{分光计实验}% 标题
+\author{张福轩}
+% 设置中文日期格式
+\renewcommand{\today}{\number\year 年 \number\month 月 \number\day 日}
+
+\begin{document}
+
+\maketitle
+
+\section{\normalfont 整理表格及结果展示}
+%这里可以放报告要求的整理表格
+
+整理表格如图\ref{fig:table_data1}，图\ref{fig:table_data2}，图\ref{fig:table_data3} 所示。
+
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/表17-1.pdf} 
+    \caption{表17-1}
+    \label{fig:table_data1}
+\end{figure}
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/表17-2.pdf} 
+    \caption{表17-2}
+    \label{fig:table_data2}
+\end{figure}
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/表17-3.pdf} 
+    \caption{表17-3}
+    \label{fig:table_data3}
+\end{figure}
+
+\section{\normalfont 计算过程}
+
+
+这里我使用 Excel 进行计算，同时，计算过程中需要进行单位的转化，这里使用 Python 来实现。
+
+\subsection{\normalfont Python 的单位转化过程}
+
+Python 的代码如下：
+\begin{Verbatim}[frame=single, fontsize=\small]
+def dms_to_degrees(degrees, minutes):
+    return degrees + minutes / 60
+
+
+def degrees_to_dms(degrees):
+    d = int(degrees)
+    m = (degrees - d) * 60
+    return d, round(m)
+
+while True:
+    conversion_type = 
+    input("请选择转换类型（1：度分转度，2：度转度分）：")
+
+    if conversion_type == "1":
+        degrees_d = int(input("请输入度分数据的度部分："))
+        minutes_d = int(input("请输入度分数据的分部分："))
+        result = dms_to_degrees(degrees_d, minutes_d)
+        print(f"{degrees_d}度 {minutes_d}分 = {result}度")
+    elif conversion_type == "2":
+        degrees_input = 
+        float(input("请输入以度为单位的数据："))
+        d, m = degrees_to_dms(degrees_input)
+        print(f"{degrees_input}度 = {d}度 {m}分")
+    else:
+        print("无效的选择，请输入 1 或 2。")
+        
+\end{Verbatim}
+\subsection{\normalfont Excel 的计算过程}
+将单位转化后就可以进行 Excel 的计算了，Excel 的计算公式如下所示。
+\\\\
+计算 $\lambda /(10^{-6}m)$ 的公式如下，其余列逐列右拉:
+
+\begin{Verbatim}[frame=single, fontsize=\small]
+    =$K$2*SIN(RADIANS(B14))/0.000001
+\end{Verbatim}
+
+计算 $\Delta \lambda /(10^{-6}m)$ 的公式为：
+\begin{Verbatim}[frame=single, fontsize=\small]
+    =ABS(B15-B16)
+\end{Verbatim}
+
+计算 $E_r$ 的公式为：
+\begin{Verbatim}[frame=single, fontsize=\small]
+    =B17/B16
+\end{Verbatim}
+
+其余内容按公式在课上计算完毕。
+Excel 行列关系及计算结果如图\ref{fig:final_table} 所示：
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/佐证材料.pdf} 
+    \caption{Excel 行列关系及计算结果}
+    \label{fig:final_table}
+\end{figure}
+
+
+\end{document}

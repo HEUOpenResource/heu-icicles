@@ -1,0 +1,208 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx} % 用于插入图片
+\usepackage{fancyvrb} % 用于代码高亮显示
+\usepackage{xeCJK} % 支持中文
+\setCJKmainfont{SimSun} % 设置中文主字体（宋体）
+\setCJKmonofont{SimSun} % 设置等宽中文字体
+
+\usepackage{caption} % 控制标题格式
+\captionsetup{labelsep=period} % 将冒号改为句号
+\renewcommand{\figurename}{图} % 将 Figure 改为 图
+\usepackage{amsmath} % 数学公式
+\usepackage{float} % 强制浮动体位置
+\usepackage{datetime} % 用于自定义日期格式
+
+\title{理想气体定律实验} % 标题
+\author{张福轩}
+% 设置中文日期格式
+\renewcommand{\today}{\number\year 年 \number\month 月 \number\day 日}
+
+\begin{document}
+
+\maketitle
+
+\section{\normalfont 整理表格}
+
+\subsection{\normalfont 等温过程数据表}
+
+等温过程数据表如图\ref{fig:table_data1} 所示。
+
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/T7-1.pdf} 
+    \caption{表 7-1 等温过程数据表}
+    \label{fig:table_data1}
+\end{figure}
+
+\subsection{\normalfont 变温过程数据表}
+
+变温过程数据表如图\ref{fig:table_data2} 所示。
+
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/T7-2.pdf} 
+    \caption{表 7-2 变温过程数据表}
+    \label{fig:table_data2}
+\end{figure}
+
+\subsection{\normalfont 柱塞初始位置为 60 mL 时的数据表}
+
+柱塞初始位置为 60 mL 时的数据表如图\ref{fig:table_data3} 所示。
+
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/T7-3.pdf} 
+    \caption{表 7-3 柱塞初始位置为 60 mL 时的数据表}
+    \label{fig:table_data3}
+\end{figure}
+
+\subsection{\normalfont 柱塞初始位置为 40 mL 时的数据表}
+
+柱塞初始位置为 40 mL 时的数据表如图\ref{fig:table_data4} 所示。
+
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/T7-4.pdf} 
+    \caption{表 7-4 柱塞初始位置为 40 mL 时的数据表}
+    \label{fig:table_data4}
+\end{figure}
+
+\subsection{\normalfont 柱塞初始位置为 80 mL 时的数据表}
+
+柱塞初始位置为 80 mL 时的数据表如图\ref{fig:table_data5} 所示。
+
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/T7-5.pdf} 
+    \caption{表 7-5 柱塞初始位置为 80 mL 时的数据表}
+    \label{fig:table_data5}
+\end{figure}
+
+\subsection{\normalfont 空气比热容比}
+
+空气比热容比数据表如图\ref{fig:table_data6} 所示。
+
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/T7-6.pdf} 
+    \caption{表 7-6 空气比热容比}
+    \label{fig:table_data6}
+\end{figure}
+
+\section{\normalfont 结果展示}
+
+\subsection{\normalfont 验证理想气体状态方程}
+
+\subsubsection{\normalfont 等温过程验证}
+
+\begin{align*}
+    V_0 &= 7.61 \, \text{$mL$}
+    % E_r &= 4.35\%
+\end{align*}
+
+\subsubsection{\normalfont 变温过程验证}
+
+\begin{align*}
+    T_1 &= 297.0 \, \text{$K$} \\
+    T_2 &= 305.8 \, \text{$K$} \\
+    C_1 &= 16.76 \, \text{$K$} \\
+    C_2 &= 17.40 \, \text{$K$} \\
+    E_r &= 3.82\%
+\end{align*}
+
+\subsubsection{\normalfont 计算气体的物质的量}
+
+$\frac{T}{p}-V$ 曲线及拟合方程如图 \ref{fig:table_data7} 所示：
+
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/F1.pdf} 
+    \caption{$\frac{T}{p}-V$ 曲线}
+    \label{fig:table_data7}
+\end{figure}
+
+由图 \ref{fig:table_data7} 可知：
+
+\begin{enumerate}
+    \item 二者近似相等。
+    \item 
+        \begin{align*}
+            k_1 &= 16.356 \times 10^{-3} \, \text{$J/K$} \\
+            k_2 &= 23.086 \times 10^{-3} \, \text{$J/K$} \\
+            k_2 &= 29.841 \times 10^{-3} \, \text{$J/K$} \\
+            n_1 &= \frac{K_1}{R} = 2.04 \times 10^{-3} \, \text{$mol$} \\
+            n_2 &= \frac{K_2}{R} = 2.78 \times 10^{-3} \, \text{$mol$} \\
+            n_3 &= \frac{K_3}{R} = 3.59 \times 10^{-3} \, \text{$mol$}
+        \end{align*}
+    \item 三条直线在 y 轴上截距相等。因为 y 轴截距表示气体导管内的体积。三次实验所用为同一台仪器，因此 $\delta V $ 相同，即三条直线在 y 轴上截距相等。
+\end{enumerate}
+
+\subsubsection{\normalfont 测定空气的比热容比}
+
+\begin{align*}
+    \gamma &= 1.35\\
+    E_r &= 3.69\%
+\end{align*}
+
+
+这里我使用 Excel 进行计算，计算的中间过程及公式见第\ref{sec:calculation_process} 节。
+
+\section{\normalfont 计算过程}
+\label{sec:calculation_process}
+
+% 图\ref{fig:table_data3} 表 11-3 中第一行计算 $B$ 的公式如下，其余的行之后逐层下拉即可：
+% \begin{Verbatim}[frame=single, fontsize=\small]
+%     =F26*10/($I$4*$I$2)
+% \end{Verbatim}
+
+
+% 计算 $B_0$ 的公式如下，前面的系数是真空磁导率$\mu _0$:
+
+% \begin{Verbatim}[frame=single, fontsize=\small]
+%     =4*PI()*0.0000001*I3*I5*10
+% \end{Verbatim}
+
+
+\subsection{\normalfont 等温过程验证}
+
+计算 $V_0$ 的公式为：
+\begin{Verbatim}[frame=single]
+    =(G5*A5-G4*A4)/(G4-G5)=(B23-E21)/E21
+\end{Verbatim}
+
+\subsection{\normalfont 变温过程验证}
+
+计算 $T_1$ 和 $c_1$ 的公式分别为：
+\begin{Verbatim}[frame=single]
+    =273.15+A12
+\end{Verbatim}
+\begin{Verbatim}[frame=single]
+    =H12*B12/B15
+\end{Verbatim}
+$T_2$ 和 $c_2$ 逐行下拉即可。\newline 
+\newline 计算 $E_r$ 的公式为：
+\begin{Verbatim}[frame=single]
+    =ABS(D16-D15)/D15
+\end{Verbatim}
+
+\subsection{\normalfont 测定空气的比热容比}
+
+计算 $p$ 的公式为：
+\begin{Verbatim}[frame=single]
+    =H36+H34*10^-3*9.8/(PI() * (H35/2)^2 * 10^-6)
+\end{Verbatim}
+计算 $E_r$ 的公式为：
+
+\begin{Verbatim}[frame=single]
+    =ABS(H38-K34)/H38
+\end{Verbatim}
+Excel 行列关系及计算结果如图\ref{fig:final_table} 所示：
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/F2.pdf} 
+    \caption{Excel 行列关系及计算结果}
+    \label{fig:final_table}
+\end{figure}
+
+\end{document}

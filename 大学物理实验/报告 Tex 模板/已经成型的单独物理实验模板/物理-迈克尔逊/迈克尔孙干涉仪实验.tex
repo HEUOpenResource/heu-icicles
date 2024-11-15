@@ -1,0 +1,105 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx} % 用于插入图片
+\usepackage{fancyvrb} % 用于代码高亮显示
+\usepackage{xeCJK} % 支持中文
+\setCJKmainfont{SimSun} % 设置中文主字体（宋体）
+\setCJKmonofont{SimSun} % 设置等宽中文字体
+
+\usepackage{caption} % 控制标题格式
+\captionsetup{labelsep=period} % 将冒号改为句号
+\renewcommand{\figurename}{图} % 将 Figure 改为 图
+\usepackage{amsmath} % 数学公式
+\usepackage{float} % 强制浮动体位置
+\usepackage{datetime} % 用于自定义日期格式
+
+\title{迈克尔孙干涉仪实验} % 标题
+\author{张福轩}
+% 设置中文日期格式
+\renewcommand{\today}{\number\year 年 \number\month 月 \number\day 日}
+
+\begin{document}
+
+\maketitle
+
+\section{\normalfont 整理表格}
+实验数据处理如图\ref{fig:table_data}。
+
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/迈克尔逊.pdf} 
+    \caption{实验数据表格}
+    \label{fig:table_data}
+\end{figure}
+
+\section{\normalfont 结果展示}
+
+计算中间及最终结果如下：
+
+\begin{align*}
+\overline{\lambda} &= 6.304 \times 10^{-7} \, \text{m} \\
+S &= 6.324 \times 10^{-3} \, \text{mm} \\
+\Delta \lambda &= 4.216 \times 10^{-8} \, \text{m} \\
+\lambda &= (6.304 \pm 0.422) \times 10^{-7} \, \text{m}\\
+E_r &= 1.03\%
+\end{align*}
+
+这里我使用 python 进行计算，代码运行结果如下：
+
+\begin{Verbatim}[frame=single, fontsize=\small]
+    lambda_mean = 6.393e-07 m
+    S = 6.324e-03 mm
+    Δlambda_mean = 4.216e-08 m
+    lambda_mean = 6.393e-07 +/- 4.216e-08 m
+    E_r = 1.03%
+\end{Verbatim}
+
+\section{\normalfont 计算过程}
+完整版的 Python 代码如下：
+
+\begin{Verbatim}[frame=single, fontsize=\small]
+    # 已知参数
+    lambda_overline = 6.393e-4
+    delta_instrument = 0.00005
+    delta_d300_mm =
+    [0.09610, 0.09590, 0.09620, 0.10587, 0.08589, 0.09542]
+    
+    # 计算 S
+    n = len(delta_d300_mm)
+
+    mean_delta_d300 = sum(delta_d300_mm) / n
+
+    S = 
+    (sum((mean_delta_d300 - d) ** 2 
+    for d in delta_d300_mm) / (n - 1))** 0.5
+    
+    # 计算 ΔB
+    delta_B = (2 * delta_instrument**2) ** 0.5
+    
+    # 计算 Δlambda
+    delta_lambda = (2 / 300) * (S**2 + delta_B**2) ** 0.5
+    
+    # 计算 lambda, 单位转换为米
+    lambda_overline *= 1e-3  # 转换为 m
+    delta_lambda *= 1e-3  # 转换为 m
+    
+    # lambda_标
+    lambda_standard = 6.328e-7  # 单位 m
+    
+    # 计算 Er
+    E_r = 
+    abs(lambda_standard - lambda_overline) 
+    / lambda_standard * 100
+    
+    # 输出结果
+    print(f"lambda_mean = {lambda_overline:.3e} m")
+    print(f"S = {S:.3e} mm")
+    print(f"Δlambda = {delta_lambda:.3e} m")
+    print(f"lambda = {lambda_overline:.3e}
+     +/- {delta_lambda:.3e} m")
+    print(f"E_r = {E_r:.2f}%")
+    
+    
+\end{Verbatim}
+
+\end{document}
