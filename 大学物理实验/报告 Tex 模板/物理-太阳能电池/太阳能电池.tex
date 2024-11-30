@@ -1,0 +1,169 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx} % 用于插入图片
+\usepackage{fancyvrb} % 用于代码高亮显示
+\usepackage{xeCJK} % 支持中文
+\setCJKmainfont{SimSun} % 设置中文主字体（宋体）
+\setCJKmonofont{SimSun} % 设置等宽中文字体
+
+\usepackage{caption} % 控制标题格式
+\captionsetup{labelsep=period} % 将冒号改为句号
+\renewcommand{\figurename}{图} % 将 Figure 改为 图
+\renewcommand{\tablename}{表} % 将 table 改为 表
+\usepackage{amsmath} % 数学公式
+\usepackage{float} % 强制浮动体位置
+\usepackage{placeins} % 引入 placeins 包
+\usepackage{datetime} % 用于自定义日期格式
+
+\title{太阳能电池特性的测量} % 标题
+\author{张福轩}
+% 设置中文日期格式
+\renewcommand{\today}{\number\year 年 \number\month 月 \number\day 日}
+
+\begin{document}
+
+\maketitle
+
+\section{\normalfont 整理表格}
+
+\subsection{\normalfont 测量太阳能电池的端电压 $U$ 和通过负载电阻的电流 $I$}
+
+实验数据处理如表\ref{fig:table_data1} 所示。
+
+\begin{table}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=0.78\textwidth]{./figures/表1.pdf} 
+    \caption{测量太阳能电池的端电压 $U$  和通过负载电阻的电流 $I$}
+    \label{fig:table_data1}
+\end{table}
+
+% 防止浮动超过当前标题
+\FloatBarrier
+
+\section{\normalfont 结果展示}
+
+\subsection{\normalfont 根据表 26-1 测量的 $U$ 和 $I$ 值计算得到的 $P$ 和 $R$ 值}
+
+计算得到的 $P$ 和 $R$ 值如表\ref{fig:table_data2} 所示。
+
+\begin{table}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=0.78\textwidth]{./figures/表2.pdf} 
+    \caption{根据表 1 测量的 $U$ 和 $I$ 值计算得到的 $P$ 和 $R$ 值}
+    \label{fig:table_data2}
+\end{table}
+
+\subsection{\normalfont $U-I$ 曲线}
+
+根据表 \ref{fig:table_data1} 测量的 $U$ 和 $I$ 值绘制得到的 $U-I$ 曲线如图 \ref{fig:pict_data1} 所示。
+
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=0.65\textwidth]{./figures/图1.pdf} 
+    \caption{$U-I$ 曲线}
+    \label{fig:pict_data1}
+\end{figure}
+
+\subsection{\normalfont $P-R$ 特性曲线}
+
+根据表 \ref{fig:table_data2} 测量的 $P$ 和 $R$ 值绘制得到的 $P-R$ 曲线如图 \ref{fig:pict_data2} 所示。
+
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=0.65\textwidth]{./figures/图2.pdf} 
+    \caption{$P-R$ 特性曲线}
+    \label{fig:pict_data2}
+\end{figure}
+
+\subsection{\normalfont 对应于最大功率的负载电压值 $R_{max}$ 和内阻值 $R_i$}
+
+对应于最大功率的负载电压值 $R_{max}$ 和根据书中式（26-2）计算出的内阻值 $R_i$如表 \ref{fig:table_data3} 所示：
+
+\begin{table}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=0.8\textwidth]{./figures/表3.pdf} 
+    \caption{最大功率的负载电压值 $R_{max}$ 和内阻值 $R_i$}
+    \label{fig:table_data3}
+\end{table}
+
+\subsection{\normalfont 最大功率 $P_{max}$ 和开路电压与短路电流的乘积}
+
+最大功率 $P_{max}$ 和开路电压与短路电流的乘积如表 \ref{fig:table_data4} 所示：
+
+\begin{table}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=0.8\textwidth]{./figures/表4.pdf} 
+    \caption{最大功率 $P_{max}$ 和开路电压与短路电流的乘积}
+    \label{fig:table_data4}
+\end{table}
+
+\begin{align*}
+    \overline F  = 0.783 \\
+\end{align*}
+
+这里我使用 Excel 进行计算，计算的中间过程及公式见第\ref{sec:calculation_process} 节。
+
+% 防止浮动超过当前标题
+\FloatBarrier
+
+\section{\normalfont 计算过程}
+\label{sec:calculation_process}
+
+根据表 \ref{fig:table_data1} 测量的 $U$ 和 $I$ 值计算得到的 $P$ 和 $R$ 值的公式如下。
+\newline \newline 电阻 $R$ 的公式：
+\begin{Verbatim}[frame=single, fontsize=\small]
+    =B5*1000/A5
+\end{Verbatim}
+功率 $P$ 的公式：
+\begin{Verbatim}[frame=single, fontsize=\small]
+    =A5*B5
+\end{Verbatim}
+之后的行数逐层下拉与右拉即可。
+\subsection{\normalfont 计算 $R_{max}$ 和 $R_i$}
+
+根据表 \ref{fig:table_data2} 测量的 $P$ 和 $R$ 值计算得到的 $R_{max}$ 和 $R_i$ 的公式如下。
+\newline \newline $R_{max}$ 的公式：
+\begin{Verbatim}[frame=single, fontsize=\small]
+    =INDEX(K3:K22, MATCH(MAX(L3:L22), L3:L22, 0))
+\end{Verbatim}
+$R_i$ 的公式：
+\begin{Verbatim}[frame=single, fontsize=\small]
+    =B3*1000/A3
+\end{Verbatim}
+$\dfrac{R_{max}}{R_i}$ 的公式：
+\begin{Verbatim}[frame=single, fontsize=\small]
+    =B27/B28
+\end{Verbatim}
+
+
+\subsection{\normalfont 计算填充因数 $F$ 的平均值}
+
+根据表 \ref{fig:table_data2} 测量的 $P$ 和 $R$ 值计算得到的 $P_{max}$ 和 $U_{o}I_{s}$ 的公式如下。
+\newline \newline $P_{max}$ 的公式：
+\begin{Verbatim}[frame=single, fontsize=\small]
+    =MAX(L3:L22)
+\end{Verbatim}
+$U_{o}I_{s}$ 的公式：
+\begin{Verbatim}[frame=single, fontsize=\small]
+    =A$3*B$3
+\end{Verbatim}
+$F=\dfrac{P_{max}}{U_{o}I_{s}}$ 的公式：
+\begin{Verbatim}[frame=single, fontsize=\small]
+    =H27/H28
+\end{Verbatim}
+$\overline F$ 的公式：
+\begin{Verbatim}[frame=single, fontsize=\small]
+    =AVERAGE(H29:K29)
+\end{Verbatim}
+
+
+
+Excel 行列关系及计算结果如图\ref{fig:final_table} 所示：
+\begin{figure}[H] % 使用 H 强制图片在当前位置放置
+    \centering
+    \includegraphics[width=\textwidth]{./figures/佐证材料.pdf} 
+    \caption{Excel 行列关系及计算结果}
+    \label{fig:final_table}
+\end{figure}
+
+\end{document}
