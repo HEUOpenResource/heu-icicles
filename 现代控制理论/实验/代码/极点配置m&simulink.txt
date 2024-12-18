@@ -1,0 +1,63 @@
+3．非线性模型的MATLAB仿真
+为方便起见，令a=J1+m2R12，b=m2R1L2，c=J2，d=f1+KmKe， e=(m1L1+m2R1)g，f=f2，h=m2gL2在MATLAB中，将各个参数值代入非线性数学模型，进行仿真，利用ODE函数求解微分方程。
+（1）极点配置，求取状态反馈增益矩阵
+选择主菜单file→new→m-file建立文件fang_daolibai.m：
+clear;
+clc;
+A=[     0       0         1         0
+         0       0         0         1 
+     65.8751  -16.8751    -3.7062     0.2760
+    -82.2122   82.2122    4.6254     -1.3444] ; % System matrix
+B=[0;0;5.2184;-6.5125]; % Control Matrix
+C=[1,0,0,0;0,1,0,0]; % output matrix
+P=[-4+3i,-4-3i,-30-6i,-30+6i]; % expect pole
+rank (ctrb (A, B)) % controllability
+rank (obsv (A, C)) % observability
+eig (A) % stability
+K=place(A,B,P) % state feedback gain matrix
+P1=[-20+3i,-20-3i,-80-1i,-80+1i]
+L=place(A',C',P1)'
+利用极点配置的方法求反馈矩阵K。任取一组期望极点P，在MATLAB中利用place(A,B,P)函数求得K=[Ka,Ko,Kva,Kvo]。
+（2）建立旋转式倒立摆的非线性模型的微分方程
+运行MATLAB6.0以上的版本，选择主菜单file→new→m-file建立文件dlfun.m：
+function xdot=dlfun(t,x); 
+m1=0.200; m2=0.052; L1=0.10; L2=0.12; r=0.20; km=0.0236; ke=0.2865; 
+g=9.8; J1=0.004; J2=0.001; f1=0.01; f2=0.001; % value of parameter 
+a=J1+m2*r*r; b=m2*r*L2; c=J2; d=f1+km*ke; e=(m1*L1+m2*r)*g;  f=f2;  h=m2*L2*g; 
+K=[  *   *   *   *];% State feedback gain matrix obtained according to the desired pole; 
+u=-K*[x(1);x(2);x(3);x(4)]; % control variable 
+xdot=zeros(5,1); %derivative of x 
+xdot(1)=x(3); 
+xdot(2)=x(4); 
+xdot(3)=((-d*c).*x(3)+(f*b*cos(x(2)-x(1))).*x(4)+b*b*sin(x(2)-x(1)).*cos(x(2)-x(1)).*x(3).*x(3)-b*c*sin(x(1)-x(2)).*x(4).*x(4)+e*c*sin(x(1))-h*b*sin(x(2)).*cos(x(2)-x(1))+km*c*u)/(a*c-b*b.*cos(x(1)-x(2)).*cos(x(2)-x(1))); 
+xdot(4)=((d*b*cos(x(1)-x(2))).*x(3)-(a*f).*x(4)-a*b*sin(x(2)-x(1)).*x(3).*x(3)+b*b*sin(x(1)-x(2)).*cos(x(1)-x(2)).*x(4).*x(4)-e*b*sin(x(1)).*cos(x(1)-x(2))+a*h*sin(x(2))-b*cos(x(1)-x(2))*km*u)/(a*c-b*b.*cos(x(1)-x(2)).*cos(x(2)-x(1))); % differential equations to describe the nonlinear model
+xdot(5)=-K*[xdot(1);xdot(2);xdot(3);xdot(4)]; % derivative of control variable
+（3）求解非线性模型的微分方程
+选择主菜单file→new→m-file建立文件daolibai.m：
+Close all; 
+t0=0;tf=20;%simulation time 
+K=[  *  *  *  *];% State feedback gain matrix obtained according to the desired pole;
+r= [-0.1;0.05;0;0];%initial value of x1,x2,x3,x4 
+u0=-K*r; 
+x0=[r;u0];%initial value 
+[t,x]=ode45('dlfun',[t0,tf],x0);  % solve differential equations 
+figure;
+plot(t,x(:,1)*180/pi,'r',t,x(:,2)*180/pi,'b',t,x(:,5),'g');
+legend('spiral arm angle','the pendulum angle','control value');
+（4）仿真步骤：
+i．选择期望极点P，运行fang_daolibai.m求出状态反馈矩阵K；
+ii．将状态反馈矩阵K代入到dlfun.m和daolibai.m中，点击保存；
+iii．在daolibai.m中，设置系统的初始值，运行并观察响应曲线。
+iv．选择多组极点，重复以上步骤。
+
+4．非线性模型的Simulink仿真
+ 
+Fcn：
+((-0.0168*0.001)*u[3]+(0.001*0.0012*cos(u[2]-u[1]))*u[4]+0.0012*0.0012*sin(u[2]-u[1])* cos(u[2]-u[1])*u[3]*u[3]-0.0012*0.001*sin(u[1]-u[2])*u[4]*u[4]+0.2979*0.001*sin(u[1])-0.0612*0.0012*sin(u[2])*cos(u[2]-u[1])+0.0236*0.001*u[5])/(0.0061*0.001-0.0012*0.0012*cos(u[1]-u[2])*cos(u[2]-u[1])) 
+Fcn1：
+((0.0168*0.0012*cos(u[1]-u[2]))*u[3]-(0.0061*0.001)*u[4]-0.0061*0.0012*sin(u[2]-u[1])*u[3]*u[3]+0.0012*0.0012*sin(u[1]-u[2])*cos(u[1]-u[2])*u[4]*u[4]-0.2979*0.0012*sin(u[1])*cos(u[1]-u[2])+0.0061*0.0612*sin(u[2])-0.0012*cos(u[1]-u[2])*0.0236*u[5])/(0.0061*0.001-0.0012*0.0012*cos(u[1]-u[2])*cos(u[2]-u[1]))
+仿真步骤：
+i．选择期望极点P，运行fang_daolibai.m求出状态反馈矩阵K；
+ii．将状态反馈矩阵K代入图中的L模块中，点击保存；
+iii．双击integrator3设置x1（θ1）的初始值，双击integrator1设置x2（θ2）的初始值，运行并观察响应曲线。
+iv．选择多组极点，重复以上步骤。
