@@ -13,7 +13,9 @@
 
 手机端用户请点击左上角三条横线，查看课程列表，或使用右上角搜索功能搜索。
 
-Web page: [https://heuopenresource.github.io/heu-icicles/](https://heuopenresource.github.io/heu-icicles/)
+Web page: 
+- [http://heu.us.kg/](http://heu.us.kg/) (方便记忆)
+- [https://heuopenresource.github.io/heu-icicles/](https://heuopenresource.github.io/heu-icicles/) （永久有效）
 
 由于本仓库未启用 `git-lfs`，因此请不要上传单个超过 100M 的文件，否则 commit 无效。
 
