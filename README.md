@@ -27,7 +27,7 @@ Web page:
 
 感谢对本项目贡献的同学（排名不分先后）：[xhd0728](https://github.com/xhd0728)、[only9464](https://github.com/only9464)、[RigelNana](https://github.com/RigelNana)、[konancol](https://github.com/konancol)、[Holit](https://github.com/Holit)、[yisuanwang](https://github.com/yisuanwang)、[xhyu61](https://github.com/xhyu61)、[penguinway](https://github.com/penguinway)、[jht3QAQ](https://github.com/jht3QAQ)、[yao9e](https://github.com/yao9e)、[zhangxianyv](https://github.com/zhangxianyv)、[FuxuanNet
 ](https://github.com/FuxuanNet
-)、[lvdongyi](https://github.com/lvdongyi) 、[kur114](https://github.com/kur114)、[Jackyao03](https://github.com/Jackyao03)、[乄Eli~那尔](https://www.douyin.com/user/MS4wLjABAAAAXWFCuwRir7K5VAZUNMM4iiSt15P5JE8Yu_lKxlokD6s)、[Parsifa1](https://github.com/Parsifa1)、[zgr-zgr](https://github.com/zgr-zgr)、[phhandong](https://github.com/phhandong)、[AstrophelXD](https://github.com/AstrophelXD)……以及电脑前的您！
+)、[lvdongyi](https://github.com/lvdongyi) 、[kur114](https://github.com/kur114)、[Jackyao03](https://github.com/Jackyao03)、[乄Eli~那尔](https://www.douyin.com/user/MS4wLjABAAAAXWFCuwRir7K5VAZUNMM4iiSt15P5JE8Yu_lKxlokD6s)、[Parsifa1](https://github.com/Parsifa1)、[zgr-zgr](https://github.com/zgr-zgr)、[phhandong](https://github.com/phhandong)、[AstrophelXD](https://github.com/AstrophelXD)、[gfzgfzgfz](https://github.com/gfzgfzgfz)……以及电脑前的您！
 
 ## 前言
 
