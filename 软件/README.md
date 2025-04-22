@@ -15,4 +15,4 @@
 | Multisim        | 电路仿真           | 通过网盘分享的文件：Multisim 14.3.rar<br>链接: https://pan.baidu.com/s/1_XygXtYGf8EEneZ3sBWvfw?pwd=1234<br>提取码: 1234 |
 | Thunderbird     | 雷鸟邮箱           | 通过网盘分享的文件：thunderbird-91.9.0.tar.bz2<br>链接: https://pan.baidu.com/s/1Y1uNsfsahpWBpQCQjYA0Zw?pwd=1234<br>提取码: 1234 |
 | Linux           | 虚拟机镜像         | 通过网盘分享的文件：kechengsheji.zip<br>链接: https://pan.baidu.com/s/1g2oOMwafFL5dCCD-vSOPyw?pwd=1234<br>提取码: 1234 |
-
+| Balatro           | 小丑牌         | 通过网盘分享的文件：Balatro (2024).zip<br>链接: https://pan.baidu.com/s/131tSsQUwYp9tWbDCzZQw2g?pwd=1234<br>提取码: 1234 |
