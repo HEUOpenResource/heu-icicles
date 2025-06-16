@@ -23,7 +23,7 @@ Web page:
 
 由于本仓库未启用 `git-lfs`，因此请不要上传单个超过 100M 的文件，否则 commit 无效。
 
-如果您下载Github仓库中的文件很慢，或者流量不足，可以临时使用我们的[Down Git](https://ghproxy.kokomi0728.eu.org/)服务，国内可以直连。站点每日只有10万请求次数，如果您希望自行搭建流量转发服务，请参考[链接](https://blog.godgy.xyz/dmroom/otherv/260/)。
+如果您下载Github仓库中的文件很慢，或者流量不足，可以临时使用我们的[Github文件下载加速](https://ghproxy.heu.us.kg/)服务，国内可以直连。站点每日只有10万请求次数，如果您希望自行搭建流量转发服务，请参考[链接](https://blog.godgy.xyz/dmroom/otherv/260/)。
 
 感谢对本项目贡献的同学（排名不分先后）：[xhd0728](https://github.com/xhd0728)、[only9464](https://github.com/only9464)、[RigelNana](https://github.com/RigelNana)、[konancol](https://github.com/konancol)、[Holit](https://github.com/Holit)、[yisuanwang](https://github.com/yisuanwang)、[xhyu61](https://github.com/xhyu61)、[penguinway](https://github.com/penguinway)、[jht3QAQ](https://github.com/jht3QAQ)、[yao9e](https://github.com/yao9e)、[zhangxianyv](https://github.com/zhangxianyv)、[FuxuanNet
 ](https://github.com/FuxuanNet
