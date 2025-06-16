@@ -1,5 +1,3 @@
-# 机械设计基础
-
 ## 网课推荐
 
 [《机械设计基础》5.5小时期末速成课！期末速成丨考前突击丨期末不挂科丨考点总结](https://www.bilibili.com/video/BV1XTrrYyEJU?spm_id_from=333.788.videopod.episodes&vd_source=881366806fb2177a1100377dfbbca4c5)
