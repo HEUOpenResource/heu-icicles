@@ -11,13 +11,15 @@
 
 ## 先看这里👋
 
-手机端用户请点击左上角三条横线，查看课程列表，或使用右上角搜索功能搜索。
+手机端用户请点击右上角三条横线(旧版站点在左上角)，查看课程列表，或使用右上角搜索功能搜索。
 
 Web page: 
 
 - [https://heu.us.kg/](https://heu.us.kg/) (方便记忆)
   
-- [https://heuopenresource.github.io/heu-icicles/](https://heuopenresource.github.io/heu-icicles/) （永久有效）
+- [https://HEUOpenResource.github.io](https://heuopenresource.github.io/) （新版站点：永久有效）
+
+- [https://heuopenresource.github.io/heu-icicles/](https://heuopenresource.github.io/heu-icicles/) （旧版站点：永久有效）
 
 - [https://analytics.heu.us.kg/](https://analytics.heu.us.kg/) （网站访问情况统计分析面板）
 
