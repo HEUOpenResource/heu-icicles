@@ -1,0 +1,28 @@
+name: 通知站点仓库部署
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 触发 HEUOpenResource.github.io 的 deploy.yml
+        env:
+          TOKEN: ${{ secrets.REPO_DISPATCH_TOKEN }}
+        run: |
+          curl -X POST https://api.github.com/repos/HEUOpenResource/HEUOpenResource.github.io/dispatches \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $TOKEN" \
+            -d '{
+              "event_type": "heu-icicles-main-updated",
+              "client_payload": {
+                "repo": "heu-icicles",
+                "branch": "main",
+                "commit": "'"${GITHUB_SHA}"'",
+                "time": "'"$(date -u +"%Y-%m-%dT%H:%M:%SZ")"'"
+              }
+            }'
