@@ -11,13 +11,15 @@
 
 ## 先看这里👋
 
-手机端用户请点击右上角三条横线(旧版站点在左上角)，查看课程列表，或使用右上角搜索功能搜索。
+手机端用户请点击**左上角三条横线**，查看课程列表，或使用右上角搜索功能搜索。
 
 Web page: 
 
 - [https://heu.us.kg/](https://heu.us.kg/) (方便记忆)
   
 - [https://HEUOpenResource.github.io](https://heuopenresource.github.io/) （新版站点：永久有效）
+
+- [https://old.heu.us.kg/](https://old.heu.us.kg/)  （旧版站点：方便记忆）
 
 - [https://heuopenresource.github.io/heu-icicles/](https://heuopenresource.github.io/heu-icicles/) （旧版站点：永久有效）
 
@@ -67,7 +69,7 @@ Web page:
 
 或者也可以直接附加在 **Issue** 中，由维护者进行添加。
 
-由于本项目体积很大，故可以采用在 **Github Web** 端直接上传的方式，具体操作如下：
+由于本项目体积很大，故可以采用在 **Github Web** 端直接上传的方式，具体操作如下（**切勿上命名中带有空格的文件、文件夹**）：
 
 首先 **Fork** 本项目
 
