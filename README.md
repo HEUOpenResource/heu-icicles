@@ -6,6 +6,9 @@
 [![](https://img.shields.io/github/issues-pr-closed-raw/HEUOpenResource/heu-icicles.svg?style=flat)](https://github.com/HEUOpenResource/heu-icicles/issues)
 ![](https://img.shields.io/github/repo-size/HEUOpenResource/heu-icicles.svg?style=flat)
 
+[![部署站点](https://github.com/HEUOpenResource/HEUOpenResource.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/HEUOpenResource/HEUOpenResource.github.io/actions/workflows/deploy.yml)
+[![pages-build-deployment](https://github.com/HEUOpenResource/HEUOpenResource.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/HEUOpenResource/HEUOpenResource.github.io/actions/workflows/pages/pages-build-deployment)
+
 [![Build MKDocs](https://github.com/HEUOpenResource/mkdocs-build/actions/workflows/mkdocs_builder.yaml/badge.svg)](https://github.com/HEUOpenResource/mkdocs-build/actions/workflows/mkdocs_builder.yaml)
 [![pages-build-deployment](https://github.com/HEUOpenResource/heu-icicles/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/HEUOpenResource/heu-icicles/actions/workflows/pages/pages-build-deployment)
 
@@ -15,19 +18,20 @@
 
 Web page: 
 
-- [https://heu.us.kg/](https://heu.us.kg/) (方便记忆)
+- [https://heu.us.kg/](https://heu.us.kg/) (新版站点：方便记忆)
   
 - [https://HEUOpenResource.github.io](https://heuopenresource.github.io/) （新版站点：永久有效）
 
-- [https://old.heu.us.kg/](https://old.heu.us.kg/)  （旧版站点：方便记忆）
+- [https://old.heu.us.kg/](https://old.heu.us.kg/)  （旧版站点(~~暂时停更~~)：方便记忆）
 
-- [https://heuopenresource.github.io/heu-icicles/](https://heuopenresource.github.io/heu-icicles/) （旧版站点：永久有效）
+- [https://heuopenresource.github.io/heu-icicles/](https://heuopenresource.github.io/heu-icicles/) （旧版站点(~~暂时停更~~)：永久有效）
 
 - [https://analytics.heu.us.kg/](https://analytics.heu.us.kg/) （网站访问情况统计分析面板）
 
 - [https://ghproxy.heu.us.kg/](https://ghproxy.heu.us.kg/) （Github文件下载加速）
 
 - [https://mail.heu.us.kg/](https://mail.heu.us.kg/)   (临时邮箱服务)
+
 
 由于本仓库未启用 `git-lfs`，因此请不要上传单个超过 100M 的文件，否则 commit 无效。
 
