@@ -1,12 +1,19 @@
-name: 通知站点仓库部署
+name: 通知站点仓库更新网站
 
 on:
   push:
     branches:
       - main
+    paths-ignore:
+      - '.github/workflows/**'   # ✅ 只忽略 workflow 文件变更
+  workflow_dispatch:
 
 jobs:
   notify:
+    if: |
+      github.repository == 'HEUOpenResource/heu-icicles' ||
+      github.event_name == 'workflow_dispatch'
+
     runs-on: ubuntu-latest
 
     steps:
@@ -20,8 +27,8 @@ jobs:
             -d '{
               "event_type": "heu-icicles-main-updated",
               "client_payload": {
-                "repo": "heu-icicles",
-                "branch": "main",
+                "repo": "'"${GITHUB_REPOSITORY}"'",
+                "branch": "'"${GITHUB_REF_NAME}"'",
                 "commit": "'"${GITHUB_SHA}"'",
                 "time": "'"$(date -u +"%Y-%m-%dT%H:%M:%SZ")"'"
               }
