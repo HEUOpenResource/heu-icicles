@@ -1,4 +1,4 @@
-## 课程设计范例
+## 操作系统实验
 ### 2022级
 - [https://gitee.com/only9464/Operating-System-Experiment](https://gitee.com/only9464/Operating-System-Experiment)
 - [https://github.com/only9464/Operating-System-Experiment](https://github.com/only9464/Operating-System-Experiment)
