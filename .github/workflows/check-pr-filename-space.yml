@@ -1,0 +1,37 @@
+name: 检查文件(夹)名是否带有空格
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check-names:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 检查文件和文件夹名中是否存在空格
+        run: |
+          echo "正在检查文件和文件夹名中是否存在空格..."
+
+          # 获取 PR 的 base 和 head
+          BASE_SHA=${{ github.event.pull_request.base.sha }}
+          HEAD_SHA=${{ github.event.pull_request.head.sha }}
+
+          # 获取变更的文件列表
+          CHANGED_FILES=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")
+
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+
+          # 检查是否有空格
+          if echo "$CHANGED_FILES" | grep -q " "; then
+            echo "::error::文件和文件夹名中存在空格!!!!"
+            exit 1
+          else
+            echo "文件名和文件夹名命名合规，通过！"
+          fi
